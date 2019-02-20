@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <title>访问控制</title>
+    <!--有网络-->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+    <!--无网络-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/acl_list.css' %}">
+    <link rel="stylesheet" href="{% static 'css/select_checkbox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/journal.css'%}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer/layer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/paging.js' %}"></script>
+    <script type="text/javascript">
+        /**显示用户**/
+        var pl;
+        $(function () {
+            var sys_lock = window.parent.control_lock;
+            if(sys_lock){
+                //部门
+                var interfacePlace_dep = window.parent.interface_Depart;
+                var interfaceText_dep = $(window.parent.interface_Depart).text();
+                var interfaceNum_dep = interfaceText_dep.match(/\((\S*)\)/)[1];
+                //父菜单
+                var interfacePlace_par = window.parent.interface_Parent;
+                var interfaceText_par = $(window.parent.interface_Parent).text();
+                var interfaceNum_par = interfaceText_par.match(/\((\S*)\)/)[1];
+                //本菜单
+                var interfacePlace = window.parent.interface_Num;
+                var interfaceText = $(window.parent.interface_Num).text();
+                var interfaceNum = interfaceText.match(/\((\S*)\)/)[1];
+            }
+            table_keys = "serviceName";
+            database = window.parent.depart;
+            table_name = "Uacl";
+            bindPlace = $(".body");
+            handle = "commonUser_acl_list";
+            moveli = $(".moveLi");
+            set_PageData(database, table_name, bindPlace, 1, moveli,10);
+            var depname = window.parent.depart;
+            /**  删除功能  **/
+            /* 全选 */
+            // {#$(".data_title .head").on('click', ":input[type='checkbox']", function () {#}
+            // {#    var status = $(this).prop('checked');#}
+            // {#    var oItems = document.getElementsByName('item');#}
+            // {#    for (var i = 0; i < oItems.length; i++) {#}
+            // {#        oItems[i].checked = status;#}
+            // {#    }#}
+            // {#    if (status == true) {#}
+            // {#        $(".body").find(".row").addClass("active");#}
+            // {#    } else {#}
+            // {#        $(".body").find(".row").removeClass("active");#}
+            // {#    }#}
+            // {#\});#}
+            //1.2. 删除用户
+            /*  单行删除 */
+            $(".body").on("click", "#del_tr", function (event) {
+                $(this).parents().find(":input[type='checkbox']").prop("checked", false);
+                $(this).parents().find(".row").removeClass("active");
+                $(this).parents(".row").find("#server_name_id").prop("checked", true);
+                $(this).parents(".row").addClass("active");
+                var id = $(this).parents(".row").find("#id").text();
+                var serviceName = $(this).parents(".row").find("#serviceName").text();
+                layer.confirm('确定要删除这个字段吗?', {
+                    title: "提示",
+                    btn: ["确定", "取消"],
+                    yes: function (index) {
+                        var params = {
+                            "req_config": "del_acl",
+                            "serviceName": serviceName,
+                            "depname": depname
+                        };
+                        $.post('/user_operation/', params, function (data) {
+                            if (data.result == 1) {
+                                layer.alert("删除成功", function () {
+                                    if(sys_lock){
+                                        $(interfacePlace).text(interfaceText.replace(interfaceText.match(/\((\S*)\)/)[1], (interfaceNum - 1)));
+                                        $(interfacePlace_par).html(interfaceText_par.replace(interfaceText_par.match(/\((\S*)\)/)[1], (interfaceNum_par - 1)));
+                                        $(interfacePlace_dep).text(interfaceText_dep.replace(interfaceText_dep.match(/\((\S*)\)/)[1], (interfaceNum_dep - 1)));
+                                    }
+                                    location.reload();
+                                });
+                            } else {
+                                layer.alert("删除失败")
+                            }
+                        });
+                    },
+                    btn2: function (index) {
+                        layer.close(index);
+                    }
+                });
+            });
+            /* 批量删除 */
+            // {#$(".data_bottom").on('click', "#del_user", function () {#}
+            // {#    var boxes = document.getElementsByName("item");#}
+            // {#    var arr = [];#}
+            // {#    var params = "";#}
+            // {#    if (layer.confirm("确定要删除这个字段吗？")) {#}
+            // {#        for (var i = 0; i < boxes.length; i++) {#}
+            // {#            if (boxes[i].checked == true) {#}
+            // {#                arr.push($(boxes[i]).parents(".row").find("#serviceName").text() + "'+'" + $(boxes[i]).parents(".row").find("#id").text());#}
+            // {#            }#}
+            // {#        }#}
+            // {#        params = {'arr': arr,"depname":depname};#}
+            // {#        $.post('php/acl/del_acl.php', params, function (data) {#}
+            // {#            if (data == 1) {#}
+            // {#                alert('删除成功');#}
+            // {#                getData();#}
+            // {#            } else {#}
+            // {#                alert('删除失败')#}
+            // {#            }#}
+            // {#        })#}
+            // {#    } else {#}
+            // {#        alert('删除失败')#}
+            // {#    }#}
+            // {#\});#}
+
+            /* 弹出框 添加用户*/
+            $(".row").on("click", "[type='button']", function (event) {
+                if ($(this).attr('id') == "add_data") {
+                    layerFn();
+                    $("#add_serviceName").val("");
+                    // { #$("#add_name").val(""); # }
+                    $("#add_whitelist").val("");
+                }
+            });
+            function layerFn() {
+                csFs_label();
+                layer.open({
+                    area: ['500px', '540px'],
+                    title: "添加访问控制",
+                    content: $('#list_layer'),
+                    type: 1,
+                    btn: ["保存", "取消"],
+                    yes: function (index) {
+                        var serviceName = $("#add_serviceName").val();
+                        var name = $("#add_name").val();
+                        var whiteselect = $(".fs-label").text().trim();
+                        if (whiteselect != '请选择') {
+                            var params = {
+                                "req_config": "add_acl",
+                                "serviceName": serviceName,
+                                "name": name,
+                                "whitelist": whiteselect,
+                                "depname": depname
+                            };
+                            $.post('/user_operation/', params, function (data) {
+                                if (data.result == 1) {
+                                    layer.alert("添加成功", function () {
+                                        if(sys_lock){
+                                            $(interfacePlace).text(interfaceText.replace(interfaceText.match(/\((\S*)\)/)[1], (Number(interfaceNum) + 1)));
+                                            $(interfacePlace_par).html(interfaceText_par.replace(interfaceText_par.match(/\((\S*)\)/)[1], (Number(interfaceNum_par) + 1)));
+                                            $(interfacePlace_dep).text(interfaceText_dep.replace(interfaceText_dep.match(/\((\S*)\)/)[1], (Number(interfaceNum_dep) + 1)));
+                                        }
+                                        location.reload();
+                                    });
+                                } else {
+                                    layer.alert("添加失败");
+                                }
+                            });
+                            layer.close(index);
+                        } else {
+                            layer.alert('请选择白名单');
+                        }
+                    },
+                    btn2: function (index) {
+                        layer.close(index);
+                    }
+                });
+            }
+
+            /*选中状态*/
+            $(".data_title .body").on('click', ":input[type='checkbox']", function () {
+                var checkbox = $(this).prop('checked');
+                if (checkbox == true) {
+                    $(this).parents(".row").addClass("active");
+                } else {
+                    $(this).parents(".row").removeClass("active");
+                }
+            })
+            $("#add_whitelist").focus(function () {
+                $(this).removeAttr('placeholder');
+            });
+            $("#add_whitelist").blur(function () {
+                $(this).attr('placeholder', "多个用户用“，”隔开");
+            });
+            function csFs_label() {
+                $(".fs-label").text('请选择');
+                $(".fs-options div").removeClass("selected");
+            }
+            //修改
+            $(".body").on('click', '#update_upd', function () {
+                csFs_label();
+                var sername = $(this).parents('.break').find('#serviceName').text();
+                var wl = $(this).parents('.break').find('#whitelist').text();
+                $("#add_serviceName option[value=" + sername + "]").prop("selected", true);
+                if (wl) {
+                    $(".fs-label").text(wl);
+                    var inpVal = $('.fs-label').text();
+                    var inpVals = wl.trim().replace(/\s/g, '').split(",");
+                    for (var i = 0; i < inpVals.length; i++) {
+                        var iVal = $('.fs-option .fs-option-label');
+                        iVal.each(function (index, item) {
+                            var iText = $(this).context.innerHTML;
+                            if (inpVals[i] == iText) {
+                                var parent = $(this).context.parentNode;
+                                parent.classList.add("selected");
+                            }
+                        })
+                    }
+                }
+                layer.open({
+                    area: ['500px', '540px'],
+                    title: "修改访问控制",
+                    content: $('#list_layer'),
+                    type: 1,
+                    btn: ["保存", "取消"],
+                    yes: function (index) {
+                        var update_name = $("#add_serviceName option:selected").text().trim();
+                        var whiteselect = $(".fs-label").text().trim();
+                        $.post('/update_acl/', { "depname": depname, "sername": sername, "newSerName": update_name, "newWL": whiteselect }, function (data) {
+                            if (data.result == 1) {
+                                layer.alert('修改成功', function () {
+                                    location.reload();
+                                });
+                            } else {
+                                layer.alert('修改失败');
+                            }
+                        });
+                        layer.close(index);
+                    },
+                    btn2: function (index) {
+                        layer.close(index);
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="data_title">
+            <div class="head_title">访问控制列表
+                <div class="search_div">
+                    <input type="text" id="search_input" placeholder="请输入数据资源名称"><button id="search_btnOK">搜索</button>
+                </div>
+            </div>
+            <div class="head">
+                <div class="row">
+                    {# <div class="col-xs-2 col-md-2">#}
+                        {# <input type="checkbox" id="checkAll" />#}
+                        {# </div>#}
+                    <div class="col-xs-2 col-md-2">序号</div>
+                    <div class="col-xs-4 col-md-4">数据资源名称</div>
+                    {# <div class="col-xs-2 col-md-2">acl</div>#}
+                    <div class="col-xs-4 col-md-4">白名单</div>
+                    <div class="col-xs-2 col-md-2">操作</div>
+                </div>
+            </div>
+            <div class="body">
+                {# {% for time in Uacl %}#}
+                {# <div class="row break">#}
+                    {# <div class="col-xs-2 col-md-2">#}
+                        {# <input type="checkbox" name="item" id="server_name_id" value="" />#}
+                        {# </div>#}
+                    {# <div class="col-xs-2 col-md-2" id="id">{{ forloop.counter }}</div>#}
+                    {# <div class="col-xs-3 col-md-3" id="serviceName">{{ time.serviceName }}</div>#}
+                    {# <div class="col-xs-2 col-md-2" id="name">{{ time.name }}</div>#}
+                    {# <div class="col-xs-3 col-md-3" id="whitelist">{{ time.whitelist }}</div>#}
+                    {# <div class="col-xs-2 col-md-2">#}
+                        {# <input type="button" name="" class="data_del" style="color: #00cd00;" id="update_upd" value="修改">#}
+                        {# <input type="button" name="" class="data_del" value="删除" id="del_tr" />#}
+                        {# </div>#}
+                    {# </div>#}
+                {# {% endfor %}#}
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row data_bottom">
+                <div class="button_data col-xs-2 col-sm-2">
+                    <ul class="pagination">
+                        {# <li>#}
+                            {# <div class="btn btn-danger" id="del_user">#}
+                                {# <img src="{% static 'images/del.png' %}" id="del_img" alt="">批量删除#}
+                                {# </div>#}
+                            {# </li>#}
+                        <li>
+                            <div id="add_data" class="btn btn-success" type="button">添加
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-10 col-md-10 padlr">
+                    <div class="padlr_right" align="right">
+                        <ul class="pagination pagin">
+                            <li id="allpage"></li>
+                            <li id="eachPage"><i>10条/页</i><span class="icon-angle-down"></span>
+                                <div class="eachPage_box">
+                                    <div class="eachPage_con">
+                                        <ul>
+                                            <li class="ten eachPage_selected">10条/页</li>
+                                            <li class="twenty">20条/页</li>
+                                            <li class="thirty">30条/页</li>
+                                            <li class="forty">40条/页</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="shangyiye" class="disabled"><span class="icon-angle-left"></span></li>
+                            <li id="xiayiye"><span class="icon-angle-right"></span></li>
+                            <li class="go">前往
+                                <input type="text" class="jump" value="" id="tiaozhuannum">页
+                            </li>
+                            <li>
+                                <button id="jump">确定</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--layer  添加-->
+    <div class="list_layer" id="list_layer" style="display: none;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="add_serviceName" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label"
+                   style="width:130px;margin-left: 11%">数据资源名称</label>
+                <div class="col-xs-6 col-md-6">
+                    {# <input type="text" class="form-control" id="add_serviceName">#}
+                    <select name="add_serviceName" id="add_serviceName" class="form-control">
+                        {% for time in Aacl %}
+                        <option value="{{ time.serviceName }}">{{ time.serviceName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            {# <div class="form-group">#}
+                {# <label for="add_name" #} {# class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">acl</label>#}
+                {# <div class="col-xs-6 col-md-6">#}
+                    {# <input type="text" value="acl" class="form-control" id="add_name" readonly>#}
+                    {# <select name="add_name" id="add_name" class="form-control">#}
+                        {# {% for time in Aacl %}#}
+                        {# <option value="{{ time.name }}">{{ time.name }}</option>#}
+                        {# {% endfor %}#}
+                        {# </select>#}
+                    {# </div>#}
+                {# </div>#}
+            <div class="form-group">
+                {% for user in Uuser %}
+                {% endfor %}
+                <label for="add_whitelist" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label"
+                    style="width:130px;margin-left: 11%">白名单</label>
+                <div class="col-xs-6 col-md-6">
+                    {# <input type="text" class="form-control" id="add_whitelist" placeholder="多个用户用“，”隔开">#}
+                    {# <select name="add_whitelist" id="add_whitelist" class="form-control">#}
+                        {# {% for time in Aacl %}#}
+                        {# <option value="{{ time.whitelist }}">{{ time.whitelist }}</option>#}
+                        {# {% endfor %}#}
+                        {# </select>#}
+                    <select class="whiteList" multiple="multiple">
+                        {% for user in Uuser %}
+                        <option value="{{ user }}">{{ user }}</option>
+                        {% endfor %}
+
+                        {# <option value="php">PHP</option>#}
+                        {# <option value="asp">ASP</option>#}
+                        {# <option value="jsp">JSP</option>#}
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--layer end-->
+    <!-- layer 修改 -->
+    <div class="update_layer" style="display: none">
+        <div class="update_servicename_div">
+            <label for="update_servicename">数据资源名称</label>
+            {# <input type="text" id="update_servicename">#}
+            <select name="update_servicename" id="update_servicename" class="form-control">
+                {% for time in Aacl %}
+                <option value="">111111111</option>
+                <option value="{{ time.serviceName }}">{{ time.serviceName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {# <div class="update_acl">#}
+            {# <label for="update_acl">acl</label>#}
+            {# <input type="text" id="update_acl" value="acl" readonly="readonly">#}
+            {# </div>#}
+        <div class="update_whitelist">
+            <label for="update_whitelist">白名单</label>
+            <input type="text" id="update_whitelist">
+        </div>
+    </div>
+    <!--layer end-->
+    <script>
+            (function ($) {
+                $.fn.fSelect = function (options) {
+
+                    if (typeof options == 'string') {
+                        var settings = options;
+                    } else {
+                        var settings = $.extend({
+                            placeholder: '请选择',
+                            numDisplayed: 3,
+                            overflowText: '{n} selected',
+                            searchText: '查找',
+                            showSearch: true
+                        }, options);
+                        settings.placeholder = pl;
+                    }
+
+					/**
+					 * Constructor
+					 */
+                    function fSelect(select, settings) {
+                        this.$select = $(select);
+                        this.settings = settings;
+                        this.create();
+                    }
+
+					/**
+					 * Prototype class
+					 */
+                    fSelect.prototype = {
+                        create: function () {
+                            var multiple = this.$select.is('[multiple]') ? ' multiple' : '';
+                            this.$select.wrap('<div class="fs-wrap' + multiple + '"></div>');
+                            this.$select.before('<div class="fs-label-wrap"><div class="fs-label">' + this.settings.placeholder + '</div><span class="fs-arrow"></span></div>');
+                            this.$select.before('<div class="fs-dropdown hidden"><div class="fs-options"></div></div>');
+                            this.$select.addClass('hidden');
+                            this.$wrap = this.$select.closest('.fs-wrap');
+                            this.reload();
+                        },
+
+                        reload: function () {
+                            if (this.settings.showSearch) {
+                                var search = '<div class="fs-search"><input type="search" placeholder="' + this.settings.searchText + '" /></div>';
+                                this.$wrap.find('.fs-dropdown').prepend(search);
+                            }
+                            var choices = this.buildOptions(this.$select);
+                            this.$wrap.find('.fs-options').html(choices);
+                            this.reloadDropdownLabel();
+                        },
+
+                        destroy: function () {
+                            this.$wrap.find('.fs-label-wrap').remove();
+                            this.$wrap.find('.fs-dropdown').remove();
+                            this.$select.unwrap().removeClass('hidden');
+                        },
+
+                        buildOptions: function ($element) {
+                            var $this = this;
+
+                            var choices = '';
+                            $element.children().each(function (i, el) {
+                                var $el = $(el);
+
+                                if ('optgroup' == $el.prop('nodeName').toLowerCase()) {
+                                    choices += '<div class="fs-optgroup">';
+                                    choices += '<div class="fs-optgroup-label">' + $el.prop('label') + '</div>';
+                                    choices += $this.buildOptions($el);
+                                    choices += '</div>';
+                                } else {
+                                    var selected = $el.is('[selected]') ? ' selected' : '';
+                                    choices += '<div class="fs-option' + selected + '" data-value="' + $el.prop('value') + '"><span class="fs-checkbox"><i></i></span><div class="fs-option-label">' + $el.html() + '</div></div>';
+                                }
+                            });
+
+                            return choices;
+                        },
+
+                        reloadDropdownLabel: function () {
+                            var settings = this.settings;
+                            var labelText = [];
+
+                            this.$wrap.find('.fs-option.selected').each(function (i, el) {
+                                labelText.push($(el).find('.fs-option-label').text());
+                            });
+
+                            if (labelText.length < 1) {
+                                labelText = settings.placeholder;
+                            } else if (labelText.length > settings.numDisplayed) {
+                                labelText = settings.overflowText.replace('{n}', labelText.length);
+                            } else {
+                                labelText = labelText.join(', ');
+                            }
+
+                            this.$wrap.find('.fs-label').html(labelText);
+                            this.$select.change();
+                        }
+                    }
+
+					/**
+					 * Loop through each matching element
+					 */
+                    return this.each(function () {
+                        var data = $(this).data('fSelect');
+
+                        if (!data) {
+                            data = new fSelect(this, settings);
+                            $(this).data('fSelect', data);
+                        }
+
+                        if (typeof settings == 'string') {
+                            data[settings]();
+                        }
+                    });
+                }
+
+				/**
+				 * Events
+				 */
+                window.fSelect = {
+                    'active': null,
+                    'idx': -1
+                };
+
+                function setIndexes($wrap) {
+                    $wrap.find('.fs-option:not(.hidden)').each(function (i, el) {
+                        $(el).attr('data-index', i);
+                        $wrap.find('.fs-option').removeClass('hl');
+                    });
+                    $wrap.find('.fs-search input').focus();
+                    window.fSelect.idx = -1;
+                }
+
+                function setScroll($wrap) {
+                    var $container = $wrap.find('.fs-options');
+                    var $selected = $wrap.find('.fs-option.hl');
+
+                    var itemMin = $selected.offset().top + $container.scrollTop();
+                    var itemMax = itemMin + $selected.outerHeight();
+                    var containerMin = $container.offset().top + $container.scrollTop();
+                    var containerMax = containerMin + $container.outerHeight();
+
+                    if (itemMax > containerMax) { // scroll down
+                        var to = $container.scrollTop() + itemMax - containerMax;
+                        $container.scrollTop(to);
+                    } else if (itemMin < containerMin) { // scroll up
+                        var to = $container.scrollTop() - containerMin - itemMin;
+                        $container.scrollTop(to);
+                    }
+                }
+
+                $(document).on('click', '.fs-option', function () {
+                    var $wrap = $(this).closest('.fs-wrap');
+
+                    if ($wrap.hasClass('multiple')) {
+                        var selected = [];
+
+                        $(this).toggleClass('selected');
+                        $wrap.find('.fs-option.selected').each(function (i, el) {
+                            selected.push($(el).attr('data-value'));
+                        });
+                    } else {
+                        var selected = $(this).attr('data-value');
+                        $wrap.find('.fs-option').removeClass('selected');
+                        $(this).addClass('selected');
+                        $wrap.find('.fs-dropdown').hide();
+                    }
+
+                    $wrap.find('select').val(selected);
+                    $wrap.find('select').fSelect('reloadDropdownLabel');
+                });
+
+                $(document).on('keyup', '.fs-search input', function (e) {
+                    if (40 == e.which) {
+                        $(this).blur();
+                        return;
+                    }
+
+                    var $wrap = $(this).closest('.fs-wrap');
+                    var keywords = $(this).val();
+
+                    $wrap.find('.fs-option, .fs-optgroup-label').removeClass('hidden');
+
+                    if ('' != keywords) {
+                        $wrap.find('.fs-option').each(function () {
+                            var regex = new RegExp(keywords, 'gi');
+                            if (null === $(this).find('.fs-option-label').text().match(regex)) {
+                                $(this).addClass('hidden');
+                            }
+                        });
+
+                        $wrap.find('.fs-optgroup-label').each(function () {
+                            var num_visible = $(this).closest('.fs-optgroup').find('.fs-option:not(.hidden)').length;
+                            if (num_visible < 1) {
+                                $(this).addClass('hidden');
+                            }
+                        });
+                    }
+
+                    setIndexes($wrap);
+                });
+
+                $(document).on('click', function (e) {
+                    var $el = $(e.target);
+                    var $wrap = $el.closest('.fs-wrap');
+
+                    if (0 < $wrap.length) {
+                        if ($el.hasClass('fs-label')) {
+                            window.fSelect.active = $wrap;
+                            var is_hidden = $wrap.find('.fs-dropdown').hasClass('hidden');
+                            $('.fs-dropdown').addClass('hidden');
+
+                            if (is_hidden) {
+                                $wrap.find('.fs-dropdown').removeClass('hidden');
+                            } else {
+                                $wrap.find('.fs-dropdown').addClass('hidden');
+                            }
+
+                            setIndexes($wrap);
+                        }
+                    } else {
+                        $('.fs-dropdown').addClass('hidden');
+                        window.fSelect.active = null;
+                    }
+                });
+
+                $(document).on('keydown', function (e) {
+                    var $wrap = window.fSelect.active;
+
+                    if (null === $wrap) {
+                        return;
+                    } else if (38 == e.which) { // up
+                        e.preventDefault();
+
+                        $wrap.find('.fs-option').removeClass('hl');
+
+                        if (window.fSelect.idx > 0) {
+                            window.fSelect.idx--;
+                            $wrap.find('.fs-option[data-index=' + window.fSelect.idx + ']').addClass('hl');
+                            setScroll($wrap);
+                        } else {
+                            window.fSelect.idx = -1;
+                            $wrap.find('.fs-search input').focus();
+                        }
+                    } else if (40 == e.which) { // down
+                        e.preventDefault();
+
+                        var last_index = $wrap.find('.fs-option:last').attr('data-index');
+                        if (window.fSelect.idx < parseInt(last_index)) {
+                            window.fSelect.idx++;
+                            $wrap.find('.fs-option').removeClass('hl');
+                            $wrap.find('.fs-option[data-index=' + window.fSelect.idx + ']').addClass('hl');
+                            setScroll($wrap);
+                        }
+                    } else if (32 == e.which || 13 == e.which) { // space, enter
+                        $wrap.find('.fs-option.hl').click();
+                    } else if (27 == e.which) { // esc
+                        $('.fs-dropdown').addClass('hidden');
+                        window.fSelect.active = null;
+                    }
+                });
+
+            })(jQuery);
+
+    </script>
+    <script>
+        $(function () {
+            $('.whiteList').fSelect();
+        });
+    </script>
+</body>
+<script>
+
+</script>
+
+</html>

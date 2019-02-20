@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>服务目录</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/page_sql.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+{#    <script>#}
+{#    function prov() {#}
+{##}
+{#            window.top.location = "/data/server_list/";#}
+{##}
+{#    }#}
+{#    </script>#}
+    <style>
+        .header span{
+            width: 40%;
+        }
+        .myactive{
+            color:#6d89d1;
+            border-bottom: 1px solid #6d89d1;
+        }
+        .exactive{
+            color:#ccc;
+            border-bottom: 1px solid #ccc;
+        }
+        #two{
+            margin-left: -5px;
+        }
+    </style>
+    <script>
+        var sql_name = 'aa';
+    </script>
+</head>
+<body style="">
+<div class="content">
+    <div class="content_shadow">
+        <div class="header">
+            <span id="one" class="myactive">桥接名称</span>
+            <span id="two" class="exactive">sql</span>
+        </div>
+        <div class="footer">
+            <iframe src="/departAdmin/sql_name/" frameborder="0" name="sql_iframe"></iframe>
+        </div>
+    </div>
+</div>
+<div style="width:200px;margin:10px auto;overflow: hidden;overflow-y: hidden">
+{#    <input class="btn btn-info" disabled="disabled" id="prov" type="button"  style="float: left; margin-left:30px;" size="40" value="上一步">#}
+{#    <input class="btn btn-info" id="next" type="button"  style="float: left; margin-left:30px;" size="40" value="下一步">#}
+    <a target="sql_iframe" class="btn btn-info" id="next" style="float: left; margin-left:66px;">下一步</a>
+{#    <a target="sql_iframe" class="btn btn-info" id="close" style="float: left; margin-left:30px;">取消</a>#}
+</div>
+</body>
+</html>

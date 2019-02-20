@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+
+/*主*/
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.header{
+    width:100%;
+    height:auto;
+    text-align:center;
+    overflow: hidden;
+}
+.content span{
+    display:inline-block;
+    padding:10px 0;
+    width:30%;
+}
+.footer{
+    width: 100%;
+    height: calc(100% - 50px);
+}
+.footer iframe{
+    width:100%;
+    height:100%;
+}
+
+/*整体框架样式*/
+body{
+    margin: 0px;
+    padding: 0px;
+    background-color: #f4f4f4;
+}
+.page_title{
+    width: 100%;
+    height: 50px;
+    vertical-align:center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background:#6d89d1;
+}
+.page_title_data{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    vertical-align:center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background:#6d89d1;
+}
+.content_title{
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    line-height: 50px;
+    color: black;
+    background-color: #f4f4f4;
+}
+.content{
+    width: 95%;
+    height: 70%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 10px;
+}
+.content_shadow{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #e3e3e3;
+    overflow: auto;
+}

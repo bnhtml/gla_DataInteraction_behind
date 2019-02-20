@@ -1,0 +1,29 @@
+<html>
+<head>
+    <meta http-equiv="blog" content="blog.csdn.net/IBM_hoojo">
+    <meta http-equiv="email" content="hoojo_@126.com">
+    <meta http-equiv="author" content="hoojo">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript">
+    </script>
+    <title>测试:</title>
+    <script>
+
+       function test() {
+           var test = '测试测试'
+           params = {'page': 1};
+           $.post('/data/test/', params, function (data) {
+
+           })
+       }
+
+</script>
+</head>
+
+
+<body>
+    <input type="button" id="next" value="test" onclick="test()" style="width: 50px;height: 30px;" >
+</body>
+</html>

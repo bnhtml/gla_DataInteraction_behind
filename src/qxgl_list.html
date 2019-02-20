@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>权限管理</title>
+    <!--有网络-->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+    <!--无网络-->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/qxgl_list.css">
+
+    <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/layer/layer/layer.js"></script>
+    <script>
+        //layer弹出层 查看or修改
+        $(function () {
+            $(".body").on("click", ":input[type='button']", function (event) {
+                if ($(this).attr('id') == "show_data") {
+                    $("#list_layer").find('input').attr("disabled", "disabled");
+                    layer.open({
+                        area: ['800px', '500px'],
+                        title: "查看服务目录",
+                        content: $('#list_layer'),
+                        type: 1
+                    });
+                    modify(this);
+                }
+                else if ($(this).attr('id') == "up_data") {
+                    $("#list_layer").find('input').removeAttr("disabled");
+                    $("#list_layer .form-data").find('input').attr("disabled", "disabled");
+                    layer.open({
+                        area: ['800px', '500px'],
+                        title: "修改服务目录",
+                        content: $('#list_layer'),
+                        type: 1,
+                        btn: ["保存", "取消"],
+                        yes: function (index) {
+                            layer.close(index);
+                        },
+                        btn2: function (index) {
+                            layer.close(index);
+                        }
+                    });
+                    modify(this);
+                }
+            });
+
+            //修改内容在弹出框显示
+            var name = '';
+            var type = '';
+            var server_list = '';
+
+            function modify(obj) {
+                var oNum = document.getElementById('part_server');
+                var oUser = document.getElementById('type_server');
+                var oPwd = document.getElementById('http_server');
+
+                var oTr = obj.parentNode.parentNode;
+                var aTd = oTr.getElementsByTagName('div');
+                rowIndex = obj.parentNode.parentNode.rowIndex;
+
+                name = oNum.value = aTd[1].innerHTML;
+                type = oUser.value = aTd[2].innerHTML;
+                server_list = oPwd.value = aTd[3].innerHTML;
+
+                $('#label_name').val(name);
+                $('#label_type').val(type);
+                $('#label_http').val(server_list);
+            }
+        });
+    </script>
+</head>
+<body>
+<!--头部信息-->
+<div id="page_title">贵州省块数据指挥调度中心数据上架平台</div>
+<div id="content_title">权限管理</div>
+<!--内容区域-->
+<div id="content">
+    <div id="data_title">
+        <div class="head">
+            <div class="row">
+                <div class="col-xs-2">序号</div>
+                <div class="col-xs-2">用户名</div>
+                <div class="col-xs-2">部门名</div>
+                <div class="col-xs-2">组名</div>
+                <div class="col-xs-2">查看目录</div>
+                <div class="col-xs-2">管理目录</div>
+            </div>
+        </div>
+        <div class="body" id="1">
+            <div class="row">
+                <div class="col-xs-2">001</div>
+                <div class="col-xs-2" id="part_server">张三</div>
+                <div class="col-xs-2" id="type_server">人社厅</div>
+                <div class="col-xs-2" id="http_server">社会保障</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">002</div>
+                <div class="col-xs-2" id="part_server">张四</div>
+                <div class="col-xs-2" id="type_server">人社厅1</div>
+                <div class="col-xs-2" id="http_server">社会保障1</div>
+                <div class="col-xs-2"><input type="button" id="show_data" value="显示目录"></div>
+                <div class="col-xs-2"><input type="button" id="up_data" value="修改"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row data_bottom">
+        <div class="col-xs-5 col-xs-offset-7">
+            <ul class="pagination">
+                <li><a href="?page={{ page.previous_page_number }}">上一页 <span>&laquo;</span></a>
+                </li>
+                <li class="active"><a href="?page={{ page.previous_page_number }}">1</a></li>
+                <li><a href="?page={{ page.previous_page_number }}">2</a></li>
+                <li><a href="?page={{ page.previous_page_number }}">3</a></li>
+                <li><a href="?page={{ page.previous_page_number }}">4</a></li>
+                <li><a href="?page={{ page.previous_page_number }}">5</a></li>
+                <li><a href="?page={{ page.next_page_number }}">下一页 <span>&raquo;</span></a></li>
+                <li class="sum_data">共20页</li>
+                <li>到<input type="text" class="jump" value="">页</li>
+                <li>
+                    <button id="jump">确定</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--layer 查看or修改-->
+<div class="list_layer" id="list_layer" style="display: none;">
+    <form class="form-horizontal">
+        <div class="form-group form-data">
+            <label for="label_name" class="col-xs-2 control-label">用户名</label>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" id="label_name">
+            </div>
+            <label for="label_type" class="col-xs-2 control-label">部门名</label>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" id="label_type">
+            </div>
+            <label for="label_http" class="col-xs-2 control-label">组名</label>
+            <div class="col-xs-2">
+                <input type="text" class="form-control" id="label_http">
+            </div>
+        </div>
+    </form>
+    <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); width="90%" color=#ddd SIZE=2>
+    <form class="form-horizontal content_form">
+        <div class="form-group">
+            <label for="qx1" class="col-xs-2 col-xs-offset-1 control-label">选择</label>
+            <div class="col-xs-5 col-xs-offset-3 checkbox">
+                <span id="qx1" style="font-weight: 700;">服务目录</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qx1" class="col-xs-2 col-xs-offset-1 control-label" id="form-checkbox">
+                <input type="checkbox" checked="checked"/>
+            </label>
+            <div class="col-xs-9 checkbox">
+                <span id="qx1">https://guizhou.csb/wjw/ wsjdj/sql/ data4/xxx</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qx1" class="col-xs-2 col-xs-offset-1 control-label" id="form-checkbox">
+                <input type="checkbox" checked="checked"/>
+            </label>
+            <div class="col-xs-9 checkbox">
+                <span id="qx1">https://guizhou.csb/wjw/ ggws/interface/data3/xxx</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qx1" class="col-xs-2 col-xs-offset-1 control-label" id="form-checkbox">
+                <input type="checkbox" checked="checked"/>
+            </label>
+            <div class="col-xs-9 checkbox">
+                <span id="qx1">https://guizhou.csb/wjw/ ggws/file/data3/xxx</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qx1" class="col-xs-2 col-xs-offset-1 control-label" id="form-checkbox">
+                <input type="checkbox" checked="checked"/>
+            </label>
+            <div class="col-xs-9 checkbox">
+                <span id="qx1">https://guizhou.csb/wjw/ wsjdj/sql/ data4/xxx?sql=select * from user;</span>
+            </div>
+        </div>
+    </form>
+</div>
+<!--layer end-->
+</body>
+</html>

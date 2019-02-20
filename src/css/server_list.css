@@ -1,0 +1,306 @@
+/*整体框架样式*/
+
+input[disabled] {
+    background: #f3f3f3;
+}
+
+body {
+    background: #f7f8fa;
+}
+
+.break {
+    word-break: break-all;
+}
+
+.page_title {
+    width: 100%;
+    height: 60px;
+    padding-left: 50px;
+    line-height: 60px;
+    background: #4381e6;
+    font-size: 24px;
+    color: #fff;
+}
+
+.content_title {
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    color: #1f1f21;
+}
+
+.content {
+    width: 95%;
+    height: 530px;
+    margin: 0 auto;
+    background: #f9fafc;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 3px #ebe6e6;
+    padding: 20px;
+}
+
+
+/*content*/
+
+.content .lists {
+    height: 445px;
+    overflow: auto;
+}
+
+.tac {
+    text-align: center;
+}
+
+
+/*列表标题*/
+
+.content .list_con_tit {
+    border-top: 1px solid rgb(244, 244, 244);
+}
+
+.content .list_con_tit,
+.content .list_con {
+    padding: 8px 0;
+    border-bottom: 1px solid rgb(244, 244, 244);
+}
+
+.content .list_con_tit .tit {
+    font-size: 16px;
+    color: #6a6a6a;
+}
+
+
+/*列表内容*/
+
+.content .list_con .tit {
+    font-size: 14px;
+    color: #6b6b6b;
+}
+
+.content .list_con .modify,
+.content .list_con .del {
+    cursor: pointer;
+    background: none;
+}
+
+.content .list_con .modify {
+    color: #05c54d;
+    margin-right: 15px;
+}
+
+.content .list_con .del {
+    color: #d90a0a;
+}
+
+.active {
+    color: #368be6 !important;
+}
+
+
+/*底部按钮*/
+
+.list_bot .del_btn,
+.list_bot .add_btn {
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0 6px;
+    height: 34px;
+    line-height: 34px;
+    border-radius: 5px;
+}
+
+.list_bot .del_btn {
+    background: #d9534f;
+    margin-right: 20px;
+}
+
+.list_bot .add_btn {
+    background: #61ab3e;
+}
+
+
+/*弹出层覆盖源码*/
+
+.layui-layer {
+    border-radius: 10px !important;
+}
+
+.layui-layer-title {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.layui-layer-title {
+    color: #4ba5ff !important;
+    font-size: 16px !important;
+}
+
+.layui-layer-btn {
+    background: #cccccc45 !important;
+    border-top: 1px solid #ccc !important;
+}
+
+
+/*layer*/
+
+.list_layer .box {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.list_layer_inp {
+    width: 50%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.list_layer .box .layer_name {
+    display: inline-block;
+    width: 12%;
+    text-align: right;
+    font-size: 14px;
+    color: #787878;
+    padding-right: 5px;
+}
+
+
+/*.pagination分页*/
+
+.pagination {
+    margin: 0;
+}
+
+.jump {
+    width: 40px;
+    margin: 0 5px;
+    background: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    border: 1px solid #ddd;
+}
+
+.jump_a {
+    padding: 0 8px !important;
+}
+
+.jump_a .jump_spa {
+    padding: 6px 0;
+    display: inline-block;
+}
+
+.sum_data a {
+    border: none !important;
+    background: none !important;
+}
+
+.pagination>li a,
+.pagination>li span {
+    border-radius: 5px !important;
+}
+
+.pagination>li>a,
+.pagination>li>span {
+    color: #737373;
+}
+
+.pagination>li>a {
+    margin-right: 8px;
+}
+
+#dangqianpage{
+    margin: 0px !important;
+    margin-right: -6px !important;
+    color: #ff0000;
+}
+.pagination button{
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+/*分页*/
+.data_bottom {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.data_bottom .pagination {
+    line-height: 34px;
+}
+
+.data_bottom .pagination li {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.data_bottom .pagination li .del_img {
+    position: absolute;
+    left: 22px;
+    top: 29px;
+}
+
+.data_bottom .pagination li .btn-danger {
+    padding-left: 25px;
+}
+.data_bottom .pagination li .add_img {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    left: 122px;
+    top: 32px;
+}
+.data_bottom .pagination li .btn-success {
+    padding-left: 26px;
+}
+
+.data_bottom .pagination li a {
+    margin-left: 0;
+}
+
+.data_bottom .button_data {
+    margin: 0 6% 0 2%;
+}
+
+.data_bottom .pagination .sum_data {
+    margin: 0 5px;
+}
+
+.data_bottom .pagination #jump {
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.data_bottom .pagination button{
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    color: #428bca;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.data_bottom .pagination .jump {
+    margin: 0 5px;
+    width: 40px;
+    height: 30px;
+}
+#spanleft{
+    margin-left: -5px;
+    margin-right: 5px;
+}
+#spanid{
+    margin-left: -5px;
+    margin-right: 5px;
+}

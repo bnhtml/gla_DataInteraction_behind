@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>权限管理</title>
+    <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    {% load static %}
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="  {% static 'css/auth_manger.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+    <script type="text/javascript">
+        /**  删除功能  **/
+        /* 全选 */
+        function checkAll(c) {
+            var status = c.checked;
+            var oItems = document.getElementsByName('item');
+            for (var i = 0; i < oItems.length; i++) {
+                oItems[i].checked = status;
+            }
+        }
+        /*  单行删除 */
+        $(function () {
+            $("#data_table").on("click", ":button", function (event) {
+                var forLoop = 0;
+                var oItems = document.getElementsByName('item');
+                var del_id = '';
+                if (this.id == 'del_tr') {
+                    if (confirm("确定要删除这个字段吗？")) {
+                        forLoop = $(this).closest("tr").find("td").eq(1).text();
+                        oItems[forLoop - 1].checked = true;
+                        del_id = oItems[forLoop - 1].value + '_';
+                        params = {'check_id': del_id};
+                        $.post('/data/del_server/', params, function (data) {
+                            if (data.res == 1) {
+                                self.location = '/data/server_list/';
+                            } else {
+                                alert('删除失败')
+                            }
+                        })
+                    } else {
+                        alert('删除失败')
+                    }
+                }
+            })
+        });
+
+        /* 批量删除 */
+        function del() {
+            var boxes = document.getElementsByName("item");
+            var del_id = "";
+            if (confirm("确定要删除这个字段吗？")) {
+                for (var i = 0; i < boxes.length; i++) {
+                    if (boxes[i].checked == true) {
+                        del_id += boxes[i].value + '_';
+                    }
+                }
+                params = {'check_id': del_id};
+                $.post('/data/del_server/', params, function (data) {
+                    if (data.res == 1) {
+                        self.location = '/data/server_list/';
+                    } else {
+                        alert('删除失败')
+                    }
+                })
+            } else {
+                alert('删除失败')
+            }
+        }
+
+        /**  修改功能  **/
+        //修改数据库内容
+        $(function () {
+            //显示目录
+            $("#data_table").on("click", "#show_data", function (event) {
+                ShowDiv('MyDiv1', 'fade1');
+                modify(this);
+                var user_name = update(this)
+                params = {'user_name': user_name}
+                $.post('/onlylook/', params, function (data) {
+                    $('#btn_two').empty()
+                    list2 = data.res['server_catalog']
+                    for(i=0;i<list2.length;i++){
+                        $('#btn_two').append('<li style="margin-left:234px;list-style-type:none;"><label for="qx3" class="col-sm-2 control-label"><input type="checkbox"disabled="disabled" style="margin-left:-36px; float:left;"/></label> <div class="col-sm-4 col-md-offset-4 checkbox" style="margin-right:149px;margin-top:0px; margin-left:157px;" > <span id="qx3" style="margin-top:0px;margin-left:-270px;float:left;">'+list2[i]+'</span> </div></li>')
+                    }
+                })
+            })
+            //修改权限
+            $("#data_table").on("click", "#up_data", function (event) {
+                ShowDiv('MyDiv', 'fade');
+                modify(this);
+                var name = update(this)
+                params = {'name':name}
+                $.post('/server_info/', params, function (data) {
+                     $('#btn_one').empty()
+                    list1 = data.res['server_name']
+{#                    alert(list1)#}
+                    for(i=0;i<list1.length;i++){
+                         $('#btn_one').append('<li style="margin-left:234px;list-style-type:none;"><label for="qx" class="col-sm-2 control-label"><input type="checkbox" name="che_input" style="margin-left:-36px; float:left;"/></label><div class="col-sm-4 col-md-offset-4 checkbox" style="margin-right:149px;margin-top:0px; margin-left:157px;" > <span id="qx" style="margin-top:0px;margin-left:-270px;float:left;">'+list1[i]+'</span> </div></li>')
+                    }
+                })
+            });
+        });
+        //修改内容在弹出框显示
+        var name = '';
+        var type = '';
+        var server_list = '';
+        function modify(obj) {
+            var oNum = document.getElementById('part_server');
+            var oUser = document.getElementById('type_server');
+            var oPwd = document.getElementById('http_server');
+
+            var oTr = obj.parentNode.parentNode;
+            var aTd = oTr.getElementsByTagName('td');
+            rowIndex = obj.parentNode.parentNode.rowIndex;
+
+            name = oNum.value = aTd[1].innerHTML;
+            type = oUser.value = aTd[2].innerHTML;
+            server_list = oPwd.value = aTd[3].innerHTML;
+
+            $(":input[name='label_name']").val(name);
+            $(":input[name='label_type']").val(type);
+            $(":input[name='label_http']").val(server_list);
+        }
+        function update(obj) {
+            var oTr = obj.parentNode.parentNode;
+            var oNum = document.getElementById('part_server');
+            var aTd = oTr.getElementsByTagName('td');
+            name = oNum.value = aTd[1].innerHTML;
+            return name
+        }
+
+        //弹出框
+        function ShowDiv(show_div, bg_div) {
+            var scrollHeight = document.body.scrollHeight; //文档高度
+            var aa = document.getElementById(bg_div).style.height = scrollHeight + 'px';
+            var bb = document.getElementById(show_div).style.display = 'block';
+            document.getElementById(bg_div).style.display = 'block';
+        }
+        //关闭弹出层
+        function CloseDiv(show_div, bg_div) {
+            document.getElementById(show_div).style.display = 'none';
+            document.getElementById(bg_div).style.display = 'none';
+{#            self.location = 'qxgl_list.html';#}
+        }
+        function goToAdd() {
+            var info = '';
+            var boxes = document.getElementsByName("che_input");
+            for (var i=0;i<boxes.length;i++) {
+                if (boxes[i].checked == true) {
+                    info += $('#btn_one li').eq(i).text() + '_';
+                }
+            }
+{#            info = info.split('_');#}
+{#            alert(info)#}
+
+            username  = $('#label_name').val()
+{#            alert(username)#}
+            params = {'info': info, 'username': username}
+            $.post('/server_safe/', params, function (data) {
+                if(data.res == 1){
+                    alert('添加成功')
+                    location.href = '/auth_manger/'
+                }
+                else{
+                    alert('添加失败')
+                }
+            })
+        }
+        /**  分页显示  **/
+        $(document).ready(function () {
+            $('.pagination li a').each(function () {
+                if ($(this).html() == 3) {
+                    $(this).parent().addClass('active')
+                }
+            });
+        });
+    </script>
+</head>
+<body style="">
+<div class="page_title">
+    <div class="page_title_data">数据上架_datalink</div>
+</div>
+<div class="content_title">服务目录列表</div>
+<div class="content">
+    <div class="content_shadow">
+        <div class="data_top"></div>
+        <div class="data_title">
+            <table class="data_table" id="data_table">
+                <tr>
+                    <th style="height: 10px;width: 10%">序号</th>
+                    <th style="height: 10px;width: 10%">用户名</th>
+                    <th style="height: 10px;width: 20%">部门名</th>
+                    <th style="height: 10px;width: 20%">用户id</th>
+                     <th style="height: 10px;width: 20%">api_key</th>
+                    <th style="height: 10px;width: 10%">查看目录</th>
+                    <th style="height: 10px;width: 10%">管理目录</th>
+                </tr>
+                 {% for obj in user_info %}
+                <tr>
+                    <td style="width: 10%;">{{ forloop.counter}}</td>
+                    <td id="part_server" style="width: 10%;">{{ obj.username }}</td>
+                    <td id="type_server" style="width: 20%;">{{ obj.part_name}}</td>
+                    <td id="http_server" style="width: 20%;">{{ obj.user_id }}</td>
+                    <td id="http_server" style="width: 20%;">{{ obj.api_key }}</td>
+                    <td id="server_sql" style="width: 10%;">
+                        <input type="button" id="show_data" value="显示目录">
+                    </td>
+                    <td style="width: 10%;">
+                        <input type="button" onclick="update(this)" class='up_data'name="" id="up_data" value="修改"/>
+                    </td>
+                </tr>
+                  {% endfor %}
+            </table>
+        </div>
+        <div class="data_bottom">
+            <!--页数显示-->
+            <!--<div class="data_down" style="line-height: 30px">-->
+                <!--<input type="checkbox" style="float: left;margin-top: 9px" onclick="checkAll(this)"/>-->
+                <!--<div style="float: left">全选</div>-->
+                <!--<input class="btn btn-danger" type="button" name="" value="批量删除" onclick="del()"-->
+                       <!--style="margin-left: 10px"/>-->
+                <!--<input class="btn btn-success" type="button" name="" id="add_server_list" onclick="add()" value="导入"/>-->
+            <!--</div>-->
+            <div class="pagination" style="margin-left: 250px;">
+                <li><a href="?page={{ page.previous_page_number }}">上一页 <span class="sr-only">&laquo;</span></a>
+                </li>
+                <li><a href="?page={{ page.next_page_number }}">下一页 <span class="sr-only">&raquo;</span></a>
+                </li>
+            </div>
+
+
+            <!--弹出层时背景层DIV---start-->
+            <div id="fade" class="black_overlay"></div>
+            <div id="MyDiv" class="white_content">
+                <div style="text-align: right; cursor: default; margin-top:10px;margin-bottom:10px;">
+                            <span style="font-size: 16px; margin-right: 17px; color: #56BE2D; font-weight: 600;cursor:pointer;"
+                                  onclick="CloseDiv('MyDiv','fade')">关闭</span>
+                </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="label_name" class="col-sm-1 control-label">用户名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control up-file" id="label_name" name="label_name" disabled="disabled"/>
+                        </div>
+                        <label for="label_type" class="col-sm-1  col-md-offset-1 control-label">部门名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control up-file" type="text" id="label_type" name="label_type"
+                                   disabled="disabled"/>
+                        </div>
+                        <label for="label_http" class="col-sm-1  col-md-offset-1 control-label">组名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control  up-file" type="text" id="label_http" name="label_http"
+                                   disabled="disabled"/>
+                        </div>
+                    </div>
+                </form>
+                <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); width="90%"
+                    color=#ddd SIZE=2>
+                <form class="form-horizontal content_form" id="server_info" name="server_info">
+                    <div class="form-group" id="btn_one" name="btn_one">
+                        <label for="qx" class="col-sm-2 control-label"><input type="checkbox" id="che_input" /></label>
+{#                        <div class="col-sm-4 col-md-offset-4 checkbox" >#}
+                            <span id="qx"></span>
+
+                    </div>
+                </form>
+                <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); width="90%"
+                    color=#ddd SIZE=2>
+                <div class="row" style="margin-bottom: 20px">
+                    <input type="button" class="btn btn-info col-sm-2 col-md-offset-3"
+                           onclick="goToAdd()" value="保存">
+                    <input type="button" class="btn btn-danger col-sm-2 col-md-offset-2"
+                           onclick="CloseDiv('MyDiv','fade')" value="取消">
+                </div>
+                <!--弹出层时背景层DIV---end-->
+            </div>
+
+            <!--弹出层时背景层DIV---start-->
+            <div id="fade1" class="black_overlay"></div>
+            <div id="MyDiv1" class="white_content">
+                <div style="text-align: right; cursor: default; margin-top:10px;margin-bottom:10px;">
+                            <span style="font-size: 16px; margin-right: 17px; color: #56BE2D; font-weight: 600;cursor:pointer;"
+                                  onclick="CloseDiv('MyDiv1','fade1')">关闭</span>
+                </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="label_name1" class="col-sm-1 control-label">用户名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control up-file" id="label_name1" name="label_name" disabled="disabled"/>
+                        </div>
+                        <label for="label_type1" class="col-sm-1  col-md-offset-1 control-label">部门名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control up-file" type="text" id="label_type1" name="label_type"
+                                   disabled="disabled"/>
+                        </div>
+                        <label for="label_http1" class="col-sm-1  col-md-offset-1 control-label">组名</label>
+                        <div class="col-sm-2">
+                            <input class="form-control  up-file" type="text" id="label_http1" name="label_http"
+                                   disabled="disabled"/>
+                        </div>
+                    </div>
+                </form>
+                <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); width="90%"
+                    color=#ddd SIZE=2>
+                <form class="form-horizontal content_form" >
+                    <div class="form-group" id="btn_two">
+                        <label for="qx3" class="col-sm-2 control-label"><input type="checkbox"
+                                                                               disabled="disabled"/></label>
+                        <div class="col-sm-4 col-md-offset-4 checkbox">
+                            <span id="qx3"></span>
+                        </div>
+                    </div>
+
+                </form>
+
+                <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); width="90%"
+                    color=#ddd SIZE=2>
+                <div class="row">
+                    <input type="button" class="btn btn-danger col-sm-2 col-md-offset-5"
+                           onclick="CloseDiv('MyDiv1','fade1')" value="关闭目录">
+                </div>
+                <!--弹出层时背景层DIV---end-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

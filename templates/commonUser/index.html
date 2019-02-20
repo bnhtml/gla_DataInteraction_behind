@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据管控平台—用户</title>
+    <!-- <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">s -->
+    <!-- <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"> -->
+
+    <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/layer/layer/layer.js' %}"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script>
+        var parameter = 'commonUser';
+        var departname;
+        $(function(){
+            departname = $(".nav_right_firstName").text().trim();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <span class="icon-th-list" id="left_menu"></span>
+            <h1>数据管控平台—用户</h1>
+        </div>
+        <div class="body">
+            <div class="leftnav">
+                <div class="nav_left">
+                    <ul>
+                        <li value="部门" id="allData" class="navClick">
+                            <span class="icon-cloud-upload"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">部门</div>
+                            </div>
+                        </li>
+                        <li value="数据集成" id="dataIntegrate">
+                            <span class="icon-clipboard"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">数据集成</div>
+                            </div>
+                        </li>
+                        <li value="数据库管理" id="databaseManagement">
+                            <span class="icon-database"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">数据库管理</div>
+                            </div>
+                        </li>
+                        <li value="日志" id="journal">
+                            <span class="icon-file-text-o"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">日志</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav_right">
+                    <div class="nav_right_head">
+                        <div class="nav_right_head_txt" title="部门">部门</div>
+                        <div class="nav_right_head_inter">接口数量</div>
+                    </div>
+                    {% for depart in depart_list %}
+                    <div class="nav_right_content">
+                        <ul>
+                            <li class="firstDier">
+                                <div class="nav_right_firstName" title="{{ depart }}">{{ depart }}</div>
+                                <div class="icon">
+                                    <span class="interNum">({{ all }})</span>
+                                    <span class="icon-angle-down"></span>
+                                </div>
+                            </li>
+                            <ul>
+                                <!-- 数据目录 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="数据目录">数据目录</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ data_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/commonUser/service_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆&nbsp;<div class="nav_right_thirdName" title="数据目录">数据目录</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ data_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 安全目录 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="安全目录">安全目录</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ total_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/commonUser/acl_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆&nbsp;<div class="nav_right_thirdName" title="访问控制">访问控制</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ acl_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="/commonUser/control_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆&nbsp;<div class="nav_right_thirdName" title="流量控制">流量控制</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ controls_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                            </ul>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="nowPath">
+                    <span>当前路径：</span>
+                    <div class="path">
+                        <span class="classA">部门</span>
+                        &nbsp;<span class="icon-angle-double-right classAIcon"></span>&nbsp;
+                        <span class="classB"></span>
+                        &nbsp;<span class="icon-angle-double-right classBIcon"></span>&nbsp;
+                        <span class="classC"></span>
+                        &nbsp;<span class="icon-angle-double-right classCIcon"></span>&nbsp;
+                        <span class="classD"></span>
+                    </div>
+                </div>
+                <div class="ifr">
+                    <iframe src="/welcome_dier/" frameborder="0" name="body_iframe"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="footer">数据上架 datalinker&nbsp;&nbsp;&nbsp;贵州大数据局</div>
+    </div>
+</body>
+</html>

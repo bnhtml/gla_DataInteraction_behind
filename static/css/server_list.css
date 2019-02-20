@@ -1,0 +1,171 @@
+*{
+    outline: none;
+    font-family: "微软雅黑";
+}
+
+/*背景*/
+
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.50;
+    filter: alpha(opacity=50);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 36%;
+    width: 33%;
+    border: 2px solid #d3d3d3;
+    background-color: white;
+    z-index: 1002;
+    /* overflow: auto; */
+}
+.white_content_small {
+    display: none;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    width: 40%;
+    height: 50%;
+    border: 16px solid lightblue;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+
+
+
+
+/*server_list展示样式*/
+.data_top {
+    width: 100%;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 15px;
+}
+.data_title {
+    width: 95%;
+    height: 80%;
+    margin-left: 30px;
+    display: block;
+    background: #ffffff;
+    border: 1px solid #f4f4f4;
+    border-collapse: collapse;
+}
+.data_bottom {
+    width: 95%;
+    height: 15%;
+    border: 1px solid #f4f4f4;
+    position: absolute;
+    left: 30px;
+    bottom: 2px;
+}
+.data_table {
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: .938em;
+    color: rgba(0, 0, 0, 0.71);
+    /*border: 1px solid #6469ff;*/
+    border-collapse: collapse;/*边框会合并为一个单一的边框*/
+}
+.data_table th {
+    text-align: center;
+    padding: .5em .5em;
+    font-weight: bold;
+    border: solid 1px #f4f4f4;
+}
+
+.data_table td {
+    text-align: center;
+    padding: .5em .5em;
+    border: solid 1px #f4f4f4;
+}
+
+.data_down {
+    float: left;
+    margin-left: 40px;
+    margin-top: 30px;
+    width: 200px;
+    height: 30px;
+}
+.data_button {
+    margin-left: 20px;
+    color: #ffffff;
+    background: red;
+    border: 1px solid #ff5539;
+}
+.data_button_add {
+    color: #ffffff;
+    background: rgb(30, 214, 35);
+    border: 1px solid #1eaa1f;
+}
+.data_del {
+    color: #ff0000;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+}
+.data_update {
+    color: #21ff26;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+}
+
+/*页数显示*/
+
+
+/*整体框架样式*/
+body{
+    margin: 0px;
+    padding: 0px;
+        background-color: #f4f4f4;
+}
+.page_title{
+    width: 100%;
+    height: 50px;
+    vertical-align:center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background:#6d89d1;
+}
+.page_title_data{
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    vertical-align:center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background:#6d89d1;
+}
+.content_title{
+    width: 92%;
+    height: 50px;
+    margin:0 auto;
+    line-height: 50px;
+    color: black;
+    background-color: #f4f4f4;
+}
+.content{
+    width: 90%;
+    height: auto;
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.content_shadow{
+    width: 100%;
+    height: 560px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #e3e3e3;
+    position: relative;
+}

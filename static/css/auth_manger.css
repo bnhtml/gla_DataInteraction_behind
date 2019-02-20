@@ -1,0 +1,181 @@
+/*整体框架样式*/
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+}
+
+.page_title {
+    width: 100%;
+    height: 50px;
+    vertical-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background: #6d89d1;
+}
+
+.page_title_data {
+    width: 100%;
+    height: 50px;
+    padding-left: 50px;
+    vertical-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    background: #6d89d1;
+}
+
+.content_title {
+    width: 92%;
+    height: 50px;
+    margin-left: 50px;
+    line-height: 50px;
+    color: black;
+    background-color: #f4f4f4;
+}
+
+.content {
+    width: 92%;
+    height: 80%;
+    margin-left: 50px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.content_shadow {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #e3e3e3;
+}
+
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1001;
+    -moz-opacity: 0.8;
+    opacity: .50;
+    filter: alpha(opacity=50);
+}
+
+.white_content {
+    width: 70%;
+    height: 70%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    border: 2px solid #d3d3d3;
+    background-color: white;
+    z-index: 1002;
+    overflow: hidden;
+}
+
+
+/*server_list展示样式*/
+.data_top {
+    width: 100%;
+    height: 10px;
+    background: #ffffff;
+    border-radius: 15px;
+}
+
+.data_title {
+    width: 95%;
+    height: 80%;
+    margin-left: 30px;
+    display: block;
+    background: #ffffff;
+    border: 1px solid #f4f4f4;
+    border-collapse: collapse;
+}
+
+.data_bottom {
+    width: 95%;
+    height: 15%;
+    margin-left: 30px;
+    border: 1px solid #f4f4f4;
+}
+
+.data_table {
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: .938em;
+    color: rgba(0, 0, 0, 0.71);
+    /*border: 1px solid #6469ff;*/
+    border-collapse: collapse; /*边框会合并为一个单一的边框*/
+}
+
+.data_table th {
+    text-align: center;
+    padding: .5em .5em;
+    font-weight: bold;
+    border: solid 1px #a7a5a5;
+}
+
+.data_table td {
+    text-align: center;
+    padding: .5em .5em;
+    border: solid 1px #a7a5a5;
+}
+
+.data_down {
+    float: left;
+    margin-left: 40px;
+    margin-top: 30px;
+    width: 300px;
+    height: 30px;
+}
+
+.data_button {
+    margin-left: 20px;
+    color: #ffffff;
+    background: red;
+    border: 1px solid #ff5539;
+}
+
+#up_data {
+    color: #18e92f;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+}
+
+#show_data {
+    color: #2790ff;
+    border: 1px solid #ffffff;
+    background: #ffffff;
+}
+
+#MyDiv1 .row{
+    width: 100%;
+    position: relative;
+    left:0;
+    bottom: 0;
+}
+.content_form{
+    width: 100%;
+    height: 300px;
+    overflow: auto;
+}
+
+.form-horizontal .form-group{
+    margin: 0;
+}
+
+/*页数显示*/

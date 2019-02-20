@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> SQL </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    {% load static %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sql_server.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'images/delete.png' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <style type="text/css"></style>
+    <script type="text/javascript"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+    <script language="JavaScript">
+
+    /**  局部刷新  **/
+     $.ajaxSetup({
+        async : false
+    });
+    $.ajaxSettings.async = false;
+
+    /**  关联条件判断  **/
+    var set_table = '';  //数据表
+    function ass_Condition() {
+        var tb_name = $('#tb').val(); //表名
+            set_table += tb_name + ' ';
+            set_table = set_table.split(' ');
+        var isTrue = true;
+        for(var i=0;i<set_table.length;i++){
+            var temp = set_table[0];
+            if(temp.indexOf(set_table[i]) == -1){
+                isTrue = false;
+                break;
+            }
+        }
+        if(isTrue){
+            var set_rela_text = $('#tb_field').text();  //关联条件集合
+            if(set_rela_text == 84) {
+                $('#des option').each(function () {
+                var rela_text = $(this).val();       //关联条件
+                $('#tb_field').append('<option value = "">' + tb_name+'.'+rela_text + '</option>');
+            });
+        }
+        }else {
+            var set_rela_text = $('#tb_field1').text();       //关联条件集合
+            if(set_rela_text.length == 84){
+                $('#des option').each(function () {
+                var rela_text = $(this).val();
+                $('#tb_field1').append('<option value = "">'+tb_name+'.'+rela_text+'</option>');
+            });
+            }
+        }
+    }
+
+    /** 实现条件筛选添加字段 **/
+    function OutPut(){
+        ass_Condition();
+        var field = '';   //字段名
+        var data = '';     //库名
+        var table = '';     //表名
+        var set_data_table_field = '';  //库表字段集合
+        var set_data_table_field1 = '';  //库表字段集合1
+        var set_data_table_field2 = '';  //库表字段集合2
+        var type = '';   //类型
+        var desc = ''; //表结构
+        var set_data_table_field3 = f_field+','+db_name+','+tb_name+','; //库表字段集合
+        var f_field = $("#des option:selected").text();//左侧字段列表中选中的字段
+        var db_name = $('#db').val();
+        var tb_name = $('#tb').val();
+        var mytable = document.getElementById('screen_table');
+        var num = $('#screen_table tr').length+1;
+        for (var i=0;i < mytable.rows.length;i++){
+             field = mytable.rows[i].cells[1].innerHTML;
+             data = mytable.rows[i].cells[2].innerHTML;
+             table = mytable.rows[i].cells[3].innerHTML;
+             set_data_table_field = field+data+table;
+             set_data_table_field1 = set_data_table_field.split(' ')+' ';
+             set_data_table_field2 += set_data_table_field1;
+        }
+        if (set_data_table_field2.indexOf(set_data_table_field3) == -1){
+            if(f_field.length == 0) {
+                alert('请选择字段');
+                }else {
+                    function field_desc() {
+                        $.get('/data/desc/'+db_name+'/'+tb_name+'/'+f_field+'/', function (data) {
+                            type = data.res;
+                        });
+                        return type;
+                    }
+                    desc = field_desc(); //获取表结构
+                    $('#screen_table').append('<tr id="screen_table"style="width:100%; min-width:100%; max-width:100%;">'
+                        + '<td id="number" style="width:39px;text-align:center;">' + num + '</td>'
+                        + '<td id="field" style="width:131px;">' + f_field + ' ' + '</td>'
+                        + '<td id="dat" style="width:76px; ">' + db_name + ' ' + '</td>'
+                        + '<td id="tab" style="width:76px; ">' + tb_name + ' ' + '</td>'
+                        + '<td id="type" style="width:101px;">' + desc + '</td>'
+                        + '<td id="sym" style="width:53px;text-align:center;" name="sym">' + '<select style="width:85%;" id="sym">'
+                        + '<option  value="">' + '-' + '</option>'
+                        + '<option value="=">' + '=' + ' ' + '</option>'
+                        + '<option value="!=">' + '!=' + ' ' + '</option>'
+                        + '<option value=">">' + '>' + ' ' + '</option>'
+                        + '<option value="<">' + '<' + ' ' + '</option>'
+                        + '<option value="<=">' + '<=' + ' ' + '</option>'
+                        + '<option value=">=">' + '>=' + ' ' + '</option>'
+                        + '</select>' + '</td>'
+                        + '<td id="ipt" style="width:76px;text-align:center;">'
+                        + '<input placeholder="请输入值" id="inp" name="tf" type="text"  value="">' + '' + '</td>'
+                        + '<td id="cho" style="width:76px;text-align:center;">' + '<select id="cho" style="width: 70%;">'
+                        + '<option value="and">' + 'and' + '</option>'
+                        + '<option value="or">' + 'or' + '</option>'
+                        + '<td id="del" style="width:40px;">'
+                        + '<input type="button" value="删除"style="background-color:#ffffff;color:red;" onclick=\'{if(confirm("确定要删除这个字段吗？")) {deleteCurrentRow(this); }else {}}\'>' + '</td>'
+                        {#+'<img src="{% static 'images/delete.png' %}" id="img" style="display: block" onclick=\'{if(confirm("确定要删除这个字段吗？")) {deleteCurrentRow(this); }else {}}\'>'+'</td>'#}
+                        + '</tr>');
+                    }
+            } else {
+                alert('字段已存在！');
+            }
+        }
+
+    /**  生成sql语句实现 **/
+    var result_sql = ''; //sql结果集
+    function create_Sql() {
+        /* 基本变量 */
+        var field = ''; //字段
+        var set_field = ''; //字段集合
+        var set_db_name = ''; //库名集合
+        var set_tb_name = ''; //表名集合
+        var modifier = ''; //修饰符
+        var set_modifier = ''; //修饰符集合
+        var values = ''; //值
+        var set_values = ''; //筛选表值的集合
+        var type = ''; //类型
+        var num = 0; //序号
+        var set_type = ''; //筛选表中字段对应类型的集合
+
+        /* sql变量 */
+        var sql_field = ''; //sql字段部分
+        var and_or = ''; //sql拼接条件(and/or)
+        var set_ao = ''; //sql拼接条件(and/or)集合
+        var sql_where = ''; //where条件部分
+        var iswhere = ''; //用于添加where
+
+        /* 类型变量 */
+        var reg_int = /int/; //int型
+        var reg_d = /^\d+$/; //数字类型
+
+        /* 特殊变量 */
+        var isTrue = true; //用于做库表判断
+        var isfalse = false; //用于判断有没有where
+
+        /* 直接变量 */
+        var db_name = $('#db').val(); //获取数据库名
+        var tb_name = $('#tb').val(); //获取数据表名
+        var sql_table = document.getElementById('screen_table'); //遍历条件筛选表
+        for (var i=0;i<sql_table.rows.length;i++){
+            field = sql_table.rows[i].cells[1].innerHTML; //获取筛选表中的字段
+            set_field += field; //获取字段集合
+
+            db_name = sql_table.rows[i].cells[2].innerHTML; //获取筛选表中的库名
+            set_db_name += db_name; //获取库名集合
+
+            tb_name = sql_table.rows[i].cells[3].innerHTML; //获取筛选表中的表名
+            set_tb_name += tb_name; //获取表名集合
+
+            modifier = sql_table.rows[i].cells[5].getElementsByTagName("select")[0]; //获取筛选表中的修饰符
+            modifier = modifier.options[modifier.selectedIndex].text;
+            set_modifier += modifier + ' '; //获取修饰符集合
+
+            values = sql_table.rows[i].cells[6].getElementsByTagName("input")[0].value; //获取筛选表中的值
+            set_values += values + ' '; //获取值集合
+
+            type = sql_table.rows[i].cells[4].innerHTML; //获取筛选表中的字段类型
+            set_type += type + ' '; //获取类型集合
+
+            and_or = sql_table.rows[i].cells[7].getElementsByTagName('select')[0].value; //获取筛选条件中的拼接符(and/or)
+            set_ao += and_or + ' ';
+
+        }
+        set_field = set_field.split(' ');
+        set_db_name = set_db_name.split(' ');
+        set_tb_name = set_tb_name.split(' ');
+        set_modifier = set_modifier.split(' ');
+        set_values = set_values.split(' ');
+        set_type = set_type.split(' ');
+        set_ao = set_ao.split(' ');
+
+        /* 判断是否已选择库 */
+        if (db_name.length != 0) {
+            /* 判断是否已输入表 */
+            if (tb_name.length != 0) {
+                /* 判断是否有添加字段 */
+                if (set_field.length == 1) {
+                    /* 全表查询 */
+                    result_sql = 'select' + ' ' + '*' + ' ' + 'from' + ' ' + tb_name + ';';
+                    document.getElementById("sql").value =  result_sql;
+                    $('#sql').append('<input class="input1" type="text" id="sql" size="40" value="' + result_sql + '">');
+                } else {
+                    /* 条件查询 */
+                    /* 判断是否是同一个库 */
+                    for (var i = 0; i < set_db_name.length; i++) {
+                        var temp = set_db_name[0];
+                        if (temp.indexOf(set_db_name[i]) == -1) {
+                            isTrue = false;
+                            break;
+                        }
+                    }
+                    if (isTrue) {
+                        /* 判断筛选表中的字段是否为同一张表 */
+                        for (var i = 0; i < set_tb_name.length; i++) {
+                            var temp = set_tb_name[0];
+                            if (temp.indexOf(set_tb_name[i]) == -1) {
+                                isTrue = false;
+                                break;
+                            }
+                        }
+                        if (isTrue) {
+                            /* 单表查询 */
+                            for (var i = 0; i < set_field.length; i++) {
+                                sql_field += set_field[i];
+                                if (i < set_field.length - 2) {
+                                    sql_field += ',';
+                                }
+                                if (set_modifier[i] != '-' && set_values[i].length != 0) {
+                                    isfalse = true;
+                                    /* 判断字段类型是否是int型 */
+                                    if (reg_int.test(set_type[i]) == true) {
+                                        if (reg_d.test(set_values[i]) == true) {
+                                            if (sql_where.length > 1) {
+                                                sql_where += ' ' + set_ao[i - 1] + ' ';
+                                            }
+                                            sql_where += set_field[i] + set_modifier[i] + set_values[i];
+                                        } else {
+                                            num = i + 1;
+                                            alert('第' + num + '行输入值有误');
+                                        }
+                                    } else{
+                                        if (sql_where.length > 1) {
+                                            sql_where += ' ' + set_ao[i - 1] + ' ';
+                                        }
+                                        sql_where += set_field[i] + set_modifier[i] + '"' + set_values[i] + '"';
+                                    }
+                                }
+                            }
+                            if ( isfalse ) {
+                                iswhere = 'where'+' ';
+                            }
+                            result_sql = 'select' + ' ' + sql_field + ' ' + 'from' + ' ' + tb_name + ' ' + iswhere + sql_where + ';';
+                            document.getElementById("sql").value = result_sql;
+                            $('#sql').append('<input class="input1" type="text" id="sql" size="40" value="' + result_sql + '">');
+                        }else {
+                            /* 多表查询 */
+                        }
+                    } else {
+                        alert('请选择相同的库');
+                    }
+                }
+            } else {
+                alert('请输入数据表');
+            }
+        } else {
+            alert('请选择数据库');
+        }
+    }
+
+   /**  获取sql 到后端session  **/
+    $(function () {
+        var next = $(window.parent.document).find("#next");
+         next.click(function () {
+             var get_sql = $('#sql').val();
+             params = {'get_sql':get_sql};
+             $.post('/data/sql_server/',params, function (data) {
+                if (result_sql.length != 0 && data.res == 1){
+                    var span = $(window.parent.document).find("span");
+                        span.css({
+                            "color":"",
+                            "border-bottom":""
+                        });
+                     var three = $(window.parent.document).find("#three");
+                        three.css({
+                            "color":"#6d89d1",
+                            "border-bottom":"1px solid #6d89d1"
+                        });
+                    self.location = '/data/server_name/';
+                } else {
+                    alert('请生成SQL')
+                }
+            });
+        });
+    });
+
+    /**  table删除功能  **/
+    function deleteCurrentRow(obj) {
+        var tr = obj.parentNode.parentNode;
+        var tbody = tr.parentNode;
+        var num_table = document.getElementById('screen_table');
+        var len = $('#screen_table tr').length;
+        tbody.removeChild(tr);
+        for(var i=0;i<len;i++){
+            num_table.rows[i].cells[0].innerHTML = i+1;
+        }
+    }
+
+    /**  数据传入  **/
+    $(function () {
+        $.get('/data/data_base/', function (data) {
+            db = $('#db');
+            $.each(data.data, function (index, item) {
+                db.append('<option value='+item[0]+'>'+item[0]+'</option>');
+            } )
+        })
+        // db的change事件
+        $('#db').change(function () {
+            $.get('/data/tables/'+$(this).val()+'/', function (data) {
+                tb = $('#tb');
+                tb.empty().append('<option value="">请选择数据表</option>');
+                $.each(data.data, function (index, item) {
+                    tb.append('<option value='+item[0]+'>'+item[0]+'</option>');
+                })
+            })
+        })
+        // tb的change事件
+        $('#btn_sub').click(function () {
+            var set_field = '';
+            db_name = $('#db').val();
+            tb_name1 = document.getElementById("tb").value;
+            if(db_name.length != 0){
+                if(tb_name1 != 0){
+                    $.get('/data/desc/' + db_name + '/' + tb_name1 + '/', function (data) {
+                    des = $('#des');
+                    des.empty();
+                    $.each(data.data, function (index, item) {
+                        set_field += item[0];
+                        des.append('<option value=' + item[0] + ' ' + 'class=' + item[0] + '>' + item[0] + '</option>');
+                    });
+                    if(set_field.length == 0){
+                        alert('查询不到'+tb_name1+'表信息');
+                    }
+                })
+                }else {
+                    alert('请输入表名');
+                }
+            }else{
+                alert('请选择数据库');
+            }
+        });
+    });
+    </script>
+    <script>
+    var prov = $(window.parent.document).find("#prov");
+    var span = $(window.parent.document).find("span");
+    var first = $(window.parent.document).find("#one");
+    prov.click(function (){
+        span.css({
+            "color":"",
+            "border-bottom":""
+        });
+        first.css({
+            "color":"#6d89d1",
+            "border-bottom":"1px solid #6d89d1"
+        });
+        $(window).attr('location','/data/name_type/');
+    })
+    </script>
+</head>
+<body>
+    <div class="global">
+        <div class="bottom">
+            <div class="content">
+                <div class="opt">
+                <select  class="select1" id="db">
+                    <option value="">请选择数据库</option>
+                </select>
+                <div>
+                    <input class="up-file" id="tb" type="text" placeholder="请输入数据表">
+                </div>
+                <div>
+                    <input class="button-green" type="button" name="" id="btn_sub" value="获取字段" style="margin: 10px;">
+                </div>
+                </div>
+                <form method="post" name="myform">
+                    <table style="width: 100%;margin:0 auto;" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th style="width:15%;color: black;font-weight:300;font-size: 16px;text-align: left;">字段:</th>
+                                <th style="width:10%;color: black;font-weight:300;"></th>
+                                <th style="width:50%;color: black;font-weight:300;font-size: 16px;text-align: left;">条件筛选:
+                                    <span style="float: right;font-size: 14px;color: #b6b6b6;vertical-align: center;">注：输入值要符合字段类型</span></th>
+                                <th style="width:20%;color: black;font-weight:300;font-size: 16px;text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;关联条件:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td width="15%" style="border: 1px solid #e5e5e5">
+                                <div style="height: 190px; width:100%;">
+                                    <select style="width: 100%;height:100%;font-size: 14px;border: 0;" multiple id="des" name="list1">
+                                    </select>
+                                </div>
+                            </td>
+                            <td width="5%">
+                                <img src="{% static 'images/update.png' %}" id="up_img" style="display: block" onclick="OutPut(des)">
+{#                                <input class="button-add" type="button" value=">>" onclick='OutPut(des)'>#}
+                            </td>
+                            <td width="686px">
+                                <table class="screeHead" cellspacing="0" cellpadding="0">
+                                <tr id="screen_head" style="background: #f5f5f5;width: 100%;">
+                                        <th  valign="top" style="width: 40px;">序号</th>
+                                        <th  valign="top" style="width: 131px;">字段</th>
+                                        <th  valign="top" style="width: 76px;">库名</th>
+                                        <th  valign="top" style="width: 76px;">表名</th>
+                                        <th  valign="top" style="width: 101px;">类型</th>
+                                        <th  valign="top" style="width: 53px;">修饰符</th>
+                                        <th  valign="top" style="width: 76px;">值</th>
+                                        <th  valign="top" style="width: 76px;">关系</th>
+                                        <th  valign="top" style="width: 41px;">操作</th>
+                                        <th  valign="top" style="width: 16px;" ></th>
+                                    </tr>
+                                </table>
+                                <div id="inp" style="">
+                                <table id="screen_table" class="scree_term" width="100%" id="screen_table" style="border-collapse:collapse;" align="center">
+                                </table>
+                                </div>
+                            </td>
+                            <td width="15%">
+                                <div style=" height: 190px; width:100%;">
+                                    <select  class="select2" id="tb_field">
+                                        <option value="">请选择字段一</option>
+                                    </select>
+                                    <select class="select2" id="tb_field1">
+                                        <option value="">请选择字段二</option>
+                                    </select>
+                                    <select class="select2" id="relation">
+                                        <option value="">关键字</option>
+                                        <option value="">join</option>
+                                        <option value="">like</option>
+                                        <option value="">order by</option>
+                                        <option value="">group by</option>
+                                        <option value="">having</option>
+                                        <option value="">limit</option>
+                                    </select>
+                                </div>
+                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <fieldset class="fieldset">
+                        <div class="sql_set">SQL语句：</div>
+                        <textarea class="input1" type="text" id="sql" size="40" value="" ></textarea>
+                        <input class="btn btn-danger" id="sql_btn" type="button" onclick="create_Sql() " size="40" value="生成SQL语句">
+                        <input class="btn btn-danger" id="sql_btn" type="button" onclick="ord_num() " size="40" value="test">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+.main{
+    width: 500px;
+    height: 280px;
+    border: 1px solid #e5e5e5;
+    margin: auto;
+    margin-top: 100px;
+    position: relative;
+}
+.main_content{
+    width: 260px;
+    height: 102px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -130px;
+    margin-top: -51px;
+}
+.main_name{
+    width: 260px;
+    height: 40px;
+}
+.main_name label{
+    font-size: 16px;
+    color: #1f1f21;
+    line-height: 40px;
+}
+.main_name input{
+    display: inline-block;
+    width: 200px;
+    height: 28px;
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+}
+
+.main_type{
+    width: 260px;
+    height: 40px;
+    margin-top: 20px;
+}
+.main_type label{
+    font-size: 16px;
+    color: #1f1f21;
+    line-height: 40px;
+}
+.main_type select{
+    width: 200px;
+    height: 28px;
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+}

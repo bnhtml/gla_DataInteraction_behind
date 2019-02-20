@@ -1,0 +1,943 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    font-family: "微软雅黑" !important;
+}
+a {
+    text-decoration: none !important;
+}
+i {
+    font-style: normal;
+    font-size: 14px;
+}
+html,body {
+    width: 100%;
+    height: 100%;
+    background-color: #eff2f5;
+}
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+}
+.header {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 20px 4px #cce0f0;
+    height: 123.5px;
+}
+#left_menu {
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.menuActive {
+    color: rgb(88, 202, 253) !important;
+}
+#left_menu:hover {
+    color: rgb(88, 202, 253) !important;
+}
+.header .header_nav {
+    width: 100%;
+    height: 50px;
+    margin-bottom: 3px;
+    margin-top: -10px;
+}
+.header .header_nav>span#left_menu {
+    height: 50px;
+    font-size: 26px;
+    line-height: 50px;
+    float: left;
+    /* color: rgb(55, 54, 56); */
+    color: #316284;
+    margin-left: 17px;
+}
+.header .header_nav ul>li {
+    min-width: 190px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+.header .header_nav ul>li>div {
+    font-size: 24px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+}
+.header .header_nav>ul>li>div:hover {
+    border-bottom: 3px solid #58cafd !important;
+}
+.header .header_nav ul>li:first-child {
+    margin-left: 10px;
+}
+
+.header .header_head {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    height: 80px;
+}
+.header .header_head img {
+    width: 40px;
+    height: 40px;
+    /* margin-left: 34px;
+    margin-right: 10px; */
+    margin: 0px 17px 0 34px;
+    vertical-align: middle;
+    float: left;
+}
+.header .header_head h1 {
+    display: inline-block;    
+    font-size: 36px;
+    /* height: 70px; */
+    font-weight: bold;
+    color: #316284;
+    /* border: 1px solid red; */
+    /* line-height: 70px; */
+    margin: 0px;
+    text-align: center;
+}
+/* .header>h1::before {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 70px;
+    line-height: 70px;
+    background-color: red;
+    float: left;
+    margin-right: 10px;
+    background-image: url(../images/titlelogo.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+} */
+.body{
+    flex: 1;
+    /* background: lightsalmon; */
+    display: flex;
+    /* display: none; */
+    flex-flow: row;
+}
+.dataInterPack_content,.control_content {
+    flex: 1;
+    /* display: none; */
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+/* 数据接口封装 */
+ .dataInterPack_con {
+    width: 95%;
+    height: 95%;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+}
+ .dataInterPack_con .dataInter_left {
+    width: 400px;
+    height: 100%;
+    padding: 30px 0px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-left: -50px;
+    user-select: none;
+}
+ .dataInterPack_con .dataInter_left i {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .dataInterPack_con .dataInter_left i>div {
+    height: 70px;
+    width: 10px;
+    background-color: #eff2f5;
+}
+ .dataInterPack_con .dataInter_left>div {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+ .dataInterPack_con .dataInter_left>div .data_con {
+    width: 380px;
+    height: 70px;
+    display: flex;
+    color: #ababab;
+}
+ .dataInterPack_con .dataInter_left>div .click_con {
+    color: #409eff;
+}
+ .dataInterPack_con .dataInter_left>div.click_con .dataInter_num {
+    background-color: #409eff !important;
+    color: #fff !important;
+    box-shadow: 0px 0px 5px #409eff inset;
+}
+ .dataInterPack_con .dataInter_left>div.click_con + i>div {
+     background-color: #409eff;
+ }
+ .dataInterPack_con .dataInter_left>div.click_con .dataInter_icon {
+     color: #409eff !important;
+ }
+ .dataInterPack_con .dataInter_left>div.click_con .dataInter_txt {
+     color: #409eff !important;
+ }
+ .dataInterPack_con .dataInter_left>div .data_con .dataInter_icon {
+    flex: 1;
+    height: 70px;
+    width: 70px;
+    float: left;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ .dataInterPack_con .dataInter_left>div .data_con .dataInter_icon span {
+    font-size: 40px;
+    margin-right: 10px;
+    color: inherit;
+    transition: all 0.3s;
+}
+ .dataInterPack_con .dataInter_left>div .data_con .dataInter_num {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    color: inherit;
+    line-height: 70px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #eff2f5;
+    box-shadow:  0px 0px 5px rgba(0, 0, 0, 0.2) inset;
+    font-size: 26px;
+    z-index: 10;
+    transition: all 0.3s;
+}
+ .dataInterPack_con .dataInter_left>div .data_con .dataInter_txt {
+    flex: 1;
+    font-size: 24px;
+    height: 70px;
+    line-height: 70px;
+    font-weight: bold;
+    color: inherit;
+    transition: all 0.3s;
+}
+ .dataInterPack_con .dataInter_left>div .data_con .dataInter_txt span {
+    margin-left: 10px;
+}
+ .dataInterPack_con .dataInter_main {
+    flex: 1;
+    height: 100%;
+    /* border-left: 3px solid #dcdfe6; */
+    margin-left: 30px;
+    display: flex;
+    flex-flow: column;
+}
+
+ .dataInterPack_con .dataInter_main .dataInter_mainCon {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart {
+    width: 500px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 5px;
+    border: 3px solid #dcdfe6;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart>i {
+    font-size: inherit;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart .dataInter_iconBox {
+    font-size: 40px;
+    float: right;
+    display: block;
+    height: 100%;
+    width: 80px;
+    background-color: #dcdfe6;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart span {
+    display: block;
+    transition: all 0.25s;
+}
+/* 第一步 */
+.dataInterPack_con .dataInter_main .dataInter_mainCon .dataInter_firstStep {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 第二步 */
+.dataInterPack_con .dataInter_main .dataInter_mainCon .dataInter_secondStep {
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.dataInterPack_con .dataInter_main .dataInter_mainCon .dataInter_secondStep .checkDepart_con{
+    /* width: 500px; */
+    height: 210px !important;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart .checkDepart_con {
+    width: 500px;
+    height: 300px;
+    border: 3px solid #dcdfe6;
+    border-top: 3px solid transparent;
+    overflow: auto !important;
+    display: none;
+    margin-top: -5px;
+    margin-left: -3px;
+}
+
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart .checkDepart_con>ul{
+    margin: 0px;
+    padding: 0px;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart .checkDepart_con>ul>li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 10px;
+}
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .checkDepart .checkDepart_con>ul>li:hover {
+    background-color: #f5f7fa;
+}
+/* iframe */
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .dataInter_thirdStep {
+    width: 100%;
+    height: 100%;
+    display: none;
+ }
+ .afterStep,.preStep {
+     cursor: pointer;
+ }
+ .dataInterPack_con .dataInter_main .dataInter_mainCon .dataInter_thirdStep iframe {
+     width: 100%;
+     height: 100%;
+ }
+ .dataInterPack_con .dataInter_main .operation {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+ .dataInterPack_con .dataInter_main .operation div{
+    display: inline-block;
+    font-size: 14px;
+    /* height: 30px;
+    line-height: 30px; */
+    padding: 4px 9px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #409eff;
+}
+ .dataInterPack_con .dataInter_main .operation .preStep {
+    position: absolute;
+    left: 25%;
+}
+ .dataInterPack_con .dataInter_main .operation .afterStep {
+    position: absolute;
+    right: 25%;
+}
+/* 数据接口封装结束 */
+
+/* 数据接口控制 */
+.control_content .interControl_con {
+    width: 95%;
+    height: 95%;
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+}
+
+.control_content .interControl_con .interControl_left {
+    width: 400px;
+    height: 100%;
+    padding: 30px 0px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-left: -50px;
+    user-select: none;
+}
+.interControl_con .interControl_left>div {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.interControl_con .interControl_left>div .interCont_con {
+    width: 380px;
+    height: 70px;
+    display: flex;
+    color: #ababab;
+}
+ .interControl_con .interControl_left>div .click_con {
+    color: #409eff;
+}
+ .interControl_con .interControl_left>div.click_con .interControl_num {
+    background-color: #409eff !important;
+    color: #fff !important;
+    box-shadow: 0px 0px 5px #409eff inset;
+}
+ .interControl_con .interControl_left>div.click_con + i>div {
+     background-color: #409eff;
+ }
+ .interControl_con .interControl_left>div.click_con .interControl_icon {
+     color: #409eff !important;
+ }
+ .interControl_con .interControl_left>div.click_con .interControl_txt {
+     color: #409eff !important;
+ }
+ .interControl_con .interControl_left>div .interCont_con .interControl_icon {
+    flex: 1;
+    height: 70px;
+    width: 70px;
+    float: left;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ .interControl_con .interControl_left>div .interCont_con .interControl_icon span {
+    font-size: 40px;
+    margin-right: 10px;
+    color: inherit;
+    transition: all 0.3s;
+}
+ .interControl_con .interControl_left>div .interCont_con .interControl_num {
+    display: inline-block;
+    height: 70px;
+    width: 70px;
+    color: inherit;
+    line-height: 70px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #eff2f5;
+    box-shadow:  0px 0px 5px rgba(0, 0, 0, 0.2) inset;
+    font-size: 26px;
+    z-index: 10;
+    transition: all 0.3s;
+}
+ .interControl_con .interControl_left>div .interCont_con .interControl_txt {
+    flex: 1;
+    font-size: 24px;
+    height: 70px;
+    line-height: 70px;
+    font-weight: bold;
+    color: inherit;
+    transition: all 0.3s;
+}
+ .interControl_con .interControl_left>div .interCont_con .interControl_txt span {
+    margin-left: 10px;
+}
+.interControl_con .interControl_left i {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ .interControl_con .interControl_left i>div {
+    height: 70px;
+    width: 10px;
+    background-color: #eff2f5;
+}
+.interControl_con .interControl_main {
+    flex: 1;
+    height: 100%;
+    /* border-left: 3px solid #dcdfe6; */
+    margin-left: 30px;
+    display: flex;
+    flex-flow: column;
+}
+.interControl_con .interControl_main .interControl_mainCon {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    /* border: 3px solid #dcdfe6; */
+}
+
+.interControl_con .interControl_main .control_operation {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.interControl_con .interControl_main .control_operation div{
+    display: inline-block;
+    font-size: 14px;
+    /* height: 30px;
+    line-height: 30px; */
+    padding: 4px 9px;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #409eff;
+}
+ .interControl_con .interControl_main .control_operation .control_preStep {
+    position: absolute;
+    left: 25%;
+}
+ .interControl_con .interControl_main .control_operation .control_afterStep {
+    position: absolute;
+    right: 25%;
+}
+.interControl_con .interControl_main .interControl_mainCon .interControl_firstStep {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.interControl_con .interControl_main .interControl_mainCon .checkInterCont {
+    width: 500px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 5px;
+    border: 3px solid #dcdfe6;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+}
+.interControl_con .interControl_main .interControl_mainCon .checkInterCont>i {
+    font-size: inherit;
+}
+ .interControl_con .interControl_main .interControl_mainCon .checkInterCont .interControl_iconBox {
+    font-size: 40px;
+    float: right;
+    display: block;
+    height: 100%;
+    width: 80px;
+    background-color: #dcdfe6;
+}
+ .interControl_con .interControl_main .interControl_mainCon .checkInterCont span {
+    display: block;
+    transition: all 0.25s;
+}
+
+.interControl_con .interControl_main .interControl_mainCon .checkInterCont .checkInterCont_con {
+    width: 500px;
+    height: 300px;
+    border: 3px solid #dcdfe6;
+    border-top: 3px solid transparent;
+    overflow: auto !important;
+    display: none;
+    margin-top: -5px;
+    margin-left: -3px;
+}
+
+ .interControl_con .interControl_main .interControl_mainCon .checkInterCont .checkInterCont_con>ul{
+    margin: 0px;
+    padding: 0px;
+}
+ .interControl_con .interControl_main .interControl_mainCon .checkInterCont .checkInterCont_con>ul>li {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0px 10px;
+}
+.interControl_con .interControl_main .interControl_mainCon .interControl_secondStep {
+    width: 100%;
+    height: 100%;
+    display: none;
+ }
+ .control_afterStep,.control_preStep {
+    cursor: pointer;
+}
+.interControl_con .interControl_main .interControl_mainCon .checkInterCont .checkInterCont_con>ul>li:hover {
+    background-color: #f5f7fa;
+}
+.interControl_con .interControl_main .interControl_mainCon .interControl_secondStep iframe {
+    width: 100%;
+    height: 100%;
+}
+/* 数据接口控制结束 */
+
+
+.body .leftnav {
+    width: 309px;
+    height: 100%;
+    /* color: #fff; */
+    cursor: pointer;
+    display: flex;
+}
+/* .body .leftnav::-webkit-scrollbar {
+    display: none;
+} */
+.body .leftnav ul {
+    margin: 0px;
+    padding: 0px;
+}
+.body .leftnav .nav_left{
+    width: 64px;
+    height: 100%;
+    background-color: rgb(88, 202, 253);
+}
+.body .leftnav .nav_left>ul li {
+    width: 100%;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    position: relative;
+    outline: none;
+    transition: all 0.3s;
+}
+.body .leftnav .nav_left .navClick {
+    /* color: rgb(10, 209, 206); */
+    background-color: #7cd5fd;
+}
+
+.body .leftnav .nav_left>ul li span {
+    height: 100%;
+    line-height: 54px;
+    font-size: 24px;
+    color: inherit;
+    background-color: inherit;
+}
+.body .leftnav .nav_left>ul li:hover {
+    /* color: rgb(5, 209, 206); */
+    background-color: rgb(70, 162, 202);
+}
+.body .leftnav .nav_left>ul li:hover .nav_left_title {
+    opacity: 1;
+    z-index: 2;
+}
+.body .leftnav .nav_left>ul li .nav_left_title {
+    /* width: 120px; */
+    height: 56px;
+    position: absolute;
+    left: 64px;
+    padding: 0px 0px 0px 12px;
+    display: flex;
+    opacity: 0;
+    z-index: -1;
+    justify-content: center;
+    align-items: center;
+    color: #fff !important;
+    cursor: auto;
+    transition: opacity 0.5s;
+}
+.body .leftnav .nav_left>ul li .nav_left_title .title_content {
+    display: inline-block;
+    padding: 7px 10px;
+    background-color: rgb(44, 43, 45);
+    border-radius: 3px;
+    white-space: nowrap;
+    font-size: 14px;
+    position: relative;
+}
+.body .leftnav .nav_left>ul li .nav_left_title .title_content::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    transform: rotateZ(45deg);
+    position: absolute;
+    left: -3px;
+    top: 11.5px;
+    background-color: rgb(44, 43, 45);
+}
+.body .leftnav .nav_right {
+    width: 245px;
+    height: 100%;
+    background-color: #316284;
+    display: flex;
+    flex-flow: column;
+}
+.body .leftnav .nav_right .nav_right_head{
+    font-size: 20px;
+    color: #fff;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding: 0px 20px;
+    display: flex;
+}
+.body .leftnav .nav_right .nav_right_head .nav_right_head_txt {
+    flex: 1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-left: -10px;
+}
+.body .leftnav .nav_right .nav_right_head>div {
+    display: inline-block;
+}
+.body .leftnav .nav_right .nav_right_head .nav_right_head_inter {
+    font-size: 10px;
+    float: right;
+    padding-left: 5px;
+}
+.body .leftnav .nav_right .nav_right_content{
+    flex: 1;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+}
+.body .leftnav .nav_right .nav_right_content::-webkit-scrollbar {
+    display: none;
+}
+.body .leftnav .nav_right .nav_right_content .interNum {
+    font-size: 10px;
+}
+
+.body .leftnav .nav_right .nav_right_content .icon-angle-down {
+    display: inline-block;
+    transition:  all 0.4s;
+}
+.rotatez {
+    transform: rotateZ(180deg);
+}
+/* 一级目录 */
+.body .leftnav .nav_right .nav_right_content>ul li.firstDier {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding: 0px 20px;
+    color: #fff;
+    display: flex;
+    transition: all 0.3s;
+}
+.body .leftnav .nav_right .nav_right_content>ul li.firstDier:hover {
+    background-color: rgb(39, 78, 106);
+}
+.body .leftnav .nav_right .nav_right_content>ul li div.nav_right_firstName{
+    display: inline-block;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+.body .leftnav .nav_right .nav_right_content>ul>li div.icon {
+    display: block;
+    float: right;
+}
+/* 二级目录 */
+.body .leftnav .nav_right .nav_right_content>ul>ul{
+    display: none;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul li.secondDier {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding: 0px 20px 0px 40px;
+    color: #fff;
+    display: flex;
+    transition: all 0.3s;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul li.secondDier:hover {
+    background-color: rgb(39, 78, 106);
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>li div.nav_right_secondName {
+    display: inline-block;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>li div.icon {
+    display: block;
+    float: right;
+}
+
+/* 三级目录 */
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul{
+    display: none;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul .thirdClick{
+    background-color: #4d92bc !important;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul li.thirdDier {
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
+    padding: 0px 20px 0px 50px;
+    color: #fff;
+    display: flex;
+    transition: all 0.3s;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul li.thirdDier:hover {
+    background-color: rgb(39, 78, 106);
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul li div.nav_right_thirdName {
+    display: inline-block;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+}
+.body .leftnav .nav_right .nav_right_content>ul>ul>ul li div.icon {
+    display: block;
+    float: right;
+}
+
+.body .content {
+    flex: 1;
+    height: 100%;
+    /* background-color: blueviolet; */
+    
+    display: flex;
+    flex-flow: column;
+}
+.body .content .nowPath {
+    /* border: 1px solid #000; */
+    padding: 0px 22px;
+    line-height: 52px;
+    font-size: 16px;
+    color: #677a84;
+}
+.body .content .nowPath>div {
+    display: inline-block;
+}
+.body .content .ifr {
+    flex: 1;
+    width: 100%;
+    /* border: 1px solid lime; */
+}
+.body .content .ifr iframe {
+    width: 100%;
+    height: 100%;
+}
+/* .body .audit>div,.dataManage>div,.Integrate>div {
+    display: inline-block;
+} */
+.body .addDepart {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 20px 5px 20px;
+}
+.body .addDepart .addDepartCon{
+    display: inline-block;
+    padding: 2px 4px;
+    /* background-color: #409eff; */
+    border: 1px solid #fff;
+    border-radius: 3px;
+}
+.body .content .path span:not(:first-child) {
+    display: none;
+}
+.footer {
+    width: 100%;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #fff;
+}
+
+.add_depart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 20px;
+}
+.add_depart>label{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #316284;
+    font-size: 18px;
+    flex: 1;
+    text-align: right;
+    margin: 0px;
+}
+.add_depart>div{
+    flex: 4;
+    padding: 0px 10px;
+}
+.progressBar{
+    overflow: hidden;
+}
+#pbwrapper{
+    width: 400px;
+    height: 20px;
+    border: 1px solid #75d3f9;
+    margin: 19px auto;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#pbcontent{
+    width: 0px;
+    height: 20px;
+    background-color: #75d3f9;
+    border-radius: 15px;
+}
+.layui-layer-btn {
+    /* background: #cccccc45 !important; */
+    border-top: 1px solid #ebeef5 !important;
+}
+.layui-layer-btn .layui-layer-btn0 {
+    background-color: #409eff !important;
+    border-radius: 3px;
+    border: 0px;
+}
+
+.layui-layer-btn {
+    padding: 5px 10px !important;
+}
+.tbData {
+    width: 200px;
+    height: 200px;
+    /*background-color: red;*/
+
+    display: none;
+}
+.tbData_box {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tbData span {
+    font-size: 80px;
+    color: #409eff;
+    display: block;
+}
+.tbData_class{
+    background-color: transparent !important;
+    box-shadow: none !important;
+}

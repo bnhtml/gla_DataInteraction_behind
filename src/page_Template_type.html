@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>服务目录</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/page_frame.css">-->
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/page_Template_type.css">
+    <link rel="stylesheet" href="css/page_frame.css">
+    <!-- <script type="text/javascript" src="jquery.js"></script> -->
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <script src="js/jquery.js"></script>
+    <!-- <script src="js/page_Template_type.js"></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        /*整体框架样式*/
+
+        body {
+            background: #f7f8fa;
+        }
+
+        .page_title {
+            width: 100%;
+            height: 60px;
+            padding-left: 50px;
+            line-height: 60px;
+            background: #4381e6;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .content_title {
+            width: 100%;
+            height: 50px;
+            padding-left: 50px;
+            line-height: 50px;
+            font-size: 18px;
+            color: #1f1f21;
+        }
+
+        .content {
+            width: 95%;
+            height: 550px;
+            margin: 0 auto;
+            background: #f9fafc;
+            border-radius: 10px;
+            box-shadow: 0 0 3px 3px #ebe6e6;
+            overflow: hidden;
+        }
+        .conmain {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page_title">贵州省块数据指挥调度中心数据上架平台</div>
+    <div class="content_title">服务目录列表</div>
+
+    <div class="content">
+        <div class="content_shadow">
+            <div class="header">
+                <span id="one">名称</span>
+                <span id="two" style="color:#6d89d1;border-bottom: 1px solid #6d89d1;">类型</span>
+                <span id="three">层级名称</span>
+            </div>
+            <div class="conmain">
+                <div class="wrapper">
+                    <div class="top">
+                        <div class="top_left">
+                            <select name="" id="select_toc">
+                                <option value="">选择目录</option>
+                                <option value="">选择目录</option>
+                                <option value="">选择目录</option>
+                            </select>
+                            <input type="text" class="input_text">
+                            <button class="getstr">获取字段</button>
+                        </div>
+                    </div>
+                    <div class="main container">
+                        <div class="main_left col-md-2 col-xs-2">
+                            <span class="ziduan_span">字段：</span>
+                            <div class="ziduan_div">
+                                <ul>
+                                    <li>ID</li>
+                                    <li>TEST</li>
+                                    <li>Name</li>
+                                    <li>tes</li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main_left2 col-md-1 col-xs-1">
+                            <div class="main_left2_div">
+                                <img src="img/add2.png" alt="">
+                            </div>
+                        </div>
+                        <div class="main_center col-md-7 col-xs-7">
+                            <span>条件筛选：</span>
+                            <span class="main_center_rightspan">注：输入值要符合字段类型</span>
+                            <div class="main_center_div">
+                                <ul class="bg_gray">
+                                    <li class="main_center_div_headli"></li>
+                                    <li>字段</li>
+                                    <li>库名</li>
+                                    <li>表名</li>
+                                    <li>类型</li>
+                                    <li>修饰符</li>
+                                    <li>值</li>
+                                    <li>关系</li>
+                                    <li class="main_center_div_footli">操作</li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli">1</li>
+                                    <li>tt</li>
+                                    <li>cc</li>
+                                    <li>cc_table</li>
+                                    <li>int</li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <input type="text">
+                                    </li>
+                                    <li>
+                                        <select name="" id="">
+                                            <option value=""></option>
+                                        </select>
+                                    </li>
+                                    <li class="main_center_div_footli">
+                                        <img src="img/delete.png" alt="">
+                                    </li>
+                                </ul>
+                                <ul class="bg_gray">
+                                    <li class="main_center_div_headli"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li class="main_center_div_footli"></li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li class="main_center_div_footli"></li>
+                                </ul>
+                                <ul class="bg_gray">
+                                    <li class="main_center_div_headli"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li class="main_center_div_footli"></li>
+                                </ul>
+                                <ul class="bg_white">
+                                    <li class="main_center_div_headli"></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li class="main_center_div_footli"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main_right col-md-2 col-xs-2">
+                            <span>关联条件：</span>
+                            <select name="" id="">
+                                <option value="">请选择字段一</option>
+                            </select>
+                            <select name="" id="">
+                                <option value="">请选择字段二</option>
+                            </select>
+                            <select name="" id="">
+                                <option value="">关键字</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <label for="mytextarea">SQL语句：</label>
+                        <textarea name="" id="mytextarea" cols="30" rows="10"></textarea>
+                        <button>生成SQL语句</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div style="width:200px;margin:20px auto;overflow: hidden">
+        <input class="btn btn-info" id="prov" type="button" style="float: left; margin-left:30px;" size="40" value="上一步">
+        <input class="btn btn-info" id="next" type="button" style="float: left; margin-left:30px;" size="40" value="下一步">
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#prov").click(function () {
+                window.location.href = "page_Template_Name.html";
+            });
+            $("#next").click(function () {
+                window.location.href = "page_Template_Hierarchy.html";
+            });
+        });
+
+        function bindSelect(source) {
+            if (source) {
+                var select_toc = $("#select_toc");
+                for (var i = 0; i < source.length; i++) {
+                    select_toc.append('<option>' + source[i] + '</option>');
+                }
+            } else {
+                alert('暂无数据！');
+            }
+        }
+
+        function ajax(interface) {
+            var xmlhttp;
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    bindSelect(JSON.parse(responseText));
+                }
+            }
+            if (interface) {
+                xmlhttp.open("GET", interface, true);
+                xmlhttp.send();
+            } else {
+                alert('未传入接口');
+            }
+
+        }
+    </script>
+</body>
+
+</html>

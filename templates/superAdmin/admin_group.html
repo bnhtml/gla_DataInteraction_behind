@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户管理</title>
+    {% load static %}
+    <!--有网络-->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+    <!--无网络-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/group_list.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer/layer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/paging.js' %}"></script>
+    <script type="text/javascript">
+        /**显示用户**/
+        $(function () {
+            //设置分总页数和要显示的页码数量
+            paging(110,5);
+            function getData() {
+                $.ajax("php/group/select.php", {
+                    dataType: "json",
+                    success: function (r) {
+                        var str = "";
+                        /*
+                        $.each(r, function (index, val) {
+                            str += `
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-2">
+                                        <input type="checkbox" name="item" id="server_name_id" value=""/>
+                                    </div>
+                                    <div class="col-xs-2 col-md-2" id="id">${val.id}</div>
+                                    <div class="col-xs-3 col-md-3" id="group">${val.group}</div>
+                                    <div class="col-xs-3 col-md-3" id="username">${val.username}</div>
+                                    <div class="col-xs-2 col-md-2">
+                                        <input type="button" name="" class="data_del" value="删除" id="del_tr"/>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                        */
+                        $(".body").html(str);
+                        //10条数据都选中 全选标题的input的checked=true
+                        var allLength = $(".data_title .body").find(":input[name='item']").length; //所有的checkbox的长度
+                        console.log(allLength);
+                        $(".data_title .body .row").each(function () {
+                            $(this).bind('click', function () {
+                                var selectedLength = $(this).find("input[name='item']:checked").length; //所有的选中的checkbox的长度
+                                if (selectedLength == allLength) {
+                                    $('#checkAll').prop("checked", true); //全选按钮
+                                } else {
+                                    $('#checkAll').prop("checked", false);
+                                }
+                                console.log(selectedLength);
+                            })
+                        })
+                    }
+                })
+            }
+
+            getData();
+            /**  删除功能  **/
+            /* 全选 */
+            $(".data_title .head").on('click', ":input[type='checkbox']", function () {
+                var status = $(this).prop('checked');
+                var oItems = document.getElementsByName('item');
+                for (var i = 0; i < oItems.length; i++) {
+                    oItems[i].checked = status;
+                }
+                if (status == true) {
+                    $(".body").find(".row").addClass("active");
+                } else {
+                    $(".body").find(".row").removeClass("active");
+                }
+            });
+            //1.2. 删除用户
+            /*  单行删除 */
+            $(".body").on("click", "#del_tr", function (event) {
+                $(this).parents().find(":input[type='checkbox']").prop("checked", false);
+                $(this).parents().find(".row").removeClass("active");
+                $(this).parents(".row").find("#server_name_id").prop("checked", true);
+                $(this).parents(".row").addClass("active");
+                if (this.id == 'del_tr') {
+                    if (confirm('确定要删除这个字段吗？')) {
+                        var username = $(this).parents(".row").find("#username").text();
+                        console.log(username);
+                        var params = {
+                            "req_config": "del_user",
+                            "username": username
+                        };
+                        $.post('php/group/del_group.php', params, function (data) {
+                            if (data == 1) {
+                                alert("删除成功");
+                                location.reload();
+                                getData();
+                            } else {
+                                alert("删除失败")
+                            }
+                        });
+                    } else {
+                        alert('删除失败')
+                    }
+                }
+
+            });
+            /* 批量删除 */
+            $(".data_bottom").on('click', "#del_user", function () {
+                var boxes = document.getElementsByName("item");
+                var arr = [];
+                var params = "";
+                if (confirm("确定要删除这个字段吗？")) {
+                    for (var i = 0; i < boxes.length; i++) {
+                        if (boxes[i].checked == true) {
+                            arr.push($(boxes[i]).parents(".row").find("#username").text());
+                        }
+                    }
+                    console.log(arr);
+                    params = {'arr': arr};
+                    $.post('php/group/del_group.php', params, function (data) {
+                        if (data == 1) {
+                            alert('删除成功');
+                            getData();
+                        } else {
+                            alert('删除失败')
+                        }
+                    })
+                } else {
+                    alert('删除失败')
+                }
+            });
+
+            /* 弹出框 添加用户*/
+            $(".row").on("click", "[type='button']", function (event) {
+                if ($(this).attr('id') == "add_data") {
+                    layerFn();
+                    $("#add_username").val("");
+                    $("#add_group").val("");
+                }
+            });
+            function layerFn() {
+                layer.open({
+                    area: ['400px', '250px'],
+                    title: "添加访控名单",
+                    content: $('#list_layer'),
+                    type: 1,
+                    btn: ["保存", "取消"],
+                    yes: function (index) {
+                        var username = $("#add_username").val();
+                        console.log(username);
+                        var add_group = $("#add_group").val();
+                        console.log(add_group);
+                        var params = {
+                            "req_config": "add_group",
+                            "username": username,
+                            "group":add_group
+                        };
+                        $.post('/admin_operation/', params, function (data) {
+                            if (data.result == 1) {
+                                alert("添加成功");
+                                location.reload();
+                                getData();
+                            } else {
+                                alert("添加失败,用户不存在")
+                            }
+                        });
+                        layer.close(index);
+                    },
+                    btn2: function (index) {
+                        layer.close(index);
+                    }
+                });
+            }
+
+            /*选中状态*/
+            $(".data_title .body").on('click', ":input[type='checkbox']", function () {
+                var checkbox = $(this).prop('checked');
+                if (checkbox == true) {
+                    $(this).parents(".row").addClass("active");
+                } else {
+                    $(this).parents(".row").removeClass("active");
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+<div class="content">
+    <div class="data_title">
+        <div class="head">
+            <div class="row">
+                <div class="col-xs-2 col-md-2">
+                    <input type="checkbox" id="checkAll"/>
+                </div>
+                <div class="col-xs-2 col-md-2">序号</div>
+                <div class="col-xs-3 col-md-3">用户组</div>
+                <div class="col-xs-3 col-md-3">用户名</div>
+                <div class="col-xs-2 col-md-2">操作</div>
+            </div>
+        </div>
+        <div class="body">
+            {% for  time in Agroup %}
+             <div class="row break">
+                <div class="col-xs-2 col-md-2">
+                <input type="checkbox" name="item" id="server_name_id" value=""/>
+                </div>
+                <div class="col-xs-2 col-md-2" id="id">{{ forloop.counter }}</div>
+                <div class="col-xs-3 col-md-3" id="group">{{ time.group }}</div>
+                <div class="col-xs-3 col-md-3" id="username">{{ time.username  }}</div>
+                <div class="col-xs-2 col-md-2">
+                <input type="button" name="" class="data_del" value="删除" id="del_tr"/>
+                </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data_bottom">
+        <div class="button_data col-xs-2 col-sm-2">
+            <ul class="pagination">
+{#                <li>#}
+{#                    <div class="btn btn-danger" id="del_user">#}
+{#                        <img src="{% static 'images/del.png' %}" id="del_img" alt="">批量删除#}
+{#                    </div>#}
+{#                </li>#}
+                <li>
+                    <div id="add_data" class="btn btn-success" type="button">
+                        <img src="{% static 'images/add.png' %}" id="add_img" alt="">添加
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-10 col-md-10 padlr">
+            <div class="padlr_right" align="right">
+                <ul class="pagination pagin">
+                    <li>
+                        <button id="shouye" disabled="disabled">首页</button>
+                    </li>
+                    <li id="shangyiye">
+                        <a href="#">
+                            <span>&laquo;</span>
+                            上一页
+                        </a>
+                    </li>
+                    <li id="xiayiye">
+                        <a href="#">下一页
+                            <span>&raquo;</span>
+                        </a>
+                    </li>
+                    <li>
+                        <button id="weiye">尾页</button>
+                    </li>
+                    <li class="sum_data" id="allpage"></li>
+                    <li>到
+                        <input type="text" class="jump" value="" id="tiaozhuannum">页
+                    </li>
+                    <li>
+                        <button id="jump">确定</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+<!--layer  添加-->
+<div class="list_layer" id="list_layer" style="display: none;">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="add_group" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">用户组</label>
+            <div class="col-xs-6 col-md-6">
+                <input type="text" class="form-control" id="add_group">
+{#                <select name="add_group" id="add_group" class="form-control">#}
+{#                    {% for time in Agroup %}#}
+{#                    <option value="{{ time.group }}">{{ time.group }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="add_username" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">用户名</label>
+            <div class="col-xs-6 col-md-6">
+                <input type="text" class="form-control" id="add_username">
+{#                <select name="add_username" id="add_username" class="form-control">#}
+{#                    {% for time in Agroup %}#}
+{#                    <option value="{{ time.userName }}">{{ time.userName }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+            </div>
+        </div>
+    </form>
+</div>
+<!--layer end-->
+</body>
+<script>
+
+</script>
+</html>

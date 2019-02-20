@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户管理</title>
+    <!--有网络-->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+    <!--无网络-->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/user_list.css">
+
+
+    <script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/layer/layer/layer.js"></script>
+    <script type="text/javascript">
+        /**  删除功能  **/
+        /* 全选 */
+        function checkAll(c) {
+            var status = c.checked;
+            var oItems = document.getElementsByName('item');
+            for (var i = 0; i < oItems.length; i++) {
+                oItems[i].checked = status;
+            }
+        }
+        /*  单行删除 */
+        $(function () {
+            $(".body").on("click", "#del_tr", function (event) {
+                var forLoop = 0;
+                var oItems = document.getElementsByName('item');
+                var del_id = '';
+                if (this.id == 'del_tr') {
+                    if (confirm("确定要删除这个字段吗？")) {
+                        forLoop = $(this).closest("tr").find("td").eq(1).text();
+                        oItems[forLoop - 1].checked = true;
+                        del_id = oItems[forLoop - 1].value + '_';
+                        params = {'check_id': del_id};
+                        $.post('/data/del_server/', params, function (data) {
+                            if (data.res == 1) {
+                                self.location = '/data/server_list/';
+                            } else {
+                                alert('删除失败')
+                            }
+                        })
+                    } else {
+                        alert('删除失败')
+                    }
+                }
+            })
+        });
+
+        /* 批量删除 */
+        function del() {
+            var boxes = document.getElementsByName("item");
+            var del_id = "";
+            if (confirm("确定要删除这个字段吗？")) {
+                for (var i = 0; i < boxes.length; i++) {
+                    if (boxes[i].checked == true) {
+                        del_id += boxes[i].value + '_';
+                    }
+                }
+                params = {'check_id': del_id};
+                $.post('/data/del_server/', params, function (data) {
+                    if (data.res == 1) {
+                        self.location = '/data/server_list/';
+                    } else {
+                        alert('删除失败')
+                    }
+                })
+            } else {
+                alert('删除失败')
+            }
+        }
+        $(function () {
+            $(".row").on("click", ":input[type='button']", function (event) {
+                if ($(this).attr('id') == "add_data") {
+                    $("#list_layer").find('input').removeAttr("disabled");
+                    layerFn();
+                    $('#label_name').val("");
+                    $('#label_type').val("");
+                }
+                else if ($(this).attr('id') == "up_data") {
+                    $("#list_layer").find('input').attr("disabled", "disabled");
+                    layerFn();
+                    modify(this);
+                }
+            });
+            function layerFn() {
+                layer.open({
+                    area: ['800px', '500px'],
+                    title: "修改用户",
+                    content: $('#list_layer'),
+                    type: 1,
+                    btn: ["保存", "取消"],
+                    yes: function (index) {
+                        layer.close(index);
+                    },
+                    btn2: function (index) {
+                        layer.close(index);
+                    }
+                });
+            }
+
+            //修改内容在弹出框显示
+            var name = '';
+            var type = '';
+            var server_list = '';
+
+            function modify(obj) {
+                var oNum = document.getElementById('part_server');
+                var oUser = document.getElementById('type_server');
+//                var oPwd = document.getElementById('http_server');
+
+                var oTr = obj.parentNode.parentNode;
+                var aTd = oTr.getElementsByTagName('div');
+                rowIndex = obj.parentNode.parentNode.rowIndex;
+
+                name = oNum.value = aTd[1].innerHTML;
+                type = oUser.value = aTd[2].innerHTML;
+//                server_list = oPwd.value = aTd[3].innerHTML;
+
+                $('#label_name').val(name);
+                $('#label_type').val(type);
+//                $('#label_http').val(server_list);
+            }
+        });
+    </script>
+</head>
+<body>
+<div class="page_title">贵州省块数据指挥调度中心数据上架平台</div>
+<div class="content_title">用户管理</div>
+<div class="content">
+    <div class="data_title">
+        <div class="head">
+            <div class="row">
+                <div class="col-xs-1"><input type="checkbox" name="item" onclick="checkAll(this)"/></div>
+                <div class="col-xs-3 col-md-3">用户名</div>
+                <div class="col-xs-3 col-md-3">部门名</div>
+                <div class="col-xs-3 col-md-3">组名</div>
+                <div class="col-xs-2 col-md-2">操作</div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3" id="part_server">张三</div>
+                <div class="col-xs-3 col-md-3" id="type_server">人社厅</div>
+                <div class="col-xs-3 col-md-3" id="http_server">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                    <input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/>
+                </div>
+                <div class="col-xs-3 col-md-3">张三</div>
+                <div class="col-xs-3 col-md-3">人社厅</div>
+                <div class="col-xs-3 col-md-3">社会保障</div>
+                <div class="col-xs-2 col-md-2">
+                    <input type="button" name="" class="data_del col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2"
+                           value="删除" id="del_tr"/>
+                    <input type="button" name="" class="data_update col-xs-4 col-md-4" value="修改" id="up_data"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row data_bottom">
+        <div class="col-xs-4 col-md-4 button_data">
+            <ul class="pagination">
+                <li>
+                    <img src="img/del.png" class="del_img" alt="">
+                    <input class="btn btn-danger" type="button" onclick="del()" value="批量删除"/>
+                </li>
+                <li>
+                    <img src="img/add.png" class="add_img" alt="">
+                    <input id="add_data" class="btn btn-success" type="button" onclick="" value="添加"/>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-5 col-md-5 col-xs-offset-2 col-md-offset-2">
+            <ul class="pagination">
+                <li><a href="">上一页 <span>&laquo;</span></a>
+                </li>
+                <li class="active">
+                    <a href="">1</a>
+                </li>
+                <li><a href="">2</a></li>
+                <li><a href="">3</a></li>
+                <li><a href="">4</a></li>
+                <li><a href="">5</a></li>
+                <li><a href="">下一页 <span>&raquo;</span></a></li>
+                <li class="sum_data">共20页</li>
+                <li>到<input type="text" class="jump" value="">页</li>
+                <li>
+                    <button id="jump">确定</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--layer  修改-->
+<div class="list_layer" id="list_layer" style="display: none;">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="label_name" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">用户名</label>
+            <div class="col-xs-6 col-md-6">
+                <input type="text" class="form-control" id="label_name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="label_type" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">部门名</label>
+            <div class="col-xs-6 col-md-6">
+                <input type="text" class="form-control" id="label_type">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="label_http" class="col-xs-2 col-md-2 col-xs-offset-2 col-md-offset-2 control-label">组名</label>
+            <div class="col-xs-6 col-md-6">
+                <select name="" class="form-control" id="label_http">
+                    <option value="">sql</option>
+                    <option value="">html</option>
+                    <option value="">css</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<!--layer end-->
+</body>
+</html>

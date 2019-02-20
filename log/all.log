@@ -1,0 +1,555 @@
+2019-01-17 13:39:14,037 [Dummy-1:11380] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:39:14,207 [Dummy-1:11380] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:39:14,239 [Dummy-1:11380] [django.db.backends:89] [utils:execute] [DEBUG]- (0.032) SHOW FULL TABLES; args=None
+2019-01-17 13:39:14,279 [Dummy-1:11380] [django.db.backends:89] [utils:execute] [DEBUG]- (0.034) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 13:41:02,684 [Thread-2:9996] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:41:02,686 [Thread-2:9996] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:41:02,744 [Thread-2:9996] [django.db.backends:89] [utils:execute] [DEBUG]- (0.057) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 05:41:02.678916'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 05:41:02.678916')
+2019-01-17 13:41:02,772 [Thread-2:9996] [django.db.backends:89] [utils:execute] [DEBUG]- (0.009) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department` LIMIT 21; args=()
+2019-01-17 13:41:02,774 [Thread-2:9996] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department`; args=()
+2019-01-17 13:43:14,636 [Thread-20:11864] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:43:58,163 [Thread-21:9996] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:44:11,299 [Dummy-1:9140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:44:11,468 [Dummy-1:9140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:44:11,473 [Dummy-1:9140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.004) SHOW FULL TABLES; args=None
+2019-01-17 13:44:11,478 [Dummy-1:9140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 13:44:16,959 [Thread-2:2920] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:45:36,199 [Dummy-1:10272] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:45:36,365 [Dummy-1:10272] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:45:36,369 [Dummy-1:10272] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SHOW FULL TABLES; args=None
+2019-01-17 13:45:36,374 [Dummy-1:10272] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 13:45:40,582 [Thread-2:7272] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:46:52,735 [Dummy-1:12404] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:46:52,913 [Dummy-1:12404] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:46:52,918 [Dummy-1:12404] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SHOW FULL TABLES; args=None
+2019-01-17 13:46:52,923 [Dummy-1:12404] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 13:59:55,764 [Dummy-1:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:59:55,854 [Dummy-1:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 13:59:55,859 [Dummy-1:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SHOW FULL TABLES; args=None
+2019-01-17 13:59:55,866 [Dummy-1:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 14:27:17,451 [Dummy-1:11572] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 14:27:17,533 [Dummy-1:11572] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 14:27:17,556 [Dummy-1:11572] [django.db.backends:89] [utils:execute] [DEBUG]- (0.023) SHOW FULL TABLES; args=None
+2019-01-17 14:27:17,567 [Dummy-1:11572] [django.db.backends:89] [utils:execute] [DEBUG]- (0.006) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 15:46:28,490 [Dummy-1:11288] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:46:28,562 [Dummy-1:11288] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:46:28,567 [Dummy-1:11288] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SHOW FULL TABLES; args=None
+2019-01-17 15:46:28,575 [Dummy-1:11288] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 15:53:38,569 [Dummy-1:7828] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:53:38,639 [Dummy-1:7828] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:53:38,645 [Dummy-1:7828] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SHOW FULL TABLES; args=None
+2019-01-17 15:53:38,649 [Dummy-1:7828] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 15:55:45,524 [Dummy-1:12600] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:55:45,603 [Dummy-1:12600] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:55:45,606 [Dummy-1:12600] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SHOW FULL TABLES; args=None
+2019-01-17 15:55:45,610 [Dummy-1:12600] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 15:55:49,484 [Thread-2:2972] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByCo
+2019-01-17 15:55:58,908 [Thread-4:10184] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByCo
+2019-01-17 15:57:59,307 [Dummy-1:5928] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:57:59,382 [Dummy-1:5928] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 15:57:59,386 [Dummy-1:5928] [django.db.backends:89] [utils:execute] [DEBUG]- (0.004) SHOW FULL TABLES; args=None
+2019-01-17 15:57:59,389 [Dummy-1:5928] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 16:07:08,076 [Thread-4:12104] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByRe1
+2019-01-17 16:07:49,525 [Dummy-1:12120] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:07:49,609 [Dummy-1:12120] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:07:49,612 [Dummy-1:12120] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SHOW FULL TABLES; args=None
+2019-01-17 16:07:49,616 [Dummy-1:12120] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 16:12:34,509 [Dummy-1:2940] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:12:34,587 [Dummy-1:2940] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:12:34,590 [Dummy-1:2940] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SHOW FULL TABLES; args=None
+2019-01-17 16:12:34,594 [Dummy-1:2940] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-17 16:50:44,911 [Thread-2:4776] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:44,916 [Thread-2:4776] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:44,927 [Thread-2:4776] [django.db.backends:89] [utils:execute] [DEBUG]- (0.010) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:50:44.900129'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:50:44.900129')
+2019-01-17 16:50:45,010 [Thread-2:4776] [django.db.backends:89] [utils:execute] [DEBUG]- (0.076) UPDATE `django_session` SET `session_data` = 'MGNjMjBiNTJkODljZjFjMGFiYTNiZjZjYzVkYjViNjY5N2ZmZGFkNDp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSIsInRlbXBfdmFsIjoiaW50ZXJmYWNlPXF3ZSJ9', `expire_date` = '2019-01-31 08:50:44.934093' WHERE `django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0'; args=('MGNjMjBiNTJkODljZjFjMGFiYTNiZjZjYzVkYjViNjY5N2ZmZGFkNDp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSIsInRlbXBfdmFsIjoiaW50ZXJmYWNlPXF3ZSJ9', '2019-01-31 08:50:44.934093', 'eeiph5cdebd4l9i6qg8q8zda34uroxh0')
+2019-01-17 16:50:58,717 [Thread-3:1368] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:58,720 [Thread-3:1368] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:58,728 [Thread-3:1368] [django.db.backends:89] [utils:execute] [DEBUG]- (0.005) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:50:58.701189'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:50:58.701189')
+2019-01-17 16:50:59,028 [Thread-9:10140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:59,031 [Thread-9:10140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:50:59,033 [Thread-9:10140] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:50:59.024325'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:50:59.024325')
+2019-01-17 16:51:02,651 [Thread-12:12340] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:02,653 [Thread-12:12340] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:02,655 [Thread-12:12340] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:51:02.648634'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:51:02.648634')
+2019-01-17 16:51:02,673 [Thread-13:280] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:02,676 [Thread-13:280] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:02,678 [Thread-13:280] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:51:02.671571'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:51:02.671571')
+2019-01-17 16:51:18,414 [Thread-14:7424] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:18,416 [Thread-14:7424] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-17 16:51:18,417 [Thread-14:7424] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'eeiph5cdebd4l9i6qg8q8zda34uroxh0' AND `django_session`.`expire_date` > '2019-01-17 08:51:18.412506'); args=('eeiph5cdebd4l9i6qg8q8zda34uroxh0', '2019-01-17 08:51:18.412506')
+2019-01-18 09:18:41,776 [Dummy-1:1960] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 09:18:41,884 [Dummy-1:1960] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 09:18:41,900 [Dummy-1:1960] [django.db.backends:89] [utils:execute] [DEBUG]- (0.016) SHOW FULL TABLES; args=None
+2019-01-18 09:18:41,905 [Dummy-1:1960] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 13:27:02,388 [Dummy-1:6864] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 13:27:02,471 [Dummy-1:6864] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 13:27:02,488 [Dummy-1:6864] [django.db.backends:89] [utils:execute] [DEBUG]- (0.016) SHOW FULL TABLES; args=None
+2019-01-18 13:27:02,495 [Dummy-1:6864] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 13:29:59,425 [Thread-2:10236] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:30:37,697 [Thread-3:3992] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:30:49,873 [Thread-4:12232] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:34:54,484 [Thread-5:5780] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:35:55,413 [Thread-6:220] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:40:37,061 [Dummy-1:13564] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 13:40:37,153 [Dummy-1:13564] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 13:40:37,156 [Dummy-1:13564] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SHOW FULL TABLES; args=None
+2019-01-18 13:40:37,161 [Dummy-1:13564] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 14:03:21,745 [Dummy-1:11604] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 14:03:21,862 [Dummy-1:11604] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 14:03:21,866 [Dummy-1:11604] [django.db.backends:89] [utils:execute] [DEBUG]- (0.004) SHOW FULL TABLES; args=None
+2019-01-18 14:03:21,879 [Dummy-1:11604] [django.db.backends:89] [utils:execute] [DEBUG]- (0.011) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 15:18:40,814 [Thread-2:10716] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:19:49,906 [Thread-3:5824] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:15,889 [Thread-4:10500] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:22,848 [Thread-5:3204] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:46,018 [Thread-6:12404] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getUnpublished_interface
+2019-01-18 15:23:41,756 [Dummy-1:13624] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 15:23:41,826 [Dummy-1:13624] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 15:23:41,850 [Dummy-1:13624] [django.db.backends:89] [utils:execute] [DEBUG]- (0.024) SHOW FULL TABLES; args=None
+2019-01-18 15:23:41,862 [Dummy-1:13624] [django.db.backends:89] [utils:execute] [DEBUG]- (0.007) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 15:35:36,587 [Dummy-1:4344] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 15:35:36,653 [Dummy-1:4344] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-01-18 15:35:36,656 [Dummy-1:4344] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SHOW FULL TABLES; args=None
+2019-01-18 15:35:36,666 [Dummy-1:4344] [django.db.backends:89] [utils:execute] [DEBUG]- (0.007) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-01-18 17:24:41,109 [Thread-2:13460] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByRe
+2019-02-18 13:56:24,157 [Dummy-1:11004] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:24,333 [Dummy-1:11004] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:24,362 [Dummy-1:11004] [django.db.backends:89] [utils:execute] [DEBUG]- (0.028) SHOW FULL TABLES; args=None
+2019-02-18 13:56:24,403 [Dummy-1:11004] [django.db.backends:89] [utils:execute] [DEBUG]- (0.037) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+2019-02-18 13:56:42,820 [Thread-2:5740] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:42,826 [Thread-2:5740] [django.db.backends:89] [utils:execute] [DEBUG]- (0.006) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department` LIMIT 21; args=()
+2019-02-18 13:56:42,827 [Thread-2:5740] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department`; args=()
+2019-02-18 13:56:49,976 [Thread-20:12048] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:49,988 [Thread-20:12048] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:49,994 [Thread-20:12048] [django.db.backends:89] [utils:execute] [DEBUG]- (0.006) SELECT (1) AS `a` FROM `django_session` WHERE `django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0' LIMIT 1; args=('skgt8uwan6funk3xmyn9n3y1lyh0a2n0',)
+2019-02-18 13:56:50,002 [Thread-20:12048] [django.db.backends:89] [utils:execute] [DEBUG]- (0.006) UPDATE `django_session` SET `session_data` = 'MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', `expire_date` = '2019-03-04 05:56:49.996660' WHERE `django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0'; args=('MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', '2019-03-04 05:56:49.996660', 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0')
+2019-02-18 13:56:50,012 [Thread-20:12048] [django.db.backends:89] [utils:execute] [DEBUG]- (0.009) INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES ('skgt8uwan6funk3xmyn9n3y1lyh0a2n0', 'MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', '2019-03-04 05:56:49.996660'); args=('skgt8uwan6funk3xmyn9n3y1lyh0a2n0', 'MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', '2019-03-04 05:56:49.996660')
+2019-02-18 13:56:54,905 [Thread-21:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:54,908 [Thread-21:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 13:56:54,911 [Thread-21:13160] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0' AND `django_session`.`expire_date` > '2019-02-18 05:56:54.902542'); args=('skgt8uwan6funk3xmyn9n3y1lyh0a2n0', '2019-02-18 05:56:54.902542')
+2019-02-18 14:25:48,704 [Thread-31:4844] [django.db.backends:89] [utils:execute] [DEBUG]- (0.002) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 14:25:48,712 [Thread-31:4844] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 14:25:48,722 [Thread-31:4844] [django.db.backends:89] [utils:execute] [DEBUG]- (0.007) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0' AND `django_session`.`expire_date` > '2019-02-18 06:25:48.679220'); args=('skgt8uwan6funk3xmyn9n3y1lyh0a2n0', '2019-02-18 06:25:48.679220')
+2019-02-18 14:25:48,748 [Thread-31:4844] [django.db.backends:89] [utils:execute] [DEBUG]- (0.003) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department` LIMIT 21; args=()
+2019-02-18 14:25:48,750 [Thread-31:4844] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `department`.`id`, `department`.`dataname`, `department`.`us_dataname`, `department`.`hosts`, `department`.`ogCode` FROM `department`; args=()
+2019-02-18 14:27:10,190 [Thread-36:12320] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 14:27:10,196 [Thread-36:12320] [django.db.backends:89] [utils:execute] [DEBUG]- (0.000) SET SQL_AUTO_IS_NULL = 0; args=None
+2019-02-18 14:27:10,198 [Thread-36:12320] [django.db.backends:89] [utils:execute] [DEBUG]- (0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0' AND `django_session`.`expire_date` > '2019-02-18 06:27:10.188595'); args=('skgt8uwan6funk3xmyn9n3y1lyh0a2n0', '2019-02-18 06:27:10.188595')
+2019-02-18 14:27:10,216 [Thread-36:12320] [django.db.backends:89] [utils:execute] [DEBUG]- (0.015) UPDATE `django_session` SET `session_data` = 'MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', `expire_date` = '2019-03-04 06:27:10.199567' WHERE `django_session`.`session_key` = 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0'; args=('MTZiYzZmZDI2MzkzNjhhYjczNjJiNzkyYjdmZjNlZTZhMmY1ZTVhZjp7ImRlcGFydCI6Ilx1OGQzNVx1NWRkZVx1NzcwMVx1NWJhMVx1OGJhMVx1NTM4NSJ9', '2019-03-04 06:27:10.199567', 'skgt8uwan6funk3xmyn9n3y1lyh0a2n0')

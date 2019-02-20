@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>配置日志</title>
+    {% load static %}
+    <!--有网络-->
+    <!--<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">-->
+    <!--无网络-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/journal.css'%}">
+
+
+    <script type="text/javascript" src="{% static 'js/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/layer/layer/layer.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/paging.js' %}"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var pm = window.parent.parameter;
+            bindPlace = $(".body");
+            handle = 'journal';
+            moveli = $(".moveLi");
+            if (pm == 'superAdmin') {
+                database = 'test';
+                table_name = 'mylog'
+            } else if (pm == 'commonUser') {
+                database = window.parent.departname;
+                table_name = 'commonlog'
+            } else if (pm == 'departmentAdmin') {
+                database = window.parent.departname;
+                console.log(database);
+                table_name = 'departlog';
+            }
+            set_PageData(database, table_name, bindPlace, 1, moveli,10);
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class="content">
+        <div class="data_title">
+            <div class="head_title">配置日志</div>
+            <div class="head">
+                <div class="row">
+                    <div class="col-xs-1 col-md-1">序号</div>
+                    <div class="col-xs-2 col-md-2">任务</div>
+                    <div class="col-xs-2 col-md-2">对象名称</div>
+                    {# <div class="col-xs-1 col-md-1">对象类型</div>#}
+                    <div class="col-xs-2 col-md-2">用户</div>
+                    <div class="col-xs-2 col-md-2">开始时间</div>
+                    <div class="col-xs-2 col-md-2">结束时间</div>
+                    <div class="col-xs-1 col-md-1">状态</div>
+                </div>
+            </div>
+            <div class="body"></div>
+        </div>
+        <div class="container-fluid">
+            <div class="row data_bottom">
+
+                <div class="col-xs-12 col-md-10 padlr">
+                    <div class="padlr_right" align="right">
+                        <ul class="pagination pagin">
+                            <li id="allpage"></li>
+                            <li id="eachPage"><i>10条/页</i><span class="icon-angle-down"></span>
+                                <div class="eachPage_box">
+                                    <div class="eachPage_con">
+                                        <ul>
+                                            <li class="ten eachPage_selected">10条/页</li>
+                                            <li class="twenty">20条/页</li>
+                                            <li class="thirty">30条/页</li>
+                                            <li class="forty">40条/页</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="shangyiye" class="disabled"><span class="icon-angle-left"></span></li>
+                            <li id="xiayiye"><span class="icon-angle-right"></span></li>
+                            <li class="go">前往
+                                <input type="text" class="jump" value="" id="tiaozhuannum">页
+                            </li>
+                            <li>
+                                <button id="jump">确定</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

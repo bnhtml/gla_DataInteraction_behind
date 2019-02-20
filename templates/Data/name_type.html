@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <title> 名称类型 </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    {% load static %}
+
+     <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/name_type.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+    <script type="text/javascript">
+
+        /**  获取名称 类型 到后端session  **/
+        $(function () {
+            var next = $(window.parent.document).find("#next");
+             next.click(function () {
+                 var name = $('#name').val(); //名称
+                 var type = $("#input_type option:selected").text(); //类型
+                 var server_type_url = '';   //跳转页面url
+                 params = {'name':name, 'type':type};
+                 $.post('/data/name_type/',params, function (data) {
+                    if (data.res == 1){
+                        var span = $(window.parent.document).find("span");
+                            span.css({
+                                "color": "",
+                                "border-bottom": "",
+                            });
+                        var send = $(window.parent.document).find("#two");
+                        var three = $(window.parent.document).find("#three");
+                        if (type == 'sql'){
+                            send.css({
+                                "color": "#6d89d1",
+                                "border-bottom": "1px solid #6d89d1",
+                            });
+                            server_type_url = '/data/sql_server/';
+                        } else if (type == 'file'){
+                            send.css({
+                                "color": "#6d89d1",
+                                "border-bottom": "1px solid #6d89d1",
+                            });
+                            server_type_url = '/data/file_server/';
+                        } else if (type == 'message' ){
+                            send.css({
+                                "color": "#6d89d1",
+                                "border-bottom": "1px solid #6d89d1",
+                            });
+                            server_type_url = '/data/message_server/';
+                        } else if (type == 'interface'){
+                            three.css({
+                                "color": "#6d89d1",
+                                "border-bottom": "1px solid #6d89d1",
+                            });
+                            server_type_url = '/data/server_name/';
+                        }
+                        $(window).attr('location',server_type_url);
+                    } else {
+                        alert('请输入名称')
+                    }
+                })
+            })
+        })
+    </script>
+    <script>
+        var prov = $(window.parent.document).find("#prov");
+        prov.click(function (){
+            if (window.top != window.self) {
+                window.top.location = "/data/server_list/";
+            }
+        })
+</script>
+
+</head>
+<body>
+    <div class="content" style="background: #ffffff">
+        <div id="content" style="margin:0 auto; background-color:#ffffff; width:100%; height:100%; position:relative;">
+            <div class="login" style="position:absolute; top:50%;left:50%;margin-top:-130px;margin-left:-200px;border: 3px solid #e2e2e2; width:410px; height: 280px; border-radius:10px;">
+                <form >
+                    <div style=" float: left;margin-left:75px;margin-top:60px;">
+                        <h4 style="display:inline">名称:</h4>
+                        <input class="up-file" placeholder="请输入名称" type="text" name="port" id="name" style="width: 210px;height: 30px;font-size: 14px">
+                    </div>
+                    <div style=" float: left;margin-left:-255px;margin-top:120px;">
+                        <h4 style="display:inline;float: left;margin-top: 20px">类型:</h4>
+                        <select class="select1" style="padding-left: 70px;align-content: center" type="text" name="input_type" id="input_type">
+                            <option value="SQL">sql</option>
+                            <option value="file">file</option>
+                            <option value="message">message</option>
+                            <option value="interface">interface</option>
+                        </select>
+                    </div>
+              </form>
+          </div>
+       </div>
+    </div>
+</body>
+</html>

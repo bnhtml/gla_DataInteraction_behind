@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            width: 100%;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .wrapper ul{
+            margin: 0 auto;
+            list-style: none;
+        }
+        .wrapper li{
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            color: #737373;
+            margin-left: 8px;
+            border-radius: 5px;
+        }
+        .wrapper li:hover{
+            background-color: #eee;
+            color: #2a6496;
+        }
+        .wrapper button{
+            float: left;
+            margin-left: 10px;
+            height: 40px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .wrapper button:hover{
+            background-color: #eee;
+            color: #2a6496;
+        }
+        
+        .wrapper input{
+            float: left;
+            width: 40px;
+            height: 35px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .wrapper span{
+            float: left;
+            margin-top: 5px;
+        }
+        .move{
+            color: #fff;
+            background-color: #428bca;
+            border: 1px solid #4183e6;
+        }
+        /* .none{
+            display: none !important;
+        } */
+        .span{
+            width: 40px;
+            height: 40px;
+            text-align:center;
+        }
+        #spanleft{
+            display: none;
+            width: 40px;
+            height: 40px;
+            text-align:center;
+        }
+        #dangqianpage{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <button id="shouye" disabled="disabled">首页</button>
+        <button id="shangyiye">上一页&laquo;</button>
+        <ul class="fenyecaidan">
+            <span id="spanleft">...</span>
+        </ul>
+        <button id="xiayiye">&raquo;下一页</button>
+        <button id="weiye">尾页</button>
+        <span>当前页面</span>
+        <span id="dangqianpage"></span>
+        <span id="zongpage"></span>
+        <input type="text" name="" id="tiaozhuannum">
+        <button id="tiaozhuan">跳转</button>
+    </div>
+    <script src="js/jquery.js"></script>
+    <script>
+        //记录当前展示的页数的索引页，比如页数1 - 10，索引值是0 - 9
+        var index = 0;
+        //i记录一共生成了多少页，比如下面生成10页后，i最后会变成11，因为11的时候才结束for循环
+        var i;
+        //此方法返回当前显示页数的索引值，+1表示正常的页数1 - 10
+        function getPageNum(){
+            return index + 1;
+        }
+        //循环创建10个页码
+        for(i = 1; i <= 10; i ++){
+            if(i == 1){
+                //第一页页码默认添加正在显示的样式move
+                $(".fenyecaidan").append("<li class='move'>" + i + "</li>");
+            }else if(i > 5){
+                //大于5页的页码隐藏
+                $(".fenyecaidan").append("<li style='display:none'>" + i + "</li>");
+            }else{
+                //添加正常显示的页码2~4页
+                $(".fenyecaidan").append("<li>" + i + "</li>");
+            }
+        }
+        //设置当前页数
+        $("#dangqianpage").text(index + 1);
+        //设置总页数
+        $("#zongpage").text("/" + (i - 1));
+        //隐藏的页数部分由......显示
+        $(".fenyecaidan").append("<span class='span' id='spanid'>...</span>");
+        //给所有li设置单击事件
+        $("li").click(function(){
+            //点击除了正在显示的页码
+            if(index != Number($(this).text()) - 1){
+                //点击当前页码，如果没有move样式则添加，否则删除move样式，并且其他兄弟页码全部删除move样式
+                $(this).toggleClass("move").siblings().removeClass("move");
+                //得到正在展示的页数
+                var num = index;
+                //点击的页数-1得到相应的索引值
+                index = Number($(this).text()) - 1;
+                //得到正在展示的页数减去点击的页数的索引值后的绝对值
+                var count = Math.abs(num - index);
+                //当前页数改为点击的页数
+                $("#dangqianpage").text(index + 1);
+                //判断当点击的页数大于正在显示的页数的时候
+                if((num - index) < 0){
+                    //点击页数的索引值小于总索引值
+                    if(index < (i - 2)){
+                        //点击页数和之前展示页数的差，大于等于2时并且点击的页数小于倒数第二页
+                        if(count >= 2 && index < (i - 3)){
+                            //点击的页数的下两页显示出来
+                            $("li:eq(" + (index + 1) + ")").css("display","inline");
+                            $("li:eq(" + (index + 2) + ")").css("display","inline");
+                            //点击的页数的前三四页隐藏
+                            $("li:eq(" + (index - 3) + ")").css("display","none");
+                            $("li:eq(" + (index - 4) + ")").css("display","none");
+                        //点击页数和之前展示页数的差，等于1时并且点击的页数小于倒数第二页
+                        }else if(count == 1 && index < (i - 3)){
+                            //点击的页数的下下页显示
+                            $("li:eq(" + (index + 2) + ")").css("display","inline");
+                            //点击的页数前面的第三页隐藏
+                            $("li:eq(" + (index - 3) + ")").css("display","none");
+                        }
+                        //点击的页数等于倒数第二页时
+                        if((i - 3) == index){
+                            //最后一页显示
+                            $("li:eq(" + (index + 1) + ")").css("display","inline");
+                            //点击的页数前面的第四页隐藏
+                            $("li:eq(" + (index - 4) + ")").css("display","none");
+                        }
+                        //当展示的页数小于等于倒数第三页时，......隐藏
+                        if(index >= (i - 4)){
+                            $(".span").css("display","none");
+                        }
+                        if(index >= 3){
+                            $("#spanleft").css("display","inline");
+                        }
+                    }
+                //判断当点击的页数小于正在显示的页数的时候
+                }else{
+                    //点击的页数大于第二页时
+                    if(index >= 1){
+                        //点击页与之前展示的页的差大于等于两页时，并且点击的页数小于倒数第二页
+                        // 并且页数的索引值大于等于第三页时
+                        if(count >= 2 && index < (i - 3) && index >= 2){
+                            //点击的页数前面的两页显示出来
+                            $("li:eq(" + (index - 1) + ")").css("display","inline");
+                            $("li:eq(" + (index - 2) + ")").css("display","inline");
+                            //点击的页数后面的第三四页隐藏
+                            $("li:eq(" + (index + 3) + ")").css("display","none");
+                            $("li:eq(" + (index + 4) + ")").css("display","none");
+                        //点击页与之前展示的页的差等于1的时候，并且点击的索引小于倒数第二页，
+                        //并且点击的索引大于等于第三页
+                        }else if(count == 1 && index < (i - 3) && index >= 2){
+                            //点击的页数前面的第二页显示
+                            $("li:eq(" + (index - 2) + ")").css("display","inline");
+                            //点击的页数后面的第三页隐藏
+                            $("li:eq(" + (index + 3) + ")").css("display","none");
+                        //点击的页数的索引值小于等于1的时候
+                        }else if(index <= 1){
+                            //点击的页数的前一页显示
+                            $("li:eq(" + (index - 1) + ")").css("display","inline");
+                            //点击的页数后面的第四页隐藏
+                            $("li:eq(" + (index + 4) + ")").css("display","none");
+                        }
+                        //当最后一页开始隐藏的时候，......显示
+                        if(index < (i - 4)){
+                            $(".span").css("display","inline");
+                        }
+                        if(index >= 3){
+                            $("#spanleft").css("display","inline");
+                        }else{
+                            $("#spanleft").css("display","none");
+                        }
+                    }
+                }
+                if(index == 0){
+                    $("#shouye").attr("disabled","disabled");
+                }else{
+                    $("#shouye").removeAttr("disabled");
+                }
+                if(index == (i - 2)){
+                    $("#weiye").attr("disabled","disabled");
+                }else{
+                    $("#weiye").removeAttr("disabled");
+                }
+            }
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击下一页时
+        $("#xiayiye").click(function(){
+            //点击的页数的索引值等于总页数的索引值时
+            if(index + 2 == i){
+                alert("已到最后一页");
+             //点击的页数的索引值不等于总页数的索引值时
+            }else{
+                //之前展示的页数的展示样式move删除
+                $("li:eq(" + index +")").removeClass("move");
+                //索引加1，表示跳转到下一页了
+                index += 1;
+                //下一页的页码添加展示的样式move
+                $("li:eq(" + index +")").attr("class","move");
+            }
+            //当前展示的索引页大于2时，并且小于倒数第二页
+            if(index > 2 && index < (i - 3)){
+                //当前展示的索引页后面第二页页码显示
+                $("li:eq(" + (index + 2) + ")").css("display","inline");
+                //当前展示的索引页前面的第三页页码隐藏
+                $("li:eq(" + (index - 3) + ")").css("display","none");
+            }
+            //当前展示的索引页大于等于倒数第三页时，
+            if(index >= (i - 4)){
+                //...隐藏
+                $(".span").css("display","none");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline");
+            }
+            $("#shouye").removeAttr("disabled");
+            if(index == (i - 2)){
+                $("#weiye").attr("disabled","disabled");
+            }
+            //当前页数修改为最新展示的页数
+            $("#dangqianpage").text(index + 1);
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击上一页时
+        $("#shangyiye").click(function(){
+            //当前页已经是首页的时候
+            if(index <= 0){
+                //弹出提示框
+                alert("已到首页");
+                
+            }else{
+                $("#shouye").removeAttr("disabled");
+                //之前展示的页码删除展示样式
+                $("li:eq(" + index +")").removeClass("move");
+                //索引值减1，代表跳转到上一页
+                index -= 1;
+                //上一页的页码添加展示样式
+                $("li:eq(" + index +")").attr("class","move");
+                if(index == 0){
+                    $("#shouye").attr("disabled","disabled");
+                }
+            }
+            //当前索引页小于倒数第三页时，并且当前索引值大于1时
+            if(index < (i - 4) && index > 1){
+                //当前索引页前面的第二页显示出来
+                $("li:eq(" + (index - 2) + ")").css("display","inline");
+                //当前索引页后面的第三页隐藏
+                $("li:eq(" + (index + 3) + ")").css("display","none");
+            }
+            //当前索引页小于倒数第三页时
+            if(index < (i - 4)){
+                //......显示
+                $(".span").css("display","inline");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline");
+            }else{
+                $("#spanleft").css("display","none");
+            }
+            $("#weiye").removeAttr("disabled");
+            //修改当前页数
+            $("#dangqianpage").text(index + 1);
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击首页
+        $("#shouye").click(function(){
+            //正在展示的页数不为首页时
+            if(index != 0){
+                //之前的页码删除展示样式
+                $("li:eq(" + index +")").removeClass("move");
+                //首页页码添加展示样式
+                $("li:eq(0)").attr("class","move");
+                //修改当前页的索引值
+                index = 0;
+                //所有页码隐藏
+                $("li").css("display","none");
+                //......显示
+                $(".span").css("display","inline");
+                //前五页显示
+                $("li:eq(" + index + ")").css("display","inline");
+                $("li:eq(" + (index + 1) + ")").css("display","inline");
+                $("li:eq(" + (index + 2) + ")").css("display","inline");
+                $("li:eq(" + (index + 3) + ")").css("display","inline");
+                $("li:eq(" + (index + 4) + ")").css("display","inline");
+            }
+            //当前页数修改为首页的页数
+            $("#dangqianpage").text(index + 1);
+            $("#spanleft").css("display","none");
+            $("#shouye").attr("disabled","disabled");
+            $("#weiye").removeAttr("disabled");
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击尾页
+        $("#weiye").click(function(){
+            //当前索引页不为最后一页时
+            if(index != (i - 2)){
+                //之前展示的页码删除展示样式
+                $("li:eq(" + index +")").removeClass("move");
+                //最后一页页码添加展示样式
+                $("li:eq(" + (i - 2) + ")").attr("class","move");
+                //修改当前正在展示的索引值
+                index = i - 2;
+                //所有页码隐藏
+                $("li").css("display","none");
+                //......隐藏
+                $(".span").css("display","none");
+                //最后五页显示
+                $("li:eq(" + index + ")").css("display","inline");
+                $("li:eq(" + (index - 1) + ")").css("display","inline");
+                $("li:eq(" + (index - 2) + ")").css("display","inline");
+                $("li:eq(" + (index - 3) + ")").css("display","inline");
+                $("li:eq(" + (index - 4) + ")").css("display","inline");
+            }
+            //修改当前页数
+            $("#dangqianpage").text(index + 1);
+            $("#spanleft").css("display","inline");
+            $("#shouye").removeAttr("disabled");
+            $("#weiye").attr("disabled","disabled");
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击跳转按钮
+        $("#tiaozhuan").click(function(){
+            //得到输入框里的值
+            var num = Number($("#tiaozhuannum").val());
+            //如果有值，并且是有效的页数数字
+            if(num && num <= (i - 1)){
+                //修改当前页数为输入框里的值
+                $("#dangqianpage").text(num);
+                //之前展示的页码删除展示样式
+                $("li:eq(" + index +")").removeClass("move");
+                //按照输入框的数字-1得到相应页码的索引值，并且添加展示样式
+                $("li:eq(" + (num - 1) + ")").attr("class","move");
+                //修改当前展示的页数的索引值
+                index = num - 1;
+                //所有页码隐藏
+                $("li").css("display","none");
+                //当目前展示的页码的索引值小于等于2时
+                if(index <= 2){
+                    //......显示
+                    $(".span").css("display","inline");
+                    //循环显示前五页的页码
+                    for(var o = 0; o < 5; o ++){
+                        $("li:eq(" + o + ")").css("display","inline");
+                    }
+                //当前展示的页码的索引值大于等于倒数第三页的时候
+                }else if(index >= (i - 4)){
+                    //......隐藏
+                    $(".span").css("display","none");
+                    //循环显示最后五页的页码
+                    for(var t = (i - 6); t < (i - 1); t ++){
+                        $("li:eq(" + t + ")").css("display","inline");
+                    }
+                }else{
+                    //......显示
+                    $(".span").css("display","inline");
+                    //当前展示页和它的前两页后两页显示出来
+                    $("li:eq(" + (index - 1) + ")").css("display","inline");
+                    $("li:eq(" + (index - 2) + ")").css("display","inline");
+                    $("li:eq(" + index + ")").css("display","inline");
+                    $("li:eq(" + (index + 1) + ")").css("display","inline");
+                    $("li:eq(" + (index + 2) + ")").css("display","inline");
+                }
+            }else if(num > (i - 2)){
+                alert("请输入存在的页数：");
+            }else{
+                alert("请输入页数：");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline");
+            }else{
+                $("#spanleft").css("display","none");
+            }
+            if(index == 0){
+                $("#shouye").attr("disabled","disabled");
+                $("#weiye").removeAttr("disabled");
+            }else if(index == (i - 2)){
+                $("#shouye").removeAttr("disabled");
+                $("#weiye").attr("disabled","disabled");
+            }else{
+                $("#shouye").removeAttr("disabled");
+                $("#weiye").removeAttr("disabled");
+            }
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+    </script>
+</body>
+</html>

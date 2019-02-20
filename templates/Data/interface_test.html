@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Interface_test</title>
+    {% load static %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+<style>
+    input{
+        width: 135px;
+        height: 30px;
+        margin-left: 40px;
+        margin-top: 300px;
+    }
+</style>
+<script>
+    function addUser() {
+           alert(1);
+           var params ={"req_config":"add_username","username":"zhangsan"};
+           $.post('/data/request_allocation/', params, function (data) {
+                alert(data.result)
+        });
+    }
+
+    function delUser() {
+           alert(2);
+           var params ={"req_config":"del_username","username":"zhangsan"};
+           $.post('/data/request_allocation/', params, function (data) {
+                alert(data.result)
+        });
+    }
+
+    function addServer() {
+           alert(3);
+           var params ={"req_config":"add_server","serviceName":"zhangsan","hosts":"zs",
+           "uris":"/wjw/ggws/file/gxy/","upstream_url":"http://59.215.225.250:8081/dwfwad/dwadaf/dawdab/dawdvw/dwafa"};
+           $.post('/data/request_allocation/',params, function (data) {
+                alert(data.result)
+        });
+    }
+
+    function delServer() {
+           alert(4);
+           var params ={"req_config":"del_server","serviceName":"zhangsan"};
+           $.post('/data/request_allocation/', params, function (data) {
+                alert(data.result)
+        });
+    }
+
+    function addGroup() {
+           alert(5);
+
+           var params ={"req_config":"add_group","group":"lisi","username":"zhangsan"};
+           $.post('/data/request_allocation/', params, function (data) {
+                alert(data.result)
+        });
+    }
+
+    function addACL() {
+           alert(6);
+           var params ={"req_config":"add_acl","serviceName":"zhangsan","name":"acl","whitelist":"lisi"};
+           $.post('/data/request_allocation/', params ,function (data) {
+                alert(data.result)
+        });
+    }
+
+    function delACL() {
+            alert(7);
+            var params ={"req_config":"del_acl","serviceName":"zhangsan"};
+            $.post('/data/request_allocation/', params,function (data) {
+                alert(data.result)
+        });
+    }
+
+    function addControl() {
+           alert(8);
+           var params ={"req_config":"add_control","name":"rate-limiting","day":"2","serviceName":"zhangsan"};
+           $.post('/data/request_allocation/', params,function (data) {
+                alert(data.result)
+        });
+    }
+
+    function delControl() {
+            alert(9);
+            var params ={"req_config":"del_control","serviceName":"zhangsan"};
+            $.post('/data/request_allocation/', params,function (data) {
+                alert(data.result)
+        });
+    }
+
+
+</script>
+<body>
+    <input id="username" type="button" value="增加用户" onclick="addUser()">
+    <input id="username" type="button" value="删除用户" onclick="delUser()">
+    <input id="username" type="button" value="添加服务" onclick="addServer()">
+    <input id="username" type="button" value="删除服务" onclick="delServer()">
+    <input id="username" type="button" value="添加访问控制名单" onclick="addGroup()">
+    <input id="username" type="button" value="添加ACL" onclick="addACL()">
+    <input id="username" type="button" value="删除ACL" onclick="delACL()">
+    <input id="username" type="button" value="添加流控" onclick="addControl()">
+    <input id="username" type="button" value="删除流控" onclick="delControl()">
+</body>
+</html>

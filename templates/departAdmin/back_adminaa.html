@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>数据上架—管理</title>
+    {% load static %}
+    <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/layer/layer/layer.js' %}"></script>
+</head>
+
+<body style="background-color:#eee;">
+    <div class="header bg-main">
+        <div class="logo margin-big-left fadein-top">
+            <h1>数据上架—管理</h1>
+        </div>
+    </div>
+    <div class="leftnav">
+        {% for dataname in depart %}
+        <div class="leftnav-title" style="line-height: 24px; padding: 10px 10px 0px 16px">
+            <span class="icon-list"></span><strong>{{ dataname }}<i>({{ total_num }})</i></strong>
+        </div>
+
+        <h2><span class="icon-caret-right"></span>&nbsp;服务目录</h2>
+        <ul>
+            <li>
+                <a href="/departAdmin/admin_catalog/" target="right">&nbsp;映射目录</a>
+            </li>
+        </ul>
+        <h2><span class="icon-caret-right"></span>&nbsp;元目录</h2>
+        <ul>
+            <li>
+                <a href="/departAdmin/db_list/" target="right">&nbsp;数据源录入</a>
+            </li>
+            <li>
+                <a href="/departAdmin/file_list/" target="right">&nbsp;文件源录入</a>
+            </li>
+            <li>
+                <a href="/departAdmin/interface_list/" target="right">&nbsp;接口源录入</a>
+            </li>
+            <li>
+                <a href="/departAdmin/message_list/" target="right">&nbsp;消息源录入</a>
+            </li>
+        </ul>
+        <h2>
+            <span class="icon-caret-right"></span>&nbsp;数据桥接<i>({{ total_num }})</i></h2>
+        <ul>
+            <li>
+                <a href="/departAdmin/sql_admin/" target="right">&nbsp;数据库桥接<i>({{ dbList_num }})</i></a>
+            </li>
+            <li>
+                <a href="/departAdmin/admin_file/" target="right">&nbsp;文件<i>({{ fileList_num }})</i></a>
+            </li>
+            <li>
+                <a href="/departAdmin/admin_interface/" target="right">&nbsp;接口<i>({{ interfaceList_num }})</i></a>
+            </li>
+            <li>
+                <a href="/departAdmin/admin_ways/" target="right">&nbsp;消息<i>({{ messageList_num }})</i></a>
+            </li>
+        </ul>
+{#        <ul id="leftnav_ul">#}
+{#            <li class="secondDier">#}
+{#                <a><span class="icon-caret-right"></span>用户目录</a>#}
+{#            </li>#}
+{#            <ul class="thirdDier">#}
+{#                <li id="adwdaw">#}
+{#                    <a href="/user_list/" target="right">用户列表</a>#}
+{#                </li>#}
+{#            </ul>#}
+{#            <li class="secondDier">#}
+{#                <a><span class="icon-caret-right"></span></a>#}
+{#            </li>#}
+{#            <ul class="thirdDier">#}
+{#                <li>#}
+{#                    <a href="/admin_mapping/" target="right">映射域名</a>#}
+{#                </li>#}
+{#                #}
+{#            </ul>#}
+{#            <li class="secondDier">#}
+{#                 <a><span class="icon-caret-right"></span>安全目录</a>#}
+{#            </li>#}
+{#            <ul class="thirdDier">#}
+{#                <li>#}
+{#                    <a href="/acl_list/" target="right">访问控制</a>#}
+{#                </li>#}
+{#                <li>#}
+{#                    <a href="/control_list/" target="right">流量控制</a>#}
+{#                </li>#}
+{#            </ul>#}
+{##}
+{#            <li class="secondDier">#}
+{#                 <a><span class="icon-caret-right"></span>通道目录</a>#}
+{#            </li>#}
+{#            <ul class="thirdDier">#}
+{#                #}
+{#            </ul>#}
+{#        </ul>#}
+        {% endfor%}
+    <h2>
+            <span class="" id="journal"></span><a href="/journal/" target="right">日志</a></h2>
+{#        <h2 class="addTwoLevel" style="padding-left: 50px;font-weight: normal">+&nbsp;添加</h2>#}
+    </div>
+    <ul class="bread">
+        <!-- <li>
+            <a href="#" target="right" class="icon-home"> 首页</a>
+        </li> -->
+        <li>
+            <span>当前路径：</span>
+            <span id="a_leader_txt">后台管理中心</span>
+        </li>
+    </ul>
+    <div class="admin">
+        <iframe scrolling="auto" rameborder="0" src="/welcome_dier/" name="right" width="100%" height="100%"></iframe>
+    </div>
+    <div class="footer">
+        <span>数据上架&nbsp;datalinker&nbsp;&nbsp;&nbsp;&nbsp;贵州大数据局</span>
+    </div>
+<script>
+    var interface_Depart;
+    var interface_Parent;
+    var interface_Num;
+    var parameter = 'departmentAdmin';
+    var para_ip;
+    var departname;
+    var depart;
+    var firstStr,
+        secondStr;
+    var reggg = /\(/;
+        $(function () {
+            interface_Depart = $(".leftnav-title strong");
+            para_ip = window.location.href.split('/')[5];
+            departname = $(".leftnav-title strong").text().trim();
+            departname = departname.substr(0,departname.indexOf('('));
+            var twoLevel;
+            var kg = true;
+            var reg = /^[\u4e00-\u9fa5]+$/;
+            $(".leftnav").on('click', 'h2', function () {
+                depart = $(this).text().trim();
+                if(reggg.test(depart)){
+                    firstStr = depart.substr(0,depart.indexOf('('));
+                }else{
+                    firstStr = depart;
+                }
+                depart = departname;
+                $("#a_leader_txt").text(firstStr);
+                var h2 = $(this);
+                h2.next('ul').slideToggle(200);
+                // h2.siblings("h2:not('.addTwoLevel')").next('ul').slideUp(50);
+                h2.siblings().next().find("a").removeClass("on");
+                $(this).toggleClass("on").siblings().removeClass('on');
+                $(this).children("span").toggleClass("icon-caret-right");
+                $(this).children("span").toggleClass("icon-caret-down");
+                {#$.post('/admin_db/',{"depart":depart});#}
+            });
+            //修改部门
+            $(".leftnav").on('click', ".icon-pencil-square-o:not('#journal')", function (e) {
+                e.stopPropagation();
+                kg = true;
+                twoLevel = $(this).parent().text().trim();
+                var father = $(this).parent();
+                father.html("<input type='text' class='updateTwoLevel' value='" + twoLevel + "'><input type='button' value='确认'>");
+                var data = $(father).children().val();
+                $(father).children().eq(0).val("").focus().val(data);
+            });
+            //点击输入框防止事件冒泡
+            $(".leftnav").on('click', "input[type='text']", function (e) {
+                e.stopPropagation();
+            });
+
+             $(".leftnav").on('focus',"h2:not('.addTwoLevel') input[type='text']",function(e){
+                e.stopPropagation();
+                $(this).keyup(function(event){
+                    if(event.keyCode == "13"){
+                        if(kg){
+                            kg = false;
+                            $(this).blur();
+                        }
+                    }
+                });
+            });
+            //输入框获得焦点开启回车确认功能
+            $(".addTwoLevel").on('focus',"input[type='text']",function(e){
+                e.stopPropagation();
+                $(this).keyup(function(event){
+                    if(event.keyCode == "13"){
+                        if(kg){
+                            kg = false;
+                            $(this).blur();
+                        }
+                    }
+                });
+            });
+
+            $(".leftnav").on('click', "h2:not('.addTwoLevel') input[type='button']", function (e) {
+                e.stopPropagation();
+                var value = $(this).prev().val().replace(/\s/g, '');
+                var myThis = this;
+                if (value == twoLevel) {
+                    $(this).parent().html("<span class='icon-pencil-square-o'></span>" + value);
+                } else {
+                    var result = confirm("确认修改吗？");
+                    if (result) {
+                        if (reg.test(value)) {
+                            $(this).parent().html("<span class='icon-pencil-square-o'></span>" + value);
+                            alert('修改成功');
+                        } else {
+                            alert('部门名必须全部为汉字');
+                            setTimeout(function(){
+                                $("h2:not('.addTwoLevel') input[type='text']").focus();
+                            },50);
+                        }
+                    } else {
+                        $(this).parent().html("<span class='icon-pencil-square-o'></span>" + twoLevel);
+                    }
+                }
+            });
+            $(".leftnav").on('change',"h2:not('.addTwoLevel') input[type='text']",function(){
+                kg = true;
+            });
+            $(".addTwoLevel").on('change',"input[type='text']",function(){
+                kg = true;
+            });
+            //输入框失去焦点时，如果未修改输入框内容，则恢复展示状态
+            $(".leftnav").on('blur', "h2:not('.addTwoLevel') input[type='text']", function (e) {
+                e.stopPropagation();
+                var value = $(this).val().replace(/\s/g, '');
+                if (value == twoLevel) {
+                    $(this).parent().html("<span class='icon-pencil-square-o'></span>" + twoLevel);
+                }else{
+                    $(this).next().click();
+                }
+            });
+            //添加二级目录时，输入框失去焦点时，如果未输入任何内容，则恢复原始状态
+            $(".addTwoLevel").on('blur', "input[type='text']", function (e) {
+                e.stopPropagation();
+                var value = $(this).val().replace(/\s/g, '');
+                if (value == '') {
+                    $(this).parent().html("+&nbsp;添加");
+                }else{
+                    $(this).next().click();
+                }
+            });
+            $(".leftnav ul li a").click(function () {
+                interface_Parent = $(this).parents("ul").prev();
+                interface_Num = $(this);
+                secondStr = $(this).text().trim();
+                if(reggg.test(secondStr)){
+                    secondStr = secondStr.substr(0,secondStr.indexOf('('));
+                }
+                if(firstStr && secondStr)
+                $("#a_leader_txt").html(firstStr + ' ->> ' + secondStr);
+                $(this).addClass("on").parent().siblings().find("a").removeClass("on");
+            });
+            $(".addTwoLevel").click(function (e) {
+                e.stopPropagation();
+                kg = true;
+                $(this).html("<input type='text' placeholder='添加二级目录：'><input type='button' value='确认'>");
+                $(".addTwoLevel input[type='text']").focus();
+            });
+
+            //添加二级目录时，点击确认按钮
+            $(".addTwoLevel").on('click', "input[type='button']", function (e) {
+                e.stopPropagation();
+                if ($(this).prev().val() != '') {
+                    var resule = confirm('确认添加吗？');
+                    if (resule) {
+                        var value = $(".addTwoLevel input").val();
+                        if (reg.test(value.replace(/\s/g, ''))) {
+                            var str = '';
+                            var fk;
+                            if (value != '') {
+                                layer.open({
+                                    area: ['500px', '100px'],
+                                    title: "正在添加，请稍后...",
+                                    content: $('.progressBar'),
+                                    type: 1,
+                                    closeBtn: 0
+                                });
+                                var num = 0;
+                                var speed = 2;
+                                params = {"depart":value};
+                                $.post("/add_aepart/",params,function (data) {
+                                    fk = data.result;
+                                    speed = 80;
+                                });
+                                $(".addTwoLevel").html('+&nbsp;添加');
+                                var timer = setInterval(function () {
+                                    num += speed;
+                                    $("#pbcontent").css("width",num + 'px');
+                                    if(num >= 400){
+                                        $("#pbcontent").css("width",'400px');
+                                        clearInterval(timer);
+                                        if (fk == 1) {
+                                            setTimeout(function () {
+                                               alert('添加成功');
+                                            },20);
+                                            $(".addTwoLevel").html('+&nbsp;添加');
+                                            location.reload();
+                                        } else {
+                                            setTimeout(function () {
+                                                alert('添加失败，该部门已存在');
+                                                location.reload();
+                                            },20);
+                                        }
+                                    }
+                                },200);
+                            }
+                        } else {
+                            alert('部门名必须全部为汉字');
+                            setTimeout(function(){
+                                $(".addTwoLevel input[type='text']").focus();
+                            },50);
+                        }
+                    } else {
+                        $(".addTwoLevel").html("+&nbsp;添加");
+                        $(".addTwoLevel").removeClass('on');
+                    }
+                }else{
+                    $(".addTwoLevel").html("+&nbsp;添加");
+                    $(".addTwoLevel").removeClass('on');
+                }
+            });
+            {#$(".secondDier").click(function (e) {#}
+            {#    e.stopPropagation();#}
+            {#    $(this).next('ul.thirdDier').slideToggle(200);#}
+            {#    $(this).next('ul.thirdDier').toggleClass("on");#}
+            {#\});#}
+            {#$(".thirdDier").click(function (e) {#}
+            {#    e.stopPropagation();#}
+            {#    $(this).toggleClass('on').siblings().removeClass('on');#}
+            {#\});#}
+        });
+    </script>
+</body>
+    <div class="progressBar" style="    display: none; height: 100%; width: 100%">
+        <div id="pbwrapper">
+            <div id="pbcontent"></div>
+        </div>
+    </div>
+</html>

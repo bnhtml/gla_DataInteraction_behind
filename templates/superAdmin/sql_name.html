@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en" style="overflow: hidden">
+<head>
+    <title> 名称类型 </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    {% load static %}
+
+     <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/name_type.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/layer/layer/layer.js' %}"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+    <style>
+        .login{
+            position:absolute;
+            display: inline-block;
+            top:50%;
+            left:50%;
+            margin-top:-140px;
+            margin-left:-205px;
+            border: 3px solid #e2e2e2;
+            width:410px;
+            height: 280px;
+            border-radius:10px;
+            line-height: 50px;
+            padding-top: 90px;
+        }
+        .login div{
+            text-align: right;
+            padding-right: 60px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        /**  获取名称 类型 到后端session  **/
+        $(function () {
+            var dbname = window.parent.parent.dbname;
+            var dbip = window.parent.parent.dbIP;
+            $("#name").val('');
+            $("#ip").val('http://bass:3000/api/db');
+                {#$("#name").val(dbname);#}
+                {#$("#ip").val(dbip);#}
+                {#window.parent.parent.dbname = null;#}
+                {#window.parent.parent.dbIP = null;#}
+            var next = $(window.parent.document).find("#next");
+            var one = $(window.parent.document).find("#one");
+            var two = $(window.parent.document).find("#two");
+            var close = $(window.parent.document).find("#close");
+             next.click(function () {
+                 window.parent.parent.dbname = dbname;
+                 window.parent.parent.dbIP = dbip;
+                 var name = $('#name').val().trim().replace(/\s/g,''); //名称
+                 {#var ip = $('#ip').val().trim().replace(/\s/g,''); //IP#}
+                 var ip = $("#ip option:selected").text().trim();
+                 console.log(name)
+                 console.log(ip)
+                 if(name != ''){
+                     window.parent.sql_name = name;
+                     window.parent.sql_ip = ip;
+                     $(next).attr('href',"/sql_append/");
+                     one.removeClass('myactive');
+                     one.addClass("exactive");
+                     two.addClass('myactive');
+                     two.removeClass("exactive");
+                 }else{
+                     layer.alert('名称不能为空');
+                 }
+                {# var server_type_url = '';   //跳转页面url#}
+                {# params = {'name':name, 'type':type};#}
+                {# $.post('/data/name_type/',params, function (data) {#}
+                {#    if (data.res == 1){#}
+                {#        var span = $(window.parent.document).find("span");#}
+                {#            span.css({#}
+                {#                "color": "",#}
+                {#                "border-bottom": "",#}
+                {#            });#}
+                {#        var send = $(window.parent.document).find("#two");#}
+                {#        var three = $(window.parent.document).find("#three");#}
+                {##}
+                {#        $(window).attr('location',server_type_url);#}
+                {#    } else {#}
+                {#        alert('请输入名称')#}
+                {#    }#}
+                {#\});#}
+            })
+        })
+    </script>
+    <script>
+        var close = $(window.parent.document).find("#close");
+        close.click(function (){
+            window.parent.parent.myclose(window.parent.parent.index);
+        })
+</script>
+
+</head>
+<body>
+    <div class="content" style="background: #ffffff">
+        <div id="content" style="margin:0 auto; background-color:#ffffff; width:100%; height:100%; position:relative;">
+            <div class="login">
+                <form >
+                    <div style="float: left; width: 100%;">
+                        <h4 style="display:inline">桥接名称BAAS:</h4>
+                        <input class="up-file" placeholder="请输入名称" type="text" name="port" id="name" style="width: 210px;height: 30px;font-size: 14px">
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <h4 style="display:inline">桥接类型BAAS:</h4>
+{#                        <input class="up-file" style="height: 30px;width: 210px;" placeholder="请输入名称" type="text" name="port" id="ip">#}
+                        <select class="up-file" style="height: 30px;width: 210px;text-align: center" type="text" name="port" id="ip">
+                            <option value="mysql">mysql</option>
+                            <option value="oracle">oracle</option>
+                            <option value="国家接口">国家接口</option>
+                            <option value="大数据">易鲸捷</option>
+                            <option value="sqlServer">sqlServer</option>
+                            <option value="达梦">达梦</option>
+                            <option value="南大通用">南大通用</option>
+                            <option value="人大金仓">人大金仓</option>
+                            <option value="DB2">DB2</option>
+                        </select>
+                    </div>
+              </form>
+          </div>
+       </div>
+    </div>
+</body>
+</html>

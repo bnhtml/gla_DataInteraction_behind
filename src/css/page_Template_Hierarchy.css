@@ -1,0 +1,33 @@
+.main{
+    width: 500px;
+    height: 280px;
+    border: 1px solid #e5e5e5;
+    margin: auto;
+    margin-top: 100px;
+    position: relative;
+}
+.main_content{
+    width: 250px;
+    height: 154px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-left: -125px;
+    margin-top: -77px;
+}
+.main_content div{
+    height: 40px;
+    margin-bottom: 14px;
+}
+.main_content label{
+    font-size: 16px;
+    color: #1f1f21;
+    line-height: 40px;
+}
+.main_content select{
+    width: 200px;
+    height: 28px;
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+}

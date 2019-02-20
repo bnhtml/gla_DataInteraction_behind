@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <script src="{% static 'js/echarts-gl.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/indexPie.js' %}"></script>
+    <!--<script src="{% static 'js/indexList.js' %}"></script>-->
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #wrapper {
+            width: 95%;
+            height: 95%;
+            overflow: hidden;
+            display: flex;
+            flex-flow: column;
+        }
+        #wrapper>div {
+            flex: 1;
+        }
+        #wrapper .wrapper_top {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        #wrapper .wrapper_top #sum{
+            flex: 2;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-flow: column;
+            position: relative;
+            margin-right: 20px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        #wrapper .wrapper_top #pie{
+            flex: 5;
+            display: flex;
+            flex-flow: column;
+            background-color: #fff;
+            height: 100%;
+            position: relative;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        #wrapper .wrapper_top #pie #pie_content {
+            flex: 1;
+            display: flex;
+        }
+        #wrapper .wrapper_top #pie #pie_content>div {
+            flex: 1;
+            height: 100%;
+            width: 100px;
+            /* float: left; */
+        }
+
+        #pie>#top {
+            color: #afbcc9;
+            font-size: 20px;
+            padding-left: 20px;
+            border-bottom: 1px solid #ebeef5;
+            height: 43px;
+            line-height: 43px;
+        }
+
+        /* #pie div {
+            position: absolute;
+            top: 20px;
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            margin: 5px;
+        } */
+
+        /* #userPie {
+            left: 0%;
+        }
+
+        #dataPie {
+            left: 25%;
+        }
+
+        #safePie {
+            left: 50%;
+        }
+
+        #bridgingPie {
+            left: 75%;
+        } */
+       
+        #sum_top {
+            color: #afbcc9;
+            font-size: 20px;
+            padding-left: 20px;
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ebeef5
+        }
+        .sum_top_num {
+            margin-left: 30px;
+            font-size: 30px;
+            color: #66b1ff;
+            font-weight: bold;
+        }
+        #sum_num {
+            flex: 1;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #content {
+            position: relative;
+            margin-bottom: 10px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        #content_top>ul>li {
+            font-size: 14px;
+            font-weight: bold;
+            color: #606266;
+        }
+
+        #content_left {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            /*width: 40%;*/
+            width: 100%;
+            height: 95%;
+            display: inline-block;
+            /*margin-right: 15px;*/
+            
+            padding: 0px 4px;
+        }
+
+        #content_left ul li {
+            /* padding: 7px 4px; */
+            height: 51px;
+            line-height: 51px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+        }
+
+        #content_right {
+            position: absolute;
+            top: 0px;
+            left: 41%;
+            width: 57%;
+            height: 95%;
+            display: inline-block;
+            box-shadow: 0 0 3px #6b6b6b;
+            background-color: #fff;
+            padding-left: 3px;
+        }
+
+        /*#content_left li{*/
+        /*float: left;*/
+        /*line-height: 30px;*/
+        /*text-align: center;*/
+        /*margin: 3px 0px;*/
+        /*}*/
+        /*#content_left li:nth-child(1){*/
+        /*width: 55%;*/
+        /*height: 30px;*/
+        /*border-bottom: 2px solid #eeeeee;*/
+        /*}*/
+        /*#content_left li:nth-child(2){*/
+        /*width: 44%;*/
+        /*height: 30px;*/
+        /*border-bottom: 2px solid #eeeeee;*/
+        /*}*/
+        #content_box {
+            width: 100%;
+            height: 83%;
+            margin-top: 36px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            -ms-overflow-style: none;
+        }
+
+        #content_box ul li {
+            font-size: 14px;
+            color: #606266;
+        }
+
+        #content_box2 {
+            width: 100%;
+            height: 83%;
+            margin-top: 36px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            -ms-overflow-style: none;
+        }
+
+        #content_box::-webkit-scrollbar {
+            display: none;
+        }
+
+        #content_box2::-webkit-scrollbar {
+            display: none;
+        }
+
+        #content_con {
+            display: inline-block;
+            width: 100%;
+        }
+
+        #content_right_con {
+            display: inline-block;
+            width: 100%;
+        }
+
+        #content_right li {
+            float: left;
+            line-height: 30px;
+            text-align: center;
+            margin: 3px 0px;
+        }
+
+        /* #content_right li:nth-child(1) {
+            width: 47%;
+            height: 30px;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        #content_right li:nth-child(2) {
+            width: 37%;
+            height: 30px;
+            border-bottom: 2px solid #eeeeee;
+        }
+
+        #content_right li:nth-child(3) {
+            width: 15%;
+            height: 30px;
+            border-bottom: 2px solid #eeeeee;
+        } */
+        #content_con ul {
+            border-bottom: 1px solid #ebeef5;
+        }
+        #content_con {
+            overflow: auto;
+            height: 100%;
+            -ms-overflow-style: none;
+        }
+
+        /*#content_con .row>li {*/
+        /*padding: 0px 2px;*/
+        /*}*/
+        #content_con::-webkit-scrollbar {
+            display: none;
+        }
+
+        ul {
+            overflow: hidden;
+        }
+
+        ul.row {
+            margin-bottom: 0px !important;
+        }
+
+        #content_box {
+            margin-top: 0px;
+        }
+
+        #content_top {
+            border-bottom: 1px solid #ebeef5;
+        }
+
+        #content_right_con {
+            overflow: auto;
+            height: 100%;
+            -ms-overflow-style: none;
+        }
+
+        #content_right_con::-webkit-scrollbar {
+            display: none;
+        }
+
+        #content_box2 {
+            margin-top: 0px;
+        }
+        #departPie {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="wrapper_top">
+            <div id="sum">
+                <div id="sum_top">部门总数<span class="sum_top_num"></span></div>
+                <div id="sum_num">
+                    <div id="departPie"></div>
+                </div>
+            </div>
+            <div id="pie">
+                <div id="top">目录占比</div>
+                <div id="pie_content">
+                    <div id="userPie"></div>
+                    <div id="dataPie"></div>
+                    <div id="safePie"></div>
+                    <div id="bridgingPie"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="content">
+            <div id="content_left">
+                <div id="content_top">
+                    <ul class="row">
+                        <li class="col-xs-1 col-md-1">序号</li>
+                        <li class="col-xs-1 col-md-1">源IP</li>
+                        <li class="col-xs-2 col-md-2">时间</li>
+                        <li class="col-xs-1 col-md-1">动作</li>
+                        <li class="col-xs-1 col-md-1">数据资源名称</li>
+                        <li class="col-xs-2 col-md-2">数据资源地址</li>
+                        <li class="col-xs-1 col-md-1">用户名</li>
+                        <li class="col-xs-1 col-md-1">状态</li>
+                        <li class="col-xs-1 col-md-1">数据大小(KB)</li>
+                        <li class="col-xs-1 col-md-1">客户端</li>
+                    </ul>
+                </div>
+                <div id="content_box">
+                    <div id="content_con">
+                        <div id="con1" onMouseOut="Up()" onMouseOver="Stop()">
+                            {% for client in client_list %}
+                            <ul class="row">
+                                <li class="col-xs-1 col-md-1">{{forloop.counter}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.num}}">{{client.num}}</li>
+                                <li class="col-xs-2 col-md-2" title="{{client.time}}">{{client.time}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.action}}">{{client.action}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.serviceName}}">{{client.serviceName}}</li>
+                                <li class="col-xs-2 col-md-2" title="{{client.service}}">{{client.service}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.username}}">{{client.username}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.status}}">{{client.status}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.dataSize}}">{{client.dataSize}}</li>
+                                <li class="col-xs-1 col-md-1" title="{{client.client}}">{{client.client}}</li>
+                            </ul>
+                            {% endfor %}
+                        </div>
+                        <div id="con2"></div>
+                    </div>
+                </div>
+            </div>
+            <!--<div id="content_left">-->
+            <!--<div id="content_top">-->
+            <!--<ul>-->
+            <!--<li>客户端</li>-->
+            <!--<li>访问次数</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--<div id="content_box">-->
+            <!--<div id="content_con">-->
+            <!--<div id="con1" onMouseOut="Up()" onMouseOver="Stop()">-->
+            <!--{% for client in client_list %}-->
+            <!--<ul>-->
+            <!--<li>{{ client.data }}</li>-->
+            <!--<li>{{ client.num }}</li>-->
+            <!--</ul>-->
+            <!--{% endfor %}-->
+            <!--</div>-->
+            <!--<div id="con2"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div id="content_right">-->
+            <!--<div id="content_right_top">-->
+            <!--<ul>-->
+            <!--<li>数据目录</li>-->
+            <!--<li>访问IP</li>-->
+            <!--<li>访问次数</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--<div id="content_box2">-->
+            <!--<div id="content_right_con">-->
+            <!--<div id="con12" onMouseOut="Up2()" onMouseOver="Stop2()">-->
+            <!--{% for ipServiceCount in ipServiceCount_list %}-->
+            <!--<ul>-->
+            <!--<li>{{ ipServiceCount.data }}</li>-->
+            <!--<li>{{ ipServiceCount.ip }}</li>-->
+            <!--<li>{{ ipServiceCount.num }}</li>-->
+            <!--</ul>-->
+            <!--{% endfor %}-->
+            <!--</div>-->
+            <!--<div id="con22"></div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</body>
+<script>
+    // $("#top").width($("#top").width() - 8)
+    //     console.log($("#top").width());
+    // window.onresize = init;
+    // function init() {
+    //     $("#top").css("width", $("#pie").width() + "px");
+
+    // }
+    // init();
+    var box = document.getElementById("content_con");
+    // var box2=document.getElementById("content_right_con");
+    var count = 0;
+    var con1 = document.getElementById("con1");
+    // var con12=document.getElementById("con12");
+    var con2 = document.getElementById("con2");
+    // var con22=document.getElementById("con22");
+    var speed = 50;
+    con2.innerHTML = con1.innerHTML;
+    // con22.innerHTML=con12.innerHTML;
+    function ScrollUp() {
+        if (box.scrollTop >= con1.scrollHeight) {
+            box.scrollTop = 0;
+            count = 0;
+        } else {
+            count ++;
+            box.scrollTop = count;
+        }
+    }
+
+    // function  ScrollUp2(){
+    //     if( box2.scrollTop>=con12.scrollHeight){
+    //         box2.scrollTop=0;
+    //     }else
+    //         box2.scrollTop++;
+    // }
+
+    var i = setInterval("ScrollUp()", speed);
+
+    // var j=setInterval("ScrollUp2()",speed);
+
+    function Stop() {
+        clearInterval(i);
+    }
+    function Up() {
+        i = setInterval("ScrollUp()", speed);
+    }
+
+        // function Stop2(){
+        //     clearInterval(j);
+        // }
+        // function Up2(){
+        //     j=setInterval("ScrollUp2()",speed);
+        // }
+</script>
+
+</html>

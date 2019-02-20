@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>服务目录</title>
+    {% load static %}
+    {% load Data_extras %}
+    <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/server_list.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+    <script type="text/javascript">
+    /**  删除功能  **/
+    /* 全选 */
+    function checkAll(c) {
+        var status = c.checked;
+        var oItems = document.getElementsByName('item');
+        for(var i=0;i<oItems.length;i++){
+            oItems[i].checked=status;
+        }
+    }
+    /*  单行删除 */
+    $(function() {
+        $("#data_table").on("click", ":button", function (event) {
+            var forLoop = 0;
+            var oItems = document.getElementsByName('item');
+            var del_id = '';
+            if (this.id == 'del_tr') {
+                if (confirm("确定要删除这个字段吗？")) {
+                    forLoop = $(this).closest("tr").find("td").eq(1).text();
+                    oItems[forLoop - 1].checked = true;
+                    del_id = oItems[forLoop - 1].value + '_';
+                    params = {'check_id': del_id};
+                    $.post('/data/del_server/', params, function (data) {
+                        if (data.res == 1) {
+                            self.location = '/data/server_list/';
+                        } else {
+                            alert('删除失败')
+                        }
+                    })
+                } else {
+                    alert('删除失败')
+                }
+            }
+        })
+    })
+
+     /* 批量删除 */
+    function del() {
+         var boxes = document.getElementsByName("item");
+         var del_id = "";
+         var isTrue = false;
+         for (var i = 0; i < boxes.length; i++) {
+                 if (boxes[i].checked  == true ) {
+                     isTrue = true;
+                 }
+             }
+         if (isTrue == true){
+             if (confirm("确定要删除这个字段吗？")) {
+                 for (var i=0;i<boxes.length;i++) {
+                     if (boxes[i].checked == true) {
+                         del_id += boxes[i].value + '_';
+                     }
+                 }
+                 params = {'check_id': del_id};
+                 $.post('/data/del_server/', params, function (data) {
+                     if (data.res == 1) {
+                         self.location = '/data/server_list/';
+                     }
+                 })
+             } else {
+                 alert('删除失败')
+                 self.location = '/data/server_list/';
+             }
+         } else {
+             alert('请选择要删除的字段')
+         }
+     }
+
+    /**  修改功能  **/
+    //修改数据库内容
+    $(function() {
+        $("#data_table").on("click", ":button", function (event) {
+            if (this.id == 'up_data') {
+            ShowDiv('MyDiv','fade');
+            modify(this);
+            var oItems = document.getElementsByName("item");
+            var forLoop = 0;
+            var updata_id = '';
+            forLoop = $(this).closest("tr").find("td").eq(1).text();
+            oItems[forLoop - 1].checked = true;
+            updata_id = oItems[forLoop - 1].value;
+            params = {'updata_id': updata_id };
+            $.post('/data/update_server_id/', params, function (data) {
+            })
+            }
+        })
+    })
+    //修改内容在弹出框显示
+    var name = '';
+    var type = '';
+    var server_list = '';
+    var date_list = '';
+    function modify(obj){
+        var oNum = document.getElementById('part_server');
+        var oPwd = document.getElementById('group_server');
+        var oUser = document.getElementById('type_server');
+        var oPwd = document.getElementById('http_server');
+        var oBirth = document.getElementById('server_sql');
+
+        var oTr = obj.parentNode.parentNode;
+        var aTd = oTr.getElementsByTagName('td');
+        rowIndex = obj.parentNode.parentNode.rowIndex;
+        name = oNum.value = aTd[2].innerHTML;
+        pwd = oPwd.value = aTd[3].innerText;
+        type = oUser.value = aTd[4].innerHTML;
+        server_list = oPwd.value = aTd[5].innerHTML;
+        date_list = oBirth.value = aTd[6].innerHTML;
+
+        $('#label_name').val(name)
+        $('#label_group').val(pwd)
+        $('#label_type').val(type)
+        $('#label_http').val(server_list)
+        $('#label_sql').val(date_list)
+
+    }
+
+    //弹出框
+    function ShowDiv(show_div,bg_div) {
+    var scrollHeight = document.querySelector("body").offsetHeiht; //文档高度
+    document.getElementById(bg_div).style.height=scrollHeight+'px';
+    document.getElementById(show_div).style.display='block';
+    document.getElementById(bg_div).style.display='block';
+    };
+    //关闭弹出层
+    function CloseDiv(show_div,bg_div) {
+        document.getElementById("label_name").value = '';
+        document.getElementById(show_div).style.display='none';
+        document.getElementById(bg_div).style.display='none';
+        self.location = '/data/server_list/';
+
+    };
+    //关闭弹出层
+    function CloseDiv2() {
+        document.getElementById("MyDiv").style.display='none';
+        document.getElementById("fade").style.display='none';
+    };
+    function goToAdd() {
+        var name = $('#label_name').val();
+        document.getElementById('part_server').innerHTML = name;
+        document.getElementById('fade').style.display='none';
+        document.getElementById('MyDiv').style.display='none';
+        params = {'name':name};
+        $.post('/data/update_server_name/', params, function (data) {
+            if (data.res == 1) {
+                self.location = '/data/server_list/';
+            } else {
+                alert('修改失败')
+            }
+        })
+    }
+
+    /**  分页显示  **/
+         $(document).ready(function(){
+            $('.pagination li a').each(function(){
+           if ($(this).html() == {{ page.number }}){
+               $(this).parent().addClass('active')
+           }
+        });
+    });
+
+    /**  数据上架功能  **/
+    function submit_data(){
+        var boxes = document.getElementsByName("item");
+        var data_id = '';
+        var istrue = false;
+        for (var i=0;i<boxes.length;i++) {
+            if (boxes[i].checked == true) {
+                istrue = true;
+            }
+        }
+        if (istrue) {
+            for (var i=0;i<boxes.length;i++) {
+                 if (boxes[i].checked == true) {
+                     data_id += boxes[i].value + '_';
+                 }
+             }
+             params = {'data_id': data_id};
+             $.post('/data/submit_data/', params, function (data) {
+                 if (data.res == 1) {
+                     self.location = '/data/server_list/';
+                     alert("上架成功")
+                 }
+             })
+        } else {
+            alert('请选择要上架的服务目录')
+        }
+    }
+    </script>
+</head>
+<body style="">
+    <div class="page_title"><div class="page_title_data">贵州省块数据指挥调度中心数据上架平台</div></div>
+    <div class="content_title">服务目录列表</div>
+    <div class="content">
+        <div class="content_shadow">
+                <div class="data_top"></div>
+                <div class="data_title">
+            <table class="data_table" id="data_table">
+                     <tr>
+                        <th  style="height: 10px;width: 6%">选中</th>
+                        <th  style="height: 10px;width: 6%">序号</th>
+                        <th  style="height: 10px;width: 8%">名称</th>
+                        <th style="height: 10px; width: 13%;">层级名称</th>
+                        <th  style="height: 10px;width: 8%">类型</th>
+                        <th  style="height: 10px;width: 27%">服务目录</th>
+                        <th  style="height: 10px;width: 24%">数据目录</th>
+                        <th  style="height: 10px;width: 18%">操作</th>
+                    </tr>
+                   {% for obj in page %}
+                        <tr>
+                            <td style="width: 6%;"><input type="checkbox" name="item" id="server_name_id" value="{{ obj.id }}"/></td>
+                            <td style="width: 6%;">{{ forloop.counter }}</td>
+                             <td style="text-align:left;" id="part_server" style="width: 8%;">{{ obj.name }}</td>
+                            <td style="text-align: left;font-size: 14px;" id="group_server">{{ obj.top_class | safe }}</td>
+                            <td id="type_server" style="width: 8%;">{{ obj.type }}</td>
+                            <td id="http_server" style="width: 27%;">{{ obj.server_name }}</td>
+                            <td id="server_sql" style="width: 24%;">{{ obj.data_name }}</td>
+                            <td style="width: 18%;">
+                                <input type="button" name="" class="data_del" value="删除" id="del_tr"/>
+                                <input type="button" name="" class="data_update" value="修改" id="up_data"/>
+                            </td>
+                        </tr>
+                   {% endfor %}
+                </table>
+            <!--弹出层时背景层DIV---end-->
+            </div>
+            <div class="data_bottom">
+                <!--页数显示-->
+                <div class="pagination" style="position:absolute;left:calc(50% - 80px);top:0;">
+                {% if page.has_previous %}
+                    <li style="list-style-type:none;"><a href="?page={{ page.previous_page_number }}">上一页 <span>&laquo;</span></a></li>
+                {% endif %}
+                {% pagination page paginator 12 5  %}  <!-- 引用自定义标签，并传入参数 -->
+{#                 {{ page_list|safe }}  <!--  显示 -->#}
+                {% if page.has_next %}
+                    <li style="list-style-type:none;"><a href="?page={{ page.next_page_number }}">下一页 <span>&raquo;</span></a></li>
+                {% endif %}
+                </div>
+                <div class="data_down">
+                <td><input type="checkbox" onclick="checkAll(this)"/></td>
+                <td>全选</td>
+                <input colspan="6" class="data_button" type="button" name="" value="批量删除" onclick="del()" />
+                <a href="/data/page_Template/"><input class="data_button_add" type="button" name="" id="add_server_list" value="添加"/></a>
+                <td></td>
+                </div>
+                <div style="margin-left: 865px;margin-top: 30px;width: 200px;height: 30px;">
+                    <input class="data_button_add" type="button" name="" id="submit" onclick="submit_data()" value="数据上架"/></a>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+    <!--弹出层时背景层DIV---start-->
+    <div id="fade" class="black_overlay" style="height: 100%; width: 100%;"></div>
+    <div id="MyDiv" class="white_content row">
+        <div style="margin-top:10px;margin-bottom:10px;overflow: hidden">
+            <span class="col-md-1 col-md-offset-10 data_update" style="cursor: pointer;padding: 0;" onclick="CloseDiv('MyDiv','fade')">关闭</span>
+        </div>
+        <div class="itempanel" style="margin-left: 10px;">
+            <div class="floatleft message"></div>
+            <div class="clear"></div>
+        </div>
+        <form class="form-horizontal">
+              <div class="form-group">
+                <label for="label_name" class="col-sm-4 control-label">名称：</label>
+                <div class="col-sm-7">
+                    <input  type="text" class="form-control" id="label_name" name="label_name"/>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="label_type" class="col-sm-4 control-label">层级目录：</label>
+                <div class="col-sm-7">
+                    <input  type="text" class="form-control" id="label_group" name="label_group" disabled="disabled"/>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="label_type" class="col-sm-4 control-label">类型：</label>
+                <div class="col-sm-7">
+                    <input  type="text" class="form-control" id="label_type" name="label_type" disabled="disabled"/>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="label_http" class="col-sm-4 control-label">服务目录：</label>
+                <div class="col-sm-7">
+                    <input  type="text" class="form-control" id="label_http" name="label_http" disabled="disabled"/>
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="label_sql" class="col-sm-4 control-label">数据名称：</label>
+                <div class="col-sm-7">
+                    <input  type="text" class="form-control" id="label_sql" name="label_sql" disabled="disabled"/>
+                </div>
+              </div>
+            </form>
+        <HR FILTER: alpha(opacity=100,finishopacity=0,style=3); style="margin-top: 39px;"  width="90%" color=#ddd SIZE=2>
+        <div style="width: 70%;margin: 20px auto">
+            <input type="button" class="btn btn-info" style="width: 123px;margin-left: 30px;" onclick="goToAdd()" value="保存" style="width: 123px; margin-left: 20%; ">
+            <input type="button" class="btn btn-danger" style="width: 123px;margin-left: 10px;" onclick="CloseDiv('MyDiv','fade')" value="取消" style="width: 123px; margin-left: 20%; ">
+        </div>
+    </div>
+</body>
+</html>

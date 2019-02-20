@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贵州省数据共享交换平台&nbsp;数据上架系统(管理员)</title>
+    <!-- <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">s -->
+    <!-- <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"> -->
+
+    <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">
+    <!-- <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/css/pintuer.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/layer/layer/layer.js' %}"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script>
+        var parameter = 'superAdmin';
+        var differentPage = "Administrators";
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="header_head">
+                <img src="../../static/images/titlelogo.png" alt="" srcset="">
+                <h1>贵州省数据共享交换平台&nbsp;数据上架系统(管理员)</h1>
+            </div>
+            <div class="header_nav">
+                <span class="icon-th-list" id="left_menu"></span>
+                <ul>
+                    <!--<li>-->
+                        <!--<div class="dataAreaManage">数据区管理</div>-->
+                    <!--</li>-->
+                    <li>
+                        <div class="dataPrep">数据对接</div>
+                    </li>
+                    <li>
+                        <div class="dataInterPack">数据接口封装</div>
+                    </li>
+                    <li style="margin-left:40px;margin-right: 20px;">
+                        <div class="control_Data">数据接口控制</div>
+                    </li>
+                    <li>
+                        <div class="systemStatus">系统状态</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="body">
+            <div class="leftnav">
+                <div class="nav_left">
+                    <ul>
+                        <a href="/welcome/" target="body_iframe">
+                            <li value="首页" class="cli">
+                                <span class="icon-home"></span>
+                                <div class="nav_left_title">
+                                    <div class="title_content">首页</div>
+                                </div>
+                            </li>
+                        </a>
+                        <li value="全部上架数据" id="allData">
+                            <span class="icon-cloud-upload"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">全部上架数据</div>
+                            </div>
+                        </li>
+                        <li value="国家上架数据" id="countryData">
+                            <span class="icon-bank (alias)"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">国家上架数据</div>
+                            </div>
+                        </li>
+                        <li value="省直上架数据" id="directlySubData">
+                            <span class="icon-recycle"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">省直上架数据</div>
+                            </div>
+                        </li>
+                        <li value="地州市上架数据" id="prefecturesData">
+                            <span class="icon-random"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">地州市上架数据</div>
+                            </div>
+                        </li>
+                        <li value="省外上架数据" id="outsideProvinceData">
+                            <span class=" icon-retweet"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">省外上架数据</div>
+                            </div>
+                        </li>
+                        <li value="数据对接" id="dataIntegrate">
+                            <span class="icon-clipboard"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">数据对接</div>
+                            </div>
+                        </li>
+                        <!--<li value="数据区管理" id="databaseManagement">-->
+                            <!--<span class="icon-database"></span>-->
+                            <!--<div class="nav_left_title">-->
+                                <!--<div class="title_content">数据区管理</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <li value="系统状态" id="auditAnalysis">
+                            <span class="icon-cubes"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">系统状态</div>
+                            </div>
+                        </li>
+                        <li id="addDepartment" value="添加部门">
+                            <span class="icon-plus-square"></span>
+                            <div class="nav_left_title">
+                                <div class="title_content">添加部门</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nav_right">
+                    <div class="nav_right_head">
+                        <div class="nav_right_head_txt" title="全部数据上架">全部数据上架</div>
+                        <div class="nav_right_head_inter">接口数量</div>
+                    </div>
+                    <div class="nav_right_content">
+                        <ul>
+                            {% for dataname in depart %}
+                            <li class="firstDier">
+                                <div class="nav_right_firstName" title="{{ dataname.departname }}">{{ dataname.departname }}</div>
+                                <div class="icon">
+                                    <span class="interNum">({{ dataname.total_num }})</span>
+                                    <span class="icon-angle-down"></span>
+                                </div>
+                            </li>
+                            <ul>
+                                <!-- 用户目录 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="用户目录">用户目录</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ dataname.user_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/user_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="用户列表">用户列表</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.user_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 服务目录 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="服务目录">服务目录</div>
+                                    <div class="icon">
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/admin_mapping/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆&nbsp;<div class="nav_right_thirdName" title="映射域名">映射域名</div>
+                                        </li>
+                                    </a>
+                                    <a href="/admin_catalog/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆&nbsp;<div class="nav_right_thirdName" title="映射目录">映射目录</div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 元数据 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="元数据">元数据</div>
+                                    <div class="icon">
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/db_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="数据源录入">数据源录入</div>
+                                        </li>
+                                    </a>
+                                    <a href="/file_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="文件源录入">文件源录入</div>
+                                        </li>
+                                    </a>
+                                    <a href="/interface_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="接口源录入">接口源录入</div>
+                                        </li>
+                                    </a>
+                                    <a href="/message_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="消息源录入">消息源录入</div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 数据桥接 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="数据桥接">数据桥接</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ dataname.data_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/sql_admin/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="数据库桥接">数据库桥接</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.dbList_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="/admin_file/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="文件桥接">文件桥接</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.fileList_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="/admin_interface/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="接口桥接">接口桥接</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.interfaceList_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="/admin_ways/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="消息桥接">消息桥接</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.messageList_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 数据接口封装 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="数据接口封装">数据接口封装</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ dataname.service_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/service_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="数据接口封装">数据接口封装</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.service_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                <!-- 数据接口控制 -->
+                                <li class="secondDier">
+                                    <div class="nav_right_secondName" title="数据接口控制">数据接口控制</div>
+                                    <div class="icon">
+                                        <span class="interNum">({{ dataname.safe_num }})</span>
+                                        <span class="icon-angle-down"></span>
+                                    </div>
+                                </li>
+                                <ul>
+                                    <a href="/acl_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="访问控制">访问控制</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.acl_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <a href="/control_list/" target="body_iframe">
+                                        <li class="thirdDier">
+                                            ◆ <div class="nav_right_thirdName" title="流量控制">流量控制</div>
+                                            <div class="icon">
+                                                <span class="interNum">({{ dataname.controls_num }})</span>
+                                            </div>
+                                        </li>
+                                    </a>
+                                </ul>
+                                
+                            </ul>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="nowPath">
+                    <span>当前路径：</span>
+                    <div class="path">
+                        <span class="classA">首页</span>
+                        &nbsp;<span class="icon-angle-double-right classAIcon"></span>&nbsp;
+                        <span class="classB"></span>
+                        &nbsp;<span class="icon-angle-double-right classBIcon"></span>&nbsp;
+                        <span class="classC"></span>
+                        &nbsp;<span class="icon-angle-double-right classCIcon"></span>&nbsp;
+                        <span class="classD"></span>
+                    </div>
+                </div>
+                <div class="ifr">
+                    <iframe src="/welcome/" frameborder="0" name="body_iframe"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="dataInterPack_content">
+            <div class="dataInterPack_con">
+                <div class="dataInter_left">
+                    <div class="click_con">
+                        <div class="data_con" id="one">
+                            <div class="dataInter_icon">
+                                <span class="icon-sitemap"></span>
+                            </div>
+                            <div class="dataInter_num">1</div>
+                            <div class="dataInter_txt">
+                                    <span>选择部门</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="two">
+                            <div class="dataInter_icon">
+                                <span class="icon-gears (alias)"></span>
+                            </div>
+                            <div class="dataInter_num">2</div>
+                            <div class="dataInter_txt">
+                                    <span>选择数据类型</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="three">
+                            <div class="dataInter_icon">
+                                <span class="icon-pencil"></span>
+                            </div>
+                            <div class="dataInter_num">3</div>
+                            <div class="dataInter_txt">
+                                    <span>元数据录入</span>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="four">
+                            <div class="dataInter_icon">
+                                <span class="icon-exchange"></span>
+                            </div>
+                            <div class="dataInter_num">4</div>
+                            <div class="dataInter_txt">
+                                    <span>数据桥接</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="five">
+                            <div class="dataInter_icon">
+                                <span class="icon-list-ol"></span>
+                            </div>
+                            <div class="dataInter_num">5</div>
+                            <div class="dataInter_txt">
+                                    <span>服务目录</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="six">
+                            <div class="dataInter_icon">
+                                <span class="icon-print"></span>
+                            </div>
+                            <div class="dataInter_num">6</div>
+                            <div class="dataInter_txt">
+                                    <span>数据接口封装</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="data_con" id="seven">
+                            <div class="dataInter_icon">
+                                <span class="icon-check-square"></span>
+                            </div>
+                            <div class="dataInter_num">7</div>
+                            <div class="dataInter_txt">
+                                    <span>完成</span>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+                <div class="dataInter_main">
+                    <div class="dataInter_mainCon">
+                        <!-- 第一步 -->
+                        <div class="dataInter_firstStep">
+                            <div class="checkDepart"><i id="pleCheckDepart">请选择部门</i><div class="dataInter_iconBox"><span class="icon-angle-down"></span></div>
+                            <div class="checkDepart_con">
+                                <ul>
+                                    {% for dataname in depart %}
+                                    <li title="{{ dataname.departname }}">{{ dataname.departname }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- 第二步 -->
+                        <div class="dataInter_secondStep">
+                            <div class="checkDepart"><i id="pleCheckDataType">请选择数据类型</i><div class="dataInter_iconBox"><span class="icon-angle-down"></span></div>
+                            <div class="checkDepart_con">
+                                <ul>
+                                    <li>数据库类</li>
+                                    <li>文件类</li>
+                                    <li>接口类</li>
+                                    <li>消息类</li>
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- 第三步 -->
+                        <div class="dataInter_thirdStep">
+                            <iframe src="" id="check_iframe" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="operation">
+                        <div class="preStep">上一步</div>
+                        <div class="afterStep">下一步</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="control_content">
+            <div class="interControl_con">
+                <div class="interControl_left">
+                    <div class="click_con">
+                        <div class="interCont_con" id="one_cont">
+                            <div class="interControl_icon">
+                                <span class="icon-sitemap"></span>
+                            </div>
+                            <div class="interControl_num">1</div>
+                            <div class="interControl_txt">
+                                    <span>选择部门</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="interCont_con" id="two_cont">
+                            <div class="interControl_icon">
+                                <span class="icon-user" style="margin-right:12px;"></span>
+                            </div>
+                            <div class="interControl_num">2</div>
+                            <div class="interControl_txt">
+                                    <span>用户管理</span>
+                            </div>
+                        </div>
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="interCont_con" id="three_cont">
+                            <div class="interControl_icon">
+                                <span class="icon-exchange"></span>
+                            </div>
+                            <div class="interControl_num">3</div>
+                            <div class="interControl_txt">
+                                    <span>访问控制</span>
+                            </div>
+                        </div>
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="interCont_con" id="four_cont">
+                            <div class="interControl_icon">
+                                <span class="icon-random"></span>
+                            </div>
+                            <div class="interControl_num">4</div>
+                            <div class="interControl_txt">
+                                    <span>流量控制</span>
+                            </div>
+                        </div>
+                    </div>
+                    <i>
+                        <div></div>
+                    </i>
+                    <div>
+                        <div class="interCont_con" id="five_cont">
+                            <div class="interControl_icon">
+                                <span class="icon-check-square"></span>
+                            </div>
+                            <div class="interControl_num">5</div>
+                            <div class="interControl_txt">
+                                    <span>完成</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="interControl_main">
+                    <div class="interControl_mainCon">
+                         <!-- 第一步 -->
+                         <div class="interControl_firstStep">
+                            <div class="checkInterCont"><i id="pleCheckInterCont">请选择部门</i><div class="interControl_iconBox"><span class="icon-angle-down"></span></div>
+                            <div class="checkInterCont_con">
+                                <ul>
+                                    {% for dataname in depart %}
+                                    <li title="{{ dataname.departname }}">{{ dataname.departname }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- 第二步 -->
+                        <div class="interControl_secondStep">
+                            <iframe src="" id="interControl_iframe" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                    <div class="control_operation">
+                        <div class="control_preStep">上一步</div>
+                        <div class="control_afterStep">下一步</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">数据上架 datalinker&nbsp;&nbsp;&nbsp;贵州大数据局</div>
+    </div>
+</body>
+<!-- 添加部门 -->
+<div class="add_depart" style="display:none;">
+    <label for="depart_sel">部门</label>
+    <div>
+        <select name="" id="depart_sel" class="form-control">
+            <option value="请选择部门">请选择部门</option>
+            {% for department in department_list %}
+            <option value="">{{ department }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+<!-- 添加部门结束 -->
+<!-- 进度条 -->
+<div class="progressBar" style="display:none;height: 100%; width: 100%">
+    <div id="pbwrapper">
+        <div id="pbcontent"></div>
+    </div>
+</div>
+<div class="tbData" style="display: none;">
+    <div class="tbData_box">
+        <span class="icon-spinner"></span>
+    </div>
+</div>
+
+</html>

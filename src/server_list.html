@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>服务目录</title>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/common.css" />
+    <link rel="stylesheet" type="text/css" href="css/server_list.css" />
+    <link rel="stylesheet" type="text/css" href="assets/font/iconfont.css" />
+</head>
+
+<body>
+    <div class="page_title">贵州省块数据指挥调度中心数据上架平台</div>
+    <div class="content_title">服务目录列表</div>
+    <div class="content">
+        <div class="lists" id="data_table">
+            <!--列表标题-->
+            <div class="row list_con_tit">
+                <div class="col-md-1 col-xs-1 all">
+                    <input type="checkbox" class="inp_rad" id="checkAll" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1">序号</div>
+                <div class="col-md-1 name tit col-xs-1">名称</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1">层级名称</div>
+                <div class="col-md-1 type tit col-xs-1">类型</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3">服务目录</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2">数据目录</div>
+                <div class="col-md-2 operation tit tac col-xs-2">操作</div>
+            </div>
+
+            <!--列表内容  todo--- -->
+            <!--{% for obj in page %}-->
+            <!--<div class="row list_con">
+					<div class="col-md-1 col-xs-1">
+						<input type="checkbox" class="inp_rad" checked="checked" name="item" id="server_name_id" value="{{ obj.id }}" />
+					</div>
+					<div class="col-md-1 order tit active col-xs-1">{{ forloop.counter }}</div>
+					<div class="col-md-1 name tit active col-xs-1" id="part_server">{{ obj.name }}</div>
+					<div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">{{obj.top_class|safe}}</div>
+					<div class="col-md-1 type tit active col-xs-1" id="type_server">{{ obj.type }}</div>
+					<div class="col-md-3 ser_directory tit tac active col-xs-3 break" id="http_server">{{obj.server_name}}</div>
+					<div class="col-md-2 data_directory tit tac active col-xs-2" id="server_sql">{{obj.data_name}}</div>
+					<div class="col-md-2 operation tit tac col-xs-2">
+						<button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+					</div>
+				</div>-->
+            <!--{% endfor %}-->
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit active col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit active col-xs-1">张yi</div>
+                <div class="col-md-1 hierarchy_name active tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit active col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac active col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac active col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit active col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit active col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name active tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit active col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac active col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac active col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+            <div class="row list_con">
+                <div class="col-md-1 col-xs-1">
+                    <input type="checkbox" class="inp_rad" name="item" id="server_name_id" value="{{ obj.id }}" />
+                </div>
+                <div class="col-md-1 order tit col-xs-1" id="part_server">001</div>
+                <div class="col-md-1 name tit col-xs-1">张三</div>
+                <div class="col-md-1 hierarchy_name tit col-xs-1" id="group_server">一级</div>
+                <div class="col-md-1 type tit col-xs-1" id="type_server">sql</div>
+                <div class="col-md-3 ser_directory tit tac col-xs-3 break" id="http_server">http://www.baidu.com/jscchtml</div>
+                <div class="col-md-2 data_directory tit tac col-xs-2" id="server_sql">select * from va where</div>
+                <div class="col-md-2 operation tit tac col-xs-2">
+                    <button type="button" class="modify data_update" id="up_data">修改</button><button type="button" class="del data_del" id="del_tr">删除</button>
+                </div>
+            </div>
+        </div>
+        <!--todo end- -->
+        <div class="list_bot">
+            <div class="row">
+                <div class="batch_del col-md-3 col-xs-3">
+                    <a type="button" class="del_btn"><i class="iconfont icon-tubiaolunkuo-"></i>批量删除</a>
+                    <a href="page_Template.html" type="button" class="add_btn"><i class="iconfont icon-jia"></i>添加</a>
+                </div>
+                <div class="col-md-9 col-xs-9">
+					<div class="data_bottom">
+							<div class="padlr" align="right">
+									<ul class="pagination">
+										<li>
+											<button id="shouye" disabled="disabled">首页</button>
+										</li>
+										<li id="shangyiye"><a href="#">上一页 <span>&laquo;</span></a>
+										</li>
+										<li id="xiayiye"><a href="#">下一页 <span>&raquo;</span></a></li>
+										<li>
+											<button id="weiye">尾页</button>
+										</li>
+										<li class="sum_data" id="dangqianpage"></li>
+										<li class="sum_data" id="zongpage"></li>
+										<li>到<input type="text" class="jump" value="" id="tiaozhuannum">页</li>
+										<li>
+											<button id="jump">确定</button>
+										</li>
+									</ul>
+								</div>
+					</div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--layer-->
+    <div class="list_layer" id="list_layer" style="display: none;">
+        <div class="box">
+            <span class="layer_name">名称</span><input type="text" class="list_layer_inp" id="label_name" name="label_name" />
+        </div>
+        <div class="box">
+            <span class="layer_name">类型</span><input type="text" class="list_layer_inp" id="label_type" name="label_type" disabled="disabled" />
+        </div>
+        <div class="box">
+            <span class="layer_name">服务目录</span><input type="text" class="list_layer_inp" id="label_http" name="label_http" disabled="disabled" />
+        </div>
+        <div class="box box_sel">
+            <span class="layer_name">数据名称</span><input type="text" class="list_layer_inp" id="label_sql" name="label_sql" disabled="disabled" />
+            <!--<select name="" class="list_layer_inp">
+					<option value="">sql</option>
+				</select>-->
+        </div>
+    </div>
+    <!--layer end-->
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/layer/layer/layer.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/bootstrapPaginator/bootstrap-paginator.min.js"></script>
+    <script>
+        $(function() {
+            /**  删除功能  **/
+            /* 全选 */
+            $('.all').on('click', '#checkAll', function(event) {
+                var status = this.checked;
+                var oItems = document.getElementsByName('item');
+                for (var i = 0; i < oItems.length; i++) {
+                    oItems[i].checked = status;
+                }
+            })
+
+            /*  单行删除 */
+
+            $("#data_table").on("click", ":button", function(event) {
+                var forLoop = 0;
+                var oItems = document.getElementsByName('item');
+                var del_id = '';
+                if (this.id == 'del_tr') {
+                    if (confirm("确定要删除这个字段吗？")) {
+                        forLoop = $(this).closest(".list_con").find("div").eq(1).text();
+                        oItems[forLoop - 1].checked = true;
+                        del_id = oItems[forLoop - 1].value + '_';
+                        params = {
+                            'check_id': del_id
+                        };
+                        $.post('/data/del_server/', params, function(data) {
+                            if (data.res == 1) {
+                                self.location = '/data/server_list/';
+                            } else {
+                                alert('删除失败')
+                            }
+                        })
+                    } else {
+                        alert('删除失败')
+                    }
+                }
+            })
+
+            /* 批量删除 */
+            $('.del_btn').click(function() {
+                alert("批量删除调用");
+                var boxes = document.getElementsByName("item");
+                var del_id = "";
+                isTrue = false;
+                for (var i = 0; i < boxes.length; i++) {
+                    if (boxes[i].checked == true) {
+                        isTrue = true;
+                    }
+                }
+                if (isTrue == true) {
+                    if (confirm("确定要删除这个字段吗？")) {
+                        for (var i = 0; i < boxes.length; i++) {
+                            if (boxes[i].checked == true) {
+                                del_id += boxes[i].value + '_';
+                            }
+                        }
+                        params = {
+                            'check_id': del_id
+                        };
+                        $.post('/data/del_server/', params, function(data) {
+                            if (data.res == 1) {
+                                self.location = '/data/server_list/';
+                            }
+                        })
+                    } else {
+                        alert('删除失败')
+                        self.location = '/data/server_list/';
+                    }
+                } else {
+                    alert('请选择要删除的字段')
+                }
+            });
+
+
+            /**  修改功能  **/
+            //修改数据库内容
+            $(function() {
+                    $("#data_table").on("click", ":button", function(event) {
+                        if (this.id == 'up_data') {
+                            //ShowDiv('MyDiv', 'fade');
+
+                            //修改弹出层
+                            layer.open({
+                                area: ['600px', '400px'],
+                                title: "修改信息",
+                                content: $('#list_layer'),
+                                btn: ['保存', '取消'],
+                                type: 1,
+                                yes: function(index) {
+                                    goToAdd(event); //调用修改方法								
+                                    layer.close(index);
+                                },
+                                btn2: function(index) {
+                                    layer.close(index);
+                                }
+                            });
+
+                            modify(this);
+                            var oItems = document.getElementsByName("item");
+                            var forLoop = 0;
+                            var updata_id = '';
+                            forLoop = $(this).closest(".list_con").find("div").eq(1).text();
+                            oItems[forLoop - 1].checked = true;
+                            updata_id = oItems[forLoop - 1].value;
+                            params = {
+                                'updata_id': updata_id
+                            };
+                            $.post('/data/update_server_id/', params, function(data) {})
+                        }
+                    })
+                })
+                //修改内容在弹出框显示
+            var name = '';
+            var type = '';
+            var server_list = '';
+            var date_list = '';
+
+            function modify(obj) {
+                var oNum = document.getElementById('part_server');
+                var oPwd = document.getElementById('group_server');
+                var oUser = document.getElementById('type_server');
+                var oPwd = document.getElementById('http_server');
+                var oBirth = document.getElementById('server_sql');
+
+                var oTr = obj.parentNode.parentNode;
+                var aTd = oTr.getElementsByTagName('div');
+                rowIndex = obj.parentNode.parentNode.rowIndex;
+                name = oNum.value = aTd[2].innerHTML;
+                pwd = oPwd.value = aTd[3].innerText;
+                type = oUser.value = aTd[4].innerHTML;
+                server_list = oPwd.value = aTd[5].innerHTML;
+                date_list = oBirth.value = aTd[6].innerHTML;
+
+                $('#label_name').val(name)
+                $('#label_group').val(pwd)
+                $('#label_type').val(type)
+                $('#label_http').val(server_list)
+                $('#label_sql').val(date_list)
+
+            }
+
+            //弹出框
+            //				function ShowDiv(show_div, bg_div) {
+            //					var scrollHeight = document.querySelector("body").offsetHeiht; //文档高度
+            //					var aa = document.getElementById(bg_div).style.height = scrollHeight + 'px';
+            //					var bb = document.getElementById(show_div).style.display = 'block';
+            //					document.getElementById(bg_div).style.display = 'block';
+            //				};
+            //				//关闭弹出层
+            //				function CloseDiv(show_div, bg_div) {
+            //					document.getElementById("label_name").value = '';
+            //					document.getElementById(show_div).style.display = 'none';
+            //					document.getElementById(bg_div).style.display = 'none';
+            //					self.location = '/data/server_list/';
+            //	
+            //				};
+            //				//关闭弹出层
+            //				function CloseDiv2() {
+            //					document.getElementById("MyDiv").style.display = 'none';
+            //					document.getElementById("fade").style.display = 'none';
+            //				};
+
+            function goToAdd(event) {
+                var name = $('#label_name').val();
+               	var childs = event.currentTarget.closest('.list_con').children;
+					childs[2].innerText=name;
+
+                //					点击确定弹出层的隐藏
+                //					document.getElementById('fade').style.display = 'none';
+                //					document.getElementById('MyDiv').style.display = 'none';
+                params = {
+                    'name': name
+                };
+                $.post('/data/update_server_name/', params, function(data) {
+                    if (data.res == 1) {
+                        self.location = '/data/server_list/';
+                    } else {
+                        alert('修改失败')
+                    }
+                })
+            }
+
+            /**  分页显示  **/
+            //				$(document).ready(function() {
+            //					$('.pagination li a').each(function() {
+            //						if($(this).html() == '{{page.number}}') {
+            //							$(this).parent().addClass('active')
+            //						}
+            //					});
+            //				})
+
+        });
+
+
+
+
+		
+		//记录当前展示的页数的索引页，比如页数1 - 10，索引值是0 - 9
+        var index = 0;
+        //i记录一共生成了多少页，比如下面生成10页后，i最后会变成11，因为11的时候才结束for循环
+        var i;
+        //此方法返回当前显示页数的索引值，+1表示正常的页数1 - 10
+        function getPageNum(){
+            return index + 1;
+        }
+        $("#xiayiye").before("<span id='spanleft'>...</span>");
+        //循环创建10个页码
+        for(i = 1; i <= 10; i ++){
+            if(i == 1){
+                //第一页页码默认添加正在显示的样式move
+                $("#xiayiye").before("<li class='active moveLi'><a href='#'>" + i + "</a></li>");
+            }else if(i > 5){
+                //大于5页的页码隐藏
+                $("#xiayiye").before("<li class='moveLi' style='display:none'><a href='#'>" + i + "</a></li>");
+            }else{
+                //添加正常显示的页码2~4页
+                $("#xiayiye").before("<li class='moveLi'><a href='#'>" + i + "</a></li>");
+            }
+        }
+        //设置当前页数
+        $("#dangqianpage").text(index + 1);
+        //设置总页数
+        $("#zongpage").text("/共" + (i - 1) + "页");
+        //隐藏的页数部分由......显示
+        $("#xiayiye").before("<span class='span' id='spanid'>...</span>");
+        //给所有li设置单击事件
+        $("li.moveLi").click(function(){
+            //点击除了正在显示的页码
+            if(index != Number($(this).text()) - 1){
+                //点击当前页码，如果没有move样式则添加，否则删除move样式，并且其他兄弟页码全部删除move样式
+                $(this).toggleClass("active").siblings().removeClass("active");
+                //得到正在展示的页数
+                var num = index;
+                //点击的页数-1得到相应的索引值
+                index = Number($(this).text()) - 1;
+                //得到正在展示的页数减去点击的页数的索引值后的绝对值
+                var count = Math.abs(num - index);
+                //当前页数改为点击的页数
+                $("#dangqianpage").text(index + 1);
+                //判断当点击的页数大于正在显示的页数的时候
+                if((num - index) < 0){
+                    //点击页数的索引值小于总索引值
+                    if(index < (i - 2)){
+                        //点击页数和之前展示页数的差，大于等于2时并且点击的页数小于倒数第二页
+                        if(count >= 2 && index < (i - 3)){
+                            //点击的页数的下两页显示出来
+                            $("li.moveLi:eq(" + (index + 1) + ")").css("display","inline-block");
+                            $("li.moveLi:eq(" + (index + 2) + ")").css("display","inline-block");
+                            //点击的页数的前三四页隐藏
+                            $("li.moveLi:eq(" + (index - 3) + ")").css("display","none");
+                            $("li.moveLi:eq(" + (index - 4) + ")").css("display","none");
+                        //点击页数和之前展示页数的差，等于1时并且点击的页数小于倒数第二页
+                        }else if(count == 1 && index < (i - 3)){
+                            //点击的页数的下下页显示
+                            $("li.moveLi:eq(" + (index + 2) + ")").css("display","inline-block");
+                            //点击的页数前面的第三页隐藏
+                            $("li.moveLi:eq(" + (index - 3) + ")").css("display","none");
+                        }
+                        //点击的页数等于倒数第二页时
+                        if((i - 3) == index){
+                            //最后一页显示
+                            $("li.moveLi:eq(" + (index + 1) + ")").css("display","inline-block");
+                            //点击的页数前面的第四页隐藏
+                            $("li.moveLi:eq(" + (index - 4) + ")").css("display","none");
+                        }
+                        //当展示的页数小于等于倒数第三页时，......隐藏
+                        if(index >= (i - 4)){
+                            $(".span").css("display","none");
+                        }
+                        if(index >= 3){
+                            $("#spanleft").css("display","inline-block");
+                        }
+                    }
+                //判断当点击的页数小于正在显示的页数的时候
+                }else{
+                    //点击的页数大于第二页时
+                    if(index >= 1){
+                        //点击页与之前展示的页的差大于等于两页时，并且点击的页数小于倒数第二页
+                        // 并且页数的索引值大于等于第三页时
+                        if(count >= 2 && index < (i - 3) && index >= 2){
+                            //点击的页数前面的两页显示出来
+                            $("li.moveLi:eq(" + (index - 1) + ")").css("display","inline-block");
+                            $("li.moveLi:eq(" + (index - 2) + ")").css("display","inline-block");
+                            //点击的页数后面的第三四页隐藏
+                            $("li.moveLi:eq(" + (index + 3) + ")").css("display","none");
+                            $("li.moveLi:eq(" + (index + 4) + ")").css("display","none");
+                        //点击页与之前展示的页的差等于1的时候，并且点击的索引小于倒数第二页，
+                        //并且点击的索引大于等于第三页
+                        }else if(count == 1 && index < (i - 3) && index >= 2){
+                            //点击的页数前面的第二页显示
+                            $("li.moveLi:eq(" + (index - 2) + ")").css("display","inline-block");
+                            //点击的页数后面的第三页隐藏
+                            $("li.moveLi:eq(" + (index + 3) + ")").css("display","none");
+                        //点击的页数的索引值小于等于1的时候
+                        }else if(index <= 1){
+                            //点击的页数的前一页显示
+                            $("li.moveLi:eq(" + (index - 1) + ")").css("display","inline-block");
+                            //点击的页数后面的第四页隐藏
+                            $("li.moveLi:eq(" + (index + 4) + ")").css("display","none");
+                        }
+                        //当最后一页开始隐藏的时候，......显示
+                        if(index < (i - 4)){
+                            $(".span").css("display","inline-block");
+                        }
+                        if(index >= 3){
+                            $("#spanleft").css("display","inline-block");
+                        }else{
+                            $("#spanleft").css("display","none");
+                        }
+                    }
+                }
+                if(index == 0){
+                    $("#shouye").attr("disabled","disabled");
+                }else{
+                    $("#shouye").removeAttr("disabled");
+                }
+                if(index == (i - 2)){
+                    $("#weiye").attr("disabled","disabled");
+                }else{
+                    $("#weiye").removeAttr("disabled");
+                }
+            }
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击下一页时
+        $("#xiayiye").click(function(){
+            // debugger;
+            //点击的页数的索引值等于总页数的索引值时
+            if(index + 2 == i){
+                alert("已到最后一页");
+             //点击的页数的索引值不等于总页数的索引值时
+            }else{
+                //之前展示的页数的展示样式move删除
+                $("li.moveLi:eq(" + index +")").removeClass("active");
+                //索引加1，表示跳转到下一页了
+                index += 1;
+                //下一页的页码添加展示的样式move
+                $("li.moveLi:eq(" + index +")").addClass("active");
+            }
+            //当前展示的索引页大于2时，并且小于倒数第二页
+            if(index > 2 && index < (i - 3)){
+                //当前展示的索引页后面第二页页码显示
+                $("li.moveLi:eq(" + (index + 2) + ")").css("display","inline-block");
+                //当前展示的索引页前面的第三页页码隐藏
+                $("li.moveLi:eq(" + (index - 3) + ")").css("display","none");
+            }
+            //当前展示的索引页大于等于倒数第三页时，
+            if(index >= (i - 4)){
+                //...隐藏
+                $(".span").css("display","none");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline-block");
+            }
+            $("#shouye").removeAttr("disabled");
+            if(index == (i - 2)){
+                $("#weiye").attr("disabled","disabled");
+            }
+            //当前页数修改为最新展示的页数
+            $("#dangqianpage").text(index + 1);
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击上一页时
+        $("#shangyiye").click(function(){
+            //当前页已经是首页的时候
+            if(index <= 0){
+                //弹出提示框
+                alert("已到首页");
+                
+            }else{
+                $("#shouye").removeAttr("disabled");
+                //之前展示的页码删除展示样式
+                $("li.moveLi:eq(" + index +")").removeClass("active");
+                //索引值减1，代表跳转到上一页
+                index -= 1;
+                //上一页的页码添加展示样式
+                $("li.moveLi:eq(" + index +")").addClass("active");
+                if(index == 0){
+                    $("#shouye").attr("disabled","disabled");
+                }
+            }
+            //当前索引页小于倒数第三页时，并且当前索引值大于1时
+            if(index < (i - 4) && index > 1){
+                //当前索引页前面的第二页显示出来
+                $("li.moveLi:eq(" + (index - 2) + ")").css("display","inline-block");
+                //当前索引页后面的第三页隐藏
+                $("li.moveLi:eq(" + (index + 3) + ")").css("display","none");
+            }
+            //当前索引页小于倒数第三页时
+            if(index < (i - 4)){
+                //......显示
+                $(".span").css("display","inline-block");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline-block");
+            }else{
+                $("#spanleft").css("display","none");
+            }
+            $("#weiye").removeAttr("disabled");
+            //修改当前页数
+            $("#dangqianpage").text(index + 1);
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击首页
+        $("#shouye").click(function(){
+            //正在展示的页数不为首页时
+            if(index != 0){
+                //之前的页码删除展示样式
+                $("li.moveLi:eq(" + index +")").removeClass("active");
+                //首页页码添加展示样式
+                $("li.moveLi:eq(0)").addClass("active");
+                //修改当前页的索引值
+                index = 0;
+                //所有页码隐藏
+                $("li.moveLi").css("display","none");
+                //......显示
+                $(".span").css("display","inline-block");
+                //前五页显示
+                $("li.moveLi:eq(" + index + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index + 1) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index + 2) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index + 3) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index + 4) + ")").css("display","inline-block");
+            }
+            //当前页数修改为首页的页数
+            $("#dangqianpage").text(index + 1);
+            $("#spanleft").css("display","none");
+            $("#shouye").attr("disabled","disabled");
+            $("#weiye").removeAttr("disabled");
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击尾页
+        $("#weiye").click(function(){
+            //当前索引页不为最后一页时
+            if(index != (i - 2)){
+                //之前展示的页码删除展示样式
+                $("li.moveLi:eq(" + index +")").removeClass("active");
+                //最后一页页码添加展示样式
+                $("li.moveLi:eq(" + (i - 2) + ")").addClass("active");
+                //修改当前正在展示的索引值
+                index = i - 2;
+                //所有页码隐藏
+                $("li.moveLi").css("display","none");
+                //......隐藏
+                $(".span").css("display","none");
+                //最后五页显示
+                $("li.moveLi:eq(" + index + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index - 1) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index - 2) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index - 3) + ")").css("display","inline-block");
+                $("li.moveLi:eq(" + (index - 4) + ")").css("display","inline-block");
+            }
+            //修改当前页数
+            $("#dangqianpage").text(index + 1);
+            $("#spanleft").css("display","inline-block");
+            $("#shouye").removeAttr("disabled");
+            $("#weiye").attr("disabled","disabled");
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+        //点击跳转按钮
+        $("#jump").click(function(){
+            //得到输入框里的值
+            var num = Number($("#tiaozhuannum").val());
+            //匹配正整数
+            var reg = /^\+?[1-9][0-9]*$/;
+            //如果有值，并且是有效的页数数字
+            if(reg.test(num) && num <= (i - 1)){
+                //修改当前页数为输入框里的值
+                $("#dangqianpage").text(num);
+                //之前展示的页码删除展示样式
+                $("li.moveLi:eq(" + index +")").removeClass("active");
+                //按照输入框的数字-1得到相应页码的索引值，并且添加展示样式
+                $("li.moveLi:eq(" + (num - 1) + ")").addClass("active");
+                //修改当前展示的页数的索引值
+                index = num - 1;
+                //所有页码隐藏
+                $("li.moveLi").css("display","none");
+                //当目前展示的页码的索引值小于等于2时
+                if(index <= 2){
+                    //......显示
+                    $(".span").css("display","inline-block");
+                    //循环显示前五页的页码
+                    for(var o = 0; o < 5; o ++){
+                        $("li.moveLi:eq(" + o + ")").css("display","inline-block");
+                    }
+                //当前展示的页码的索引值大于等于倒数第三页的时候
+                }else if(index >= (i - 4)){
+                    //......隐藏
+                    $(".span").css("display","none");
+                    //循环显示最后五页的页码
+                    for(var t = (i - 6); t < (i - 1); t ++){
+                        $("li.moveLi:eq(" + t + ")").css("display","inline-block");
+                    }
+                }else{
+                    //......显示
+                    $(".span").css("display","inline-block");
+                    //当前展示页和它的前两页后两页显示出来
+                    $("li.moveLi:eq(" + (index - 1) + ")").css("display","inline-block");
+                    $("li.moveLi:eq(" + (index - 2) + ")").css("display","inline-block");
+                    $("li.moveLi:eq(" + index + ")").css("display","inline-block");
+                    $("li.moveLi:eq(" + (index + 1) + ")").css("display","inline-block");
+                    $("li.moveLi:eq(" + (index + 2) + ")").css("display","inline-block");
+                }
+            }else if(reg.test(num) && num > (i - 1)){
+                alert("请输入存在的页数：");
+            }else if(num == 0){
+                alert("请输入页数：");
+            }else{
+                alert("请输入正确的页数：");
+            }
+            if(index >= 3){
+                $("#spanleft").css("display","inline-block");
+            }else{
+                $("#spanleft").css("display","none");
+            }
+            if(index == 0){
+                $("#shouye").attr("disabled","disabled");
+                $("#weiye").removeAttr("disabled");
+            }else if(index == (i - 2)){
+                $("#shouye").removeAttr("disabled");
+                $("#weiye").attr("disabled","disabled");
+            }else{
+                $("#shouye").removeAttr("disabled");
+                $("#weiye").removeAttr("disabled");
+            }
+            //此方法返回当前正在展示的页数
+            getPageNum();
+        });
+    </script>
+
+</body>
+
+</html>

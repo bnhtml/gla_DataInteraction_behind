@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title>数据上架平台—用户</title>
+    {% load static %}
+    <link rel="shortcut icon" type="text/css" href="{% static 'images/titlelogo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/pintuer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+</head>
+<body style="background-color:#eee;">
+<div class="header bg-main">
+    <div class="logo margin-big-left fadein-top">
+        <h1>数据上架平台—用户</h1>
+    </div>
+    <div class="head-l">
+{#        <a class="button button-little bg-green" href="#" target="_blank">#}
+{#            <span class="icon-home"></span>前台首页#}
+{#        </a> &nbsp;&nbsp;#}
+{#        <a href="#" class="button button-little bg-blue">#}
+{#            <span class="icon-wrench"></span>清除缓存#}
+{#        </a> &nbsp;&nbsp;#}
+{#        <a class="button button-little bg-red" href="#">#}
+{#            <span class="icon-power-off"></span> 退出登录#}
+{#        </a>#}
+    </div>
+</div>
+<div class="leftnav">
+    <div class="leftnav-title" style="line-height: 24px; padding: 10px 10px 0px 16px">
+        {% for depart in depart_list %}
+        <span class="icon-list"></span><strong>{{ depart }}<i>({{ all }})</i></strong>
+        {% endfor %}
+    </div>
+{#    <h2><span class="icon-pencil-square-o"></span>数据桥接</h2>#}
+{#    <ul>#}
+{#        <li>#}
+{#            <a href="/db_list/" target="right"><span class="icon-caret-right"></span>数据库</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="/admin_file/" target="right"><span class="icon-caret-right"></span>文件</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="/admin_interface/" target="right"><span class="icon-caret-right"></span>接口</a>#}
+{#        </li>#}
+{#        <li>#}
+{#            <a href="/admin_ways/" target="right"><span class="icon-caret-right"></span>通道</a>#}
+{#        </li>#}
+{#    </ul>#}
+    <h2><span class="icon-caret-right"></span>&nbsp;&nbsp;数据目录<i>({{ data_num }})</i></h2>
+    <ul>
+        <li>
+            <a href="/commonUser/service_list/" target="right">&nbsp;&nbsp;&nbsp;数据目录<i>({{ data_num }})</i></a>
+        </li>
+    </ul>
+    <h2><span class="icon-caret-right"></span>&nbsp;&nbsp;安全目录<i>({{ total_num }})</i></h2>
+    <ul>
+{#        <li>#}
+{#            <a href="/user_list/" target="right"><span class="icon-caret-right"></span>用户列表</a>#}
+{#        </li>#}
+        <li>
+            <a href="/commonUser/acl_list/" target="right">&nbsp;&nbsp;&nbsp;访问控制<i>({{ acl_num }})</i></a>
+        </li>
+{#        <li>#}
+{#            <a href="/group_list/" target="right"><span class="icon-caret-right"></span>用户组</a>#}
+{#        </li>#}
+{#         <li>#}
+{#            <a href="//" target="right"><span class="icon-caret-right"></span>访问控制</a>#}
+{#        </li>#}
+        <li>
+            <a href="/commonUser/control_list/" target="right">&nbsp;&nbsp;&nbsp;流量控制<i>({{ controls_num }})</i></a>
+        </li>
+{#        <li>#}
+{#            <a href="/save/save_list/" target="right"><span class="icon-caret-right"></span>安全目录</a>#}
+{#        </li>#}
+    </ul>
+    <h2>
+            <span class="" id="journal"></span><a href="/journal/" target="right">日志</a></h2>
+</div>
+<script type="text/javascript">
+    var interface_Depart;
+    var interface_Parent;
+    var interface_Num;
+    var parameter = 'commonUser';
+    var para_ip;
+    var departname;
+    var firstStr,
+        secondStr;
+    var reggg = /\(/;
+    $(function () {
+        interface_Depart = $(".leftnav-title strong");
+        para_ip = window.location.href.split('/')[5];
+        departname = $(".leftnav-title strong").text().trim();
+        if(reggg.test(departname)){
+            departname = departname.substr(0,departname.indexOf('('));
+        }
+        var depart;
+        $(".leftnav h2").click(function () {
+            depart = $(this).text().trim();
+            if(reggg.test(depart)){
+                firstStr = depart.substr(0,depart.indexOf('('));
+            }else{
+                firstStr = depart;
+            }
+            $("#a_leader_txt").text(firstStr);
+            $(this).next().slideToggle(200);
+            $(this).toggleClass("on");
+            $(this).children('span').toggleClass('icon-caret-down');
+            $(this).children('span').toggleClass('icon-caret-right');
+        });
+        $(".leftnav ul li a").click(function () {
+            interface_Parent = $(this).parents("ul").prev();
+            interface_Num = $(this);
+            firstStr = $(this).parents("ul").prev().text().trim();
+            firstStr = firstStr.substr(0,firstStr.indexOf('('));
+            secondStr = $(this).text().trim();
+            if(reggg.test(secondStr)){
+                secondStr = secondStr.substr(0,secondStr.indexOf('('));
+            }
+            $("#a_leader_txt").text(firstStr + ' ->> ' + secondStr);
+            $(".leftnav ul li a").removeClass("on");
+            $(this).addClass("on");
+        })
+    });
+</script>
+<ul class="bread">
+{#    <li><a href="#" target="right" class="icon-home"> 首页</a></li>#}
+    <li>
+        <span>当前路径：</span>
+        <span id="a_leader_txt">数据上架中心</span></li>
+</ul>
+<div class="admin">
+    <iframe scrolling="auto" rameborder="0" src="/welcome_dier/" name="right" width="100%" height="100%"></iframe>
+</div>
+<div class="footer">
+        <span>数据上架&nbsp;datalinker&nbsp;&nbsp;&nbsp;&nbsp;贵州大数据局</span>
+    </div>
+</body>
+</html>

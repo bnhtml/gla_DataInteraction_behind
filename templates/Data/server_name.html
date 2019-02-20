@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <title> 服务名称 </title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="author" content="" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    {% load static %}
+     <meta charset="UTF-8">
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/file_server.css' %}" />
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <style type="text/css"></style>
+    <script type="text/javascript"></script>
+    <META NAME="Description" CONTENT="Power by hill">
+
+    <script language="JavaScript">
+
+        /**  获取目录的值  **/
+        $(function () {
+            //获取所有省份
+            $.get('/data/first/', function (dic) {
+                first = $('#first')
+                $.each(dic.data, function (index, item) {
+                    first.append('<option value=' + item[0] + '>' + item[1] + '</option>');
+                })
+            })
+            //获取市信息
+            $('#first').change(function () {
+                if ( $(this).val() === ""){
+                    second = $('#second');
+                    second.empty().append('<option value="">请选择</option>');
+                    $('#third').empty().append('<option value="">请选择</option>');
+                } else {
+                    $.get('/data/first_' + $("#first").val() + '/', function (dict) {
+                    second = $('#second');
+                    second.empty().append('<option value="">请选择</option>');
+                    $('#third').empty().append('<option value="">请选择</option>');
+
+                    $.each(dict.data, function (index, item) {
+                        second.append('<option value=' + item[0] + '>' + item[2] + '</option>');
+                    })
+                });
+                }
+            });
+            //获取二级目录信息
+            $('#second').change(function () {
+                if ($("#second").val()===""){
+                    third = $('#third');
+                    third.empty().append('<option value="">请选择</option>');
+                }
+                else {
+                    $.get('/data/second_' +$("#first").val()+'/' +$("#second").val() + '/', function (dict) {
+                    third = $('#third');
+                    third.empty().append('<option value="">请选择</option>');
+                    $.each(dict.data, function (index, item) {
+                        third.append('<option value=' + item[0]+ '>' + item[1] + '</option>');
+                    })
+                    })
+                }
+            });
+             var prov = $(window.parent.document).find("#prov");
+            prov.click(function (){
+                $.get('/data/type_chose/', function (data) {
+                var server_type_url = '';
+                var span = $(window.parent.document).find("span");
+                    span.css({
+                        "color": "",
+                        "border-bottom": "",
+                    });
+                var send = $(window.parent.document).find("#two");
+                if (data.res == 'sql'){
+                    send.css({
+                        "color": "#6d89d1",
+                        "border-bottom": "1px solid #6d89d1",
+                    });
+                        server_type_url = '/data/sql_server/';
+                    } else if (data.res == 'file'){
+                    send.css({
+                        "color": "#6d89d1",
+                        "border-bottom": "1px solid #6d89d1",
+                    });
+                        server_type_url = '/data/file_server/';
+                    } else if (data.res == 'message' ){
+                    send.css({
+                        "color": "#6d89d1",
+                        "border-bottom": "1px solid #6d89d1",
+                    });
+                        server_type_url = '/data/message_server/';
+                    } else if (data.res == 'interface'){
+                    var first = $(window.parent.document).find("#one");
+                    first.css({
+                        "color": "#6d89d1",
+                        "border-bottom": "1px solid #6d89d1",
+                    });
+                        server_type_url = '/data/name_type/';
+                    }
+                    self.location = server_type_url;
+                })
+            })
+        })
+        
+        /**  获取三级目录的值  **/
+        var next = $(window.parent.document).find("#next");
+            next.click(function (){
+            var first_val = $('#first option:selected').text();
+            var second_val = $('#second option:selected').text();
+            var third_val = $('#third option:selected').text();
+            if (first_val != '请选择' && second_val != '请选择' && third_val != '请选择') {
+               params = {'first':first_val, 'second':second_val,'third':third_val};
+            $.post('/data/data_add/',params, function (data) {
+                if (data.res == 1){
+                         window.top.location = "/data/server_list/";
+                }
+            })
+            } else {
+                alert('请选择');
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="content">
+        <div id="content" style="margin:0 auto; background-color:#ffffff; width:100%; height:100%; position:relative;">
+            <div class="login" style="position:relative;top:75px;margin:0 auto;border: 3px solid #e2e2e2; width: 530px;height: 250px; border-radius:10px;">
+                <div class="dir" style=" float: left;margin-left:15px;margin-top:60px;">
+                    <h3 style="display:inline;">一级:</h3>
+                    <select type="text" name="" id="first" style="width: 100px;height: 30px;padding-left: 15px;">
+                        <option value="">请选择</option>
+                    </select>
+                    <h3 style="display:inline;">二级:</h3>
+                    <select type="text" name="" id="second" style="width: 100px;height: 30px;padding-left: 15px;">
+                        <option value="">请选择</option>
+                    </select>
+                    <h3 style="display:inline;">三级:</h3>
+                    <select type="text" name="" id="third" style="width: 100px;height: 30px;padding-left: 15px;">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+{#                <div style=" float: left;margin-left:-80px;margin-top:45px">#}
+{#                    <input class="btn btn-info" id="sql_btn" type="button" onclick="" style="float: left; margin-left:285px;margin-top: 45px;" size="40" value="上一步">#}
+{#                    <input class="btn btn-info" id="add" type="button" onclick="data_name()" style="float: left; margin-left:405px;margin-top: -35px;" size="40" value="添加">#}
+{#                </div>#}
+          </div>
+       </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+        input[type=button],input[type=submit]{
+            padding: 3px 6px;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 0px;
+            background-color: #5cb85c;
+            color: #fff;
+        }
+        
+        html,body {
+            width: 100%;
+            height: 100%;
+            background-color: #eee;
+            
+        }
+         body {
+            display: flex;
+        } 
+        body>div{
+            flex:1;
+        }
+        body>div:first-child {
+            display: inline-block;
+            /* margin: 0px auto; */
+            /* width: 700px; */
+            width: 30%;
+            background-color: #fff;
+            box-shadow: 0px 0px 3px #000;
+        }
+        body>div:not(:first-child){
+            width: 30%;
+        }
+        #wrapper {
+            white-space: nowrap;
+            text-align: right;
+            /* display: inline-block; */
+            float: left;
+            padding: 10px;
+            /* border: 1px solid #000; */
+            margin: 20px;
+            height: 90%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+        #tohaiyun {
+            float: left;
+            margin: 20px 0px;
+            display: flex;
+            flex-flow: column;
+        }
+        #tohaiyun>div{
+            flex: 1;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0px 0px 3px #000;
+        }
+        #tohaiyun input{
+            /*height: 40px;*/
+        }
+        #tohaiyun input[type=file]{
+            /*width: 45%;*/
+        }
+        #tohaiyun input[type=text]{
+            font-size: 20px;
+        }
+        #wrapper div {
+            flex: 1;
+        }
+        #wrapper #wrapper_text {
+            padding: 20px 0px;
+        }
+        #wrapper>div:not(:nth-child(2)) {
+            text-align: center;
+            font-size: 26px;
+            font-weight: bold;
+        }
+        #wrapper input[type=text] {
+            margin: 0px 25px;
+            width: 37%;
+            height: 100%;
+            font-size: 20px;
+        }
+        
+        #wrapper #wrapper_con {
+            flex: 8;
+            white-space: nowrap;
+            display: flex;
+            flex-flow: column;
+        }
+        #wrapper_con>div { 
+            flex: 1;
+            display: flex;
+            width: 100%;
+            height: 30px;
+            margin-bottom:10px ;
+        }
+        #wrapper_con>div>label {
+            overflow: hidden;
+            flex: 2;
+            font-size: 18px;
+            height: 100%;
+            line-height: 100%;
+        }
+        #wrapper_con>div>input {
+            min-width: 120px;
+            flex: 3;
+        }
+        #wrapper #wrapper_btn input {
+            /*width: 30%;
+            height: 40px;*/
+            /*font-size: 20px;*/
+            /* background-color: #fff;
+            border: 1px solid #000; */
+            margin-top: 10px;
+            /* font-weight: bold; */
+            /* margin: 5px 10% 5px 5px; */
+        }
+        #wrapper_btn {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            padding: 5px 0px;
+        }
+        #submitFile {
+            width: 100%;
+            margin-bottom: 20px;
+            /* display: inline-block; */
+            height: 40%;
+            /* border: 1px solid #000; */
+            /* margin: 20px 20px 20px 0px; */
+           
+            text-align: center;
+            padding: 10px;
+        }
+        #message {
+            width: auto;
+            height: 40%;
+            /* border: 1px solid #000; */
+            margin: 0px;
+           
+            text-align: center;
+            padding: 10px;
+        }
+        #submitFile,#message{
+            display: flex;
+            flex-flow: column;
+            float: left;
+        }
+        #submitFile div,#message div,#waitDeal_head {
+            flex: 1;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px 0px;
+            
+        }
+        form {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+        form>div {
+            flex:1;
+        }
+        /*#submitFile input[type=button],#message input[type=button] {
+            width: 30%;
+        }*/
+
+        #waitDeal {
+            height: 90%;
+            float: left;
+            margin: 20px 20px 0px 40px;
+            /*padding: 10px;*/
+            display: flex;
+            background-color: transparent;
+            flex-flow: column;
+            /*box-shadow: 0px 0px 3px #000;*/
+        }
+        #waitDeal>div {
+            flex: 1;
+            background-color: #fff;
+            box-shadow: 0px 0px 3px #000;
+            padding: 10px;
+        }
+        #waitDeal>div:first-child{
+            margin-bottom: 20px;
+        }
+        #waitDeal>div>div:first-child {
+            font-size: 26px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px 0px;
+        }
+        #waitDeal>div>div:last-child ul {
+            width: 100%;
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 3px 0px;
+        }
+        #waitDeal>div>div:last-child ul>li {
+            flex: 1;
+            text-align: center;
+        }
+        #zhongruan_con,#haiyun_con {
+            height: 24px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+        }
+        #zhongruan_con::-webkit-scrollbar {
+            display: none;
+        }
+        #haiyun_con::-webkit-scrollbar {
+            display: none;
+        }
+        #zhongruan_con>ul>li:last-child,#haiyun_con>ul>li:last-child {
+            color: #5cb85c;
+            cursor: pointer;
+        }
+        /*#waitDeal_con{
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            border: 2px solid #dfdfdf;
+            -ms-overflow-style: none;
+        }
+        #waitDeal_con::-webkit-scrollbar {
+            display: none;
+        }*/
+        /*#waitDeal ul {
+            width: 100%;
+            display: flex;
+            padding: 5px 0px;
+            border-bottom: 1px solid gray;
+        }
+        #waitDeal ul>li{
+            font-size: 16px;
+            text-align: center;
+            flex: 1;
+        }
+        #waitDeal ul>li:nth-child(2){
+            flex: 2;
+        }
+        #waitDeal_con ul>li:last-child {
+            color: #5cb85c;
+            cursor: pointer;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="wrapper_text">向中间库插入数据</div>
+        <div id="wrapper_con">
+            <div>
+                <label for="resource_id">资源ID:</label><input type="text" id="resource_id">
+            </div>
+            <div>
+                <label for="dictionary_address">数据目录地址:</label><input type="text" id="dictionary_address">
+            </div>
+            <div>
+                <label for="file_id">接口文档ID:</label><input type="text" id="file_id">
+            </div>
+            <div>
+                <label for="request_data_type">请求数据类型:</label><input type="text" id="request_data_type">
+            </div>
+            <div>
+                <label for="response_data_type">响应数据类型:</label><input type="text" id="response_data_type">
+            </div>
+            <div>
+                <label for="request_type">请求方式post/get:</label><input type="text" id="request_type">
+            </div>
+            <div>
+                <label for="request_head">请求头:</label><input type="text" id="request_head">
+            </div>
+            <div>
+                <label for="description">描述/备注:</label><input type="text" id="description">
+            </div>
+            <div>
+                <label for="data_name">数据目录名称:</label><input type="text" id="data_name">
+            </div>
+            <div>
+                <label for="depart_name">部门名称:</label><input type="text" id="depart_name">
+            </div>
+        </div>
+        <div id="wrapper_btn">
+            <input type="button" id="btnTJ" value="提交">
+        </div>
+    </div>
+    <div id="tohaiyun">
+        <div id="submitFile">
+            <form action="/controlCenter/commitFile/" method="POST" enctype="multipart/form-data">
+                <div>提交文件</div>
+                {% csrf_token %}
+                <div><input type="file" name="myFile" id="fileData"></div>
+                <div><input type="submit" value="提交"></div>
+            </form>
+            
+            
+        </div>
+        <div id="message">
+            <div>资源ID上架成功</div>
+            <div><input type="text" id="resourseId"></div>
+            <div><input type="button" id="btn2" value="提交资源ID"></div>
+        </div>
+    </div>
+    <div id="waitDeal">
+        <div id="zhongruan">
+            <div class="zhongruan_text">待办事项一</div>
+            <div id="zhongruan_content">
+                <ul>
+                    <li>序号</li>
+                    <li>资源ID</li>
+                    <li>操作</li>
+                </ul>
+                <div id="zhongruan_con">
+                    {% for resourceID in resourceID_list %}
+                    <ul>
+                        <li>{{ forloop.counter }}</li>
+                        <li>{{ resourceID }}</li>
+                        <li>完成</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div id="haiyun">
+            <div>待办事项二</div>
+            <div id="haiyun_content">
+                <ul>
+                    <li>序号</li>
+                    <li>资源ID</li>
+                    <li>操作</li>
+                </ul>
+                <div id="haiyun_con">
+                    {% for resourceId in resourceId_list %}
+                    <ul>
+                        <li>{{ forloop.counter }}</li>
+                        <li>{{ resourceId }}</li>
+                        <li>完成</li>
+                    </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $(function () {
+            
+            init();
+            window.onresize = init;
+            $("#zhongruan_con").on('click',"ul>li:nth-child(3)",function(){
+                var resourceID = $(this).prev().text().trim();
+                $.post("/controlCenter/dealed/",{"tableName":"noticedata","resourceID":resourceID},function(data){
+                    if(data.result){
+                        window.location.reload();
+                    }
+                });
+            });
+            $("#haiyun_con").on('click',"ul>li:nth-child(3)",function(){
+                var resourceID = $(this).prev().text().trim();
+                $.post("/controlCenter/dealed/",{"tableName":"hyParticipation","resourceID":resourceID},function(data){
+                    if(data.result){
+                        window.location.reload();
+                    }
+                });
+            });
+
+        });
+
+        function init(){
+                var waitDeal_conHei = $("#waitDeal").height() - $("#waitDeal>ul").height() - $("#waitDeal_head").height() - 60;
+                    $("#waitDeal_con").css("height", waitDeal_conHei + "px");
+                    $("#submitFile").css({ "height": parseInt($("#wrapper").css("height")) / 2 - 20 + "px" });
+                    $("#message").css({ "height": parseInt($("#wrapper").css("height")) / 2 - 20 + "px" });
+                    $("#wrapper_con>div>label").css("line-height",$("#wrapper_con>div>label").height() + "px");
+                    $("#waitDeal").css("height",$("#wrapper").height() + 20 + "px");
+                    $("#tohaiyun").css("height",$("#wrapper").height() + 20 + "px");
+                    var waitHeight = $("#zhongruan").height() - $(".zhongruan_text").height() - 40 - $("#haiyun_content>ul").height() - 6;
+                    console.log(waitHeight);
+                    $("#zhongruan_con").css("height",waitHeight - 3.5 + "px");
+                    $("#haiyun_con").css("height",waitHeight - 3.5 + "px");
+            }
+
+        // $("#btn1").click(function () {
+        //     var filedata = document.getElementById("fileData");
+        //     var fileName = filedata.files[0].name;
+        //     console.log(fileName);
+        //     $.post("/getFileName/", { "fileName": fileName }, function (data) {
+        //         if (data.result) {
+        //             alert("成功");
+        //         }
+        //     });
+        // });
+        $("#btn2").click(function () {
+            var resourceId = $("#resourseId").val();
+            $.post("/controlCenter/tell_hy_successed", { "resourceId": resourceId }, function (data) {
+                if (data.result) {
+                    alert("成功");
+                }
+            });
+        })
+        $("#btnTJ").click(function () {
+            var resource_id = $("#resource_id").val();
+            var dictionary_address = $("#dictionary_address").val();
+            var file_id = $("#file_id").val();
+            var request_data_type = $("#request_data_type").val();
+            var response_data_type = $("#response_data_type").val();
+            var request_type = $("#request_type").val();
+            var request_head = $("#request_head").val();
+            var description = $("#description").val();
+            var data_name = $("#data_name").val();
+            var depart_name = $("#depart_name").val();
+            var params = {
+                "resource_id": resource_id,
+                "dictionary_address": dictionary_address,
+                "file_id": file_id,
+                "request_data_type": request_data_type,
+                "response_data_type": response_data_type,
+                "request_type": request_type,
+                "request_head": request_head,
+                "description": description,
+                "data_name": data_name,
+                "depart_name": depart_name
+            };
+            $.post("/controlCenter/insert_mysql/", params, function (data) {
+                if (data.result) {
+                    alert("成功");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

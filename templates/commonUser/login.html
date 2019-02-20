@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <script src="/static/js/jquery-1.12.4.min.js"></script>
+    <script>
+        $(function () {
+            $('#btn').click(function () {
+                user_login_name = $('#username').val()
+                params = {'user_login_name':user_login_name}
+                $.post('/login_data/',params, function (data) {
+                    if (data.result == 0) {
+                        alert('用户名不存在')
+                    } else {
+                        location.href= '/'+'user'+'/'+data.result[0].host +'/'+ data.result[0].us_china +'/'
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+用户名:<input type="text" value="" id="username"> <br>
+<input type="submit" value="登录" id="btn">
+</body>
+</html>

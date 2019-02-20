@@ -1,0 +1,435 @@
+2019-01-17 13:43:14,636 [Thread-20:11864] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:43:58,163 [Thread-21:9996] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:44:16,959 [Thread-2:2920] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 13:45:40,582 [Thread-2:7272] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interface
+2019-01-17 15:55:49,484 [Thread-2:2972] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByCo
+2019-01-17 15:55:58,908 [Thread-4:10184] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByCo
+2019-01-17 16:07:08,076 [Thread-4:12104] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByRe1
+2019-01-18 13:29:59,425 [Thread-2:10236] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:30:37,697 [Thread-3:3992] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:30:49,873 [Thread-4:12232] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:34:54,484 [Thread-5:5780] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 13:35:55,413 [Thread-6:220] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getDone_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 16, in <module>
+    url(r'^getDone_interfaceByCo$', views.getDone_interfaceByCo),  #按条件获取部门内已封装接口数据
+AttributeError: module 'new_interface.views' has no attribute 'getDone_interfaceByCo'
+2019-01-18 15:18:40,814 [Thread-2:10716] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:19:49,906 [Thread-3:5824] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:15,889 [Thread-4:10500] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:22,848 [Thread-5:3204] [django.request:256] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /new_interface/getUnpublished_interface
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 394, in urlconf_module
+    return self._urlconf_module
+AttributeError: 'RegexURLResolver' object has no attribute '_urlconf_module'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\handlers\base.py", line 108, in get_response
+    response = middleware_method(request)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\middleware\common.py", line 74, in process_request
+    if (not urlresolvers.is_valid_path(request.path_info, urlconf) and
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 647, in is_valid_path
+    resolve(path, urlconf)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 522, in resolve
+    return get_resolver(urlconf).resolve(path)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 366, in resolve
+    for pattern in self.url_patterns:
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 402, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\core\urlresolvers.py", line 396, in urlconf_module
+    self._urlconf_module = import_module(self.urlconf_name)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\DataSheleves\urls.py", line 27, in <module>
+    url(r'^new_interface/', include('new_interface.urls')),  # 新接口与vue前端交互
+  File "C:\ProgramData\Anaconda3\lib\site-packages\django\conf\urls\__init__.py", line 33, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\ProgramData\Anaconda3\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 994, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 971, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 955, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 665, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 678, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\urls.py", line 4, in <module>
+    from new_interface import views
+  File "D:\workspace\DataSheleves-18-09-13-1.4(1)\DataSheleves-18-09-13-1.4\new_interface\views.py", line 367
+    isEncap = request..POST.get('isEncap')
+                      ^
+SyntaxError: invalid syntax
+2019-01-18 15:22:46,018 [Thread-6:12404] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getUnpublished_interface
+2019-01-18 17:24:41,109 [Thread-2:13460] [django.request:170] [base:get_response] [WARNING]- Not Found: /new_interface/getDone_interfaceByRe
